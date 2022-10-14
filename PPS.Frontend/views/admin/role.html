@@ -1,0 +1,78 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="userRoleController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Roles</h2>
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-click="addNewRole()">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>
+        <!-- Add User Modal -->
+        <div class="modal fade" pps-modal id="addRoleModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeAddRoleModal()">&times;</button>
+                        <h4 class="modal-title">Add Role</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <form name="roleForm">
+                            <div class="form-group">
+                                <label for="roleName">Role Name</label>
+                                <input type="text" ng-model="newRole.RoleName" class="form-control" id="roleName" required >
+                            </div>
+                            <div class="form-group">
+                                <label for="roleDescription">Description</label>
+                                <input type="text" ng-model="newRole.Description" class="form-control" id="roleDescription" required >
+                            </div>
+                        </form>                      
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeAddRoleModal()">Close</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="addRoleClick()" ng-disabled="roleForm.$invalid">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Roles</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-5">Role Name</th>
+                                    <th class="col-xs-7">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="r in roles">
+                                    <td ng-click="navigateToRole(r.Id)" style="cursor: pointer; color: #1ab394;">{{ r.RoleName }}</td>
+                                    <td>{{ r.Description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

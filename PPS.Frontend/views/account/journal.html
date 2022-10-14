@@ -1,0 +1,232 @@
+<toaster-container></toaster-container>
+<div ng-controller="journalController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Journal</h2>
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-if="isAuthenticated('232')" ng-click="addNewTransaction()">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>
+        <!-- Modal -->
+        <!--<form name="modalForm">-->
+        <div class="modal fade" pps-modal id="transactionModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal()">&times;</button>
+                        <h4 class="modal-title" ng-bind-html="modelHeading"></h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtTransactionNo" style="font-weight: bold;" required="true">Transaction No</label>
+                                <input id="txtTransactionNo" class="form-control" style="width: 200px;" type="text" placeholder="Automatic"
+                                       ng-disabled="true"
+                                       ng-model="selectedTransaction.TranNo" />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtTransactionDate" style="font-weight: bold;" required="true">Transaction Date</label><br />
+                                <md-datepicker ng-model="selectedTransaction.TranDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <label for="txtTransactionNo" style="font-weight: bold;" required="true">Account Head</label><br />
+                                <ui-select ng-model="selectedHead.selected" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.HeadName}}</ui-select-match>
+                                    <ui-select-choices repeat="head in accountsHead | propsFilter: {AccountNature: $select.search, AccountType: $select.search, PrimaryHead: $select.search, SubHead: $select.search, HeadName: $select.search}">
+                                        <div style="padding: 5px;">
+                                            <small>
+                                                <span style="font-style: italic" ng-bind-html="''+head.AccountNature | highlight: $select.search"></span> -
+                                            </small>
+                                            <small>
+                                                <span style="font-style: italic" ng-bind-html="''+head.AccountType | highlight: $select.search"></span>
+                                            </small>
+                                            <div style="padding-left: 20px;">
+                                                <small>
+                                                    <span style="font-style: italic" ng-bind-html="''+head.PrimaryHead | highlight: $select.search"></span> -
+                                                </small>
+                                                <small>
+                                                    <span style="font-style: italic" ng-bind-html="''+head.SubHead | highlight: $select.search"></span>
+                                                </small>
+                                                <div style="padding-left: 20px;" ng-bind-html="head.HeadName | highlight: $select.search"></div>
+                                            </div>
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <div style="margin-bottom: 5px;" ng-init="tranAmountType = 1">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optionTranAmount" ng-model="tranAmountType" value="1">Dr Amount
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optionTranAmount" ng-model="tranAmountType" value="2">Cr Amount
+                                    </label>
+                                </div>
+                                <input id="txtAmount" ng-model="tranAmount" class="form-control" style="width: 200px;" type="number" min="0" placeholder="0.00" />
+                            </div>
+                            <!--<div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtCrAmount" style="font-weight: bold;" required="true">Cr Amount</label>
+                                <input id="txtCrAmount" class="form-control" style="width: 200px;" type="text" placeholder="0.00" />
+                            </div>-->
+                            <div class="form-group col-sm-9 col-xs-12">
+                                <label for="txtNote" style="font-weight: bold;">Note</label>
+                                <textarea id="txtNote" ng-model="Note" class="form-control col-xs-12" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="inner-table" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Transaction Details
+                                        <button type="button" class="btn btn-primary btn-sm" ng-click="addToTransactionDetailList()">
+                                            <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                        </button>
+                                        <!--<button type="button" class="btn btn-primary btn-sm"
+                                                ng-show="modelDetailMode === 2"
+                                                ng-click="cancelModelUpdate()">
+                                            <span class="glyphicon glyphicon-remove"></span> Cancel
+                                        </button>-->
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelDetailMode === 2"
+                                           ng-click="cancelModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <div class="ibox-content" style="padding-bottom: 0;">
+                                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-3">Accounts Head</th>
+                                                    <th class="col-xs-1">Dr</th>
+                                                    <th class="col-xs-1">Cr</th>
+                                                    <th class="col-xs-5">Note</th>
+                                                    <th class="col-xs-2"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="tran in selectedTransaction.TransactionDetail">
+                                                    <td>{{ tran.TranHead }}</td>
+                                                    <td style="text-align: right;">{{ tran.DrAmount }}</td>
+                                                    <td style="text-align: right;">{{ tran.CrAmount }}</td>
+                                                    <td><div ng-bind-html="noteFormat(tran.Note)"></div></td>
+                                                    <td style="text-align: right;">
+                                                        <button type="button" class="btn btn-default btn-sm" ng-click="selectTransactionDetail(tran)">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-default btn-sm" ng-click="removeTransactionDetailItem(tran)">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                    <td class="col-xs-7">Total</td>
+                                                    <td class="col-xs-1">{{ totalDrAmount }}</td>
+                                                    <td class="col-xs-1">{{ totalCrAmount }}</td>
+                                                    <td class="col-xs-1"></td>
+                                                    <td class="col-xs-2"></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <label for="txtParticulars" style="font-weight: bold;" required="true">Particulars</label>
+                                <textarea id="txtParticulars" ng-model="selectedTransaction.Particulars" class="form-control" rows="2" placeholder="Particulars"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="!isNew">
+                            <div class="form-group col-xs-12">
+                                <label for="txtUpdatedReason" style="font-weight: bold;" required="true">Update Reason</label>
+                                <textarea id="txtUpdatedReason" ng-model="selectedTransaction.UpdateReason" class="form-control" rows="2" placeholder="Update Reason"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="modalForm.$invalid"
+                                    ng-class="{ 'disabled': modalForm.$invalid }"
+                                    ng-click="updateTransaction()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--</form>-->
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Transactions</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2">Tx. No.</th>
+                                    <th class="col-xs-1">Tx. Date</th>
+                                    <th class="col-xs-1">Amount</th>
+                                    <th class="col-xs-2">Created</th>
+                                    <th class="col-xs-2">Verified</th>
+                                    <th class="col-xs-1">Accepted</th>
+                                    <th class="col-xs-1">Status</th>
+                                    <th class="col-xs-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tran in transactions" data-tranid="{{ tran.TranId }}">
+                                    <td><span ng-if="tran.HasHistory === false">{{ tran.TranNo }}</span><span ng-if="tran.HasHistory === true" class="pps-link" title="History" ng-click="showHistory(tran.TranNo)">{{ tran.TranNo }}<i class="fa fa-history" aria-hidden="true" style="padding-left: 10px;"></i></span></td>
+                                    <td>{{ tran.TranDate | date:'dd/MM/yyyy' }}</td>
+                                    <td style="text-align: right;">{{ tran.TranAmount | currency : "" }}</td>
+                                    <td>{{ tran.CreatedByName }} ({{ tran.CreatedDate | date:'dd/MM/yyyy' }})</td>
+                                    <td><span ng-if="tran.VerifiedByName !== null">{{ tran.VerifiedByName }} ({{ tran.VerifiedDate | date:'dd/MM/yyyy' }})</span></td>
+                                    <td><span ng-if="tran.AcceptedByName !== null">{{ tran.AcceptedByName }} ({{ tran.AcceptedDate | date:'dd/MM/yyyy' }})</span></td>
+                                    <td>{{ tran.Status }}</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-default btn-sm" title="Edit" ng-if="!tran.Accepted && tran.Status !== 'Verified' && isAuthenticated('234')" ng-click="selectTransaction(tran)">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('233')" ng-click="getVoucherDetail(tran.TranNo,'journal')">
+                                            View
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="Print" ng-if="isAuthenticated('236')" ng-click="getVoucherDetailPrint(tran.TranNo)">
+                                            Print
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

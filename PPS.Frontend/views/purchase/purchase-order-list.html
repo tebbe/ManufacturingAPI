@@ -1,0 +1,75 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="purchaseOrderListController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Purchase Order</h2>
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-if="isAuthenticated('372')" ng-click="addNewPurchaseOrder()">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Purchase Order</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1 text-center">PO No.</th>
+                                    <th class="col-xs-1 text-center">PO Date</th>
+                                    <th class="col-xs-1 text-center">Supplier Name</th>
+                                    <th class="col-xs-1 text-center">Total Amount</th>
+                                    <th class="col-xs-1 text-center">Paid Amount</th>
+                                    <th class="col-xs-1 text-center">Balance Amount</th>
+                                    <!--<th class="col-xs-1 text-center">Payment Type</th>-->
+                                    <th class="col-xs-1 text-center">Estd. Del. Date</th>
+                                    <th class="col-xs-1 text-center">Price Validity</th>
+                                    <th class="col-xs-1 text-center">Created By</th>
+                                    <th class="col-xs-1 text-center">PO Status</th>
+                                    <th class="col-xs-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="po in poList">
+                                    <td class="text-right">{{ po.PurchaseOrderNo }}</td>
+                                    <td class="text-center">{{ po.PurchaseOrderDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-left">{{ po.SupplierName }}</td>
+                                    <td class="text-right">{{ po.TotalAmount | number : 2 }}</td>
+                                    <td class="text-right">{{ po.PaidAmount | number : 2 }}</td>
+                                    <td class="text-right">{{ po.BalanceAmount | number : 2 }}</td>
+                                    <!--<td class="text-left">{{ po.PaymentType}}</td>-->
+                                    <td class="text-center">{{ po.EstimatedDeliveryDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-right">{{ po.PriceValidity }}</td>
+                                    <td class="text-left">{{ po.CreatedByName }}</td>
+                                    <td class="text-left">{{ po.POStatusName }}</td>
+                                    <td class="text-right">
+                                        <button type="button" class="btn btn-default btn-sm" ng-if="isAuthenticated('374') && po.POStatusName === 'Initiated'" title="Edit" ng-click="navigateToPoEdit(po)">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('373')" ng-click="navigateToPoView(po)">
+                                            View
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="Print" ng-if="isAuthenticated('384')" ng-click="navigateToPurchaseOrderPrint(po)">
+                                            Print
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿<style media="print">
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+
+    .footer {
+        display: none;
+    }
+</style>
+
+<div ng-controller="legalDocumentSinglePrintController">
+    <div class="row wrapper white-bg">
+        <div class="col-sm-12" style="background-color: #fff">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h1>
+                        <img src="../../image/logo/PPSLogo.jpg" /> PPS Plastic Pipe Industries Ltd.
+                    </h1>
+                    <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                    <p>Phone: +88 01700 703333, +88 01700 703322</p>
+                    <p>Email: pps.plastic@gmail.com</p><br />
+                    <h3 class="font-bold">Legal Document</h3>
+                    <br />
+                </div>
+
+                <div>
+                    <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Company: </label>
+                            <span>{{legalDocument.CompanyName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Document Type: </label>
+                            <span>{{legalDocument.DocumentTypeName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Renewal Category: </label>
+                            <span>{{legalDocument.DocumentRenewalCategoryName }}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Document Status: </label>
+                            <span>{{legalDocument.DocumentStatusName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Document Nnumber: </label>
+                            <span>{{legalDocument.DocumentNumber}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Issue Date: </label>
+                            <span>{{legalDocument.IssueDate|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Expire Date: </label>
+                            <span>{{legalDocument.ExpireDate|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Name: </label>
+                            <span>{{legalDocument.OrganizationName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Contact Person: </label>
+                            <span>{{legalDocument.OrganizationContactName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Address: </label>
+                            <span>{{legalDocument.OrganizationAddress}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Email: </label>
+                            <span>{{legalDocument.OrganizationContactEmail}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Contact: </label>
+                            <span>{{legalDocument.OrganizationPhoneNumber}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Created On: </label>
+                            <span>{{legalDocument.CreatedOn|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

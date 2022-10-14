@@ -1,0 +1,68 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div id="salesTeamTargetPageContent" ng-controller="salesTeamTargetPrintController">
+    <div class="row wrapper white-bg">
+        <div id="salesTeamTarget" class="col-sm-12" style="background-color: #fff" ng-if="isReportGenerated===true">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h1>
+                        <img src="../../image/logo/PPSLogo.jpg" /> PPS Plastic Pipe Industries Ltd.
+                    </h1>
+                    <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                    <p>Phone: +88 01700 703311</p>
+                    <p>Email: abc@gmail.com</p>
+                    <h3>Sales Team Target</h3>
+                </div>
+                <div class="text-left font-bold" style="padding-bottom: 30px;">
+                    <span style="float: left;">
+                        Dated: {{salesTeamTargetList[0].TargetDate | date: 'MMM-yyyy'}}
+                    </span>
+                    <span style="float: right">
+                       Target: {{salesTeamTargetList[0].SalesTarget + salesTeamTargetList[0].TeamTarget | currency: 'Tk.'}}
+                    </span>
+                </div>
+                <div>
+                    <table dt-options="dtOptions" class="table table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-6 text-left">Employee</th>
+                                <th class="col-xs-2 text-right">Sales Target</th>
+                                <th class="col-xs-2 text-right">Team Target</th>
+                                <th class="col-xs-1 text-right">Achievement</th>
+                                <th class="col-xs-1 text-center">%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="st in salesTeamTargetList">
+                                <td class="text-left">{{ st.EmployeeName }}</td>
+                                <td class="text-right">{{ st.SalesTarget | currency: '' }}</td>
+                                <td class="text-right">{{ st.TeamTarget | currency: '' }}</td>
+                                <td class="text-right">{{ st.Achievement | currency: '' }}</td>
+                                <td class="text-right">{{ st.Percentage | currency: '' }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

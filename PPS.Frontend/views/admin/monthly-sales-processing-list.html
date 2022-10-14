@@ -1,0 +1,122 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="monthlySalesProcessController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Monthly Sales Process</h2>
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-if="isAuthenticated('141')" ng-click="showMonthlySalesProcessModal()">
+                    <span class="glyphicon glyphicon-plus"></span> Add Process
+                </button>
+            </h2>
+        </div>
+        <!-- Add new monthly sales process Modal -->
+        <div class="modal fade" pps-modal id="addMonthlySalesProcess" role="dialog">
+            <div class="modal-dialog modal-md">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeAddMonthlySalesProcessModal()">&times;</button>
+                        <h4 class="modal-title">New Monthly Sales Process</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0; height: 105px;">
+                        <p>Do you want to process monthly sales?</p>
+                        <form name="monthlySalesProcessForm">
+                            <div class="form-group col-xs-6">
+                                <label for="listMonth">Month</label>
+                                <select class="form-control"
+                                        id="listMonth"
+                                        ng-model="selectedMonth"
+                                        ng-options="month for month in monthList"></select>
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="listYear">Year</label>
+                                <select class="form-control"
+                                        id="listYear"
+                                        ng-model="selectedYear"
+                                        ng-options="year for year in yearList"></select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeAddMonthlySalesProcessModal()">Close</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="monthlySalesProcessClick()" ng-disabled="monthlySalesProcessForm.$invalid">Process</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Reprocess Modal -->
+        <div class="modal fade" pps-modal id="reprocessMonthlySalesProcessingModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeReprocessMonthlySalesProcessingModal()">&times;</button>
+                        <h4 class="modal-title">Monthly Sales Reprocess</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to reprocess monthly sales?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeReprocessMonthlySalesProcessingModal()">No</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="reprocessMonthlySalesProcessingClick()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Monthly Sales Process</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2">Process Month</th>
+                                    <th class="col-xs-2">Processed By</th>
+                                    <th class="col-xs-2">Processed On</th>
+                                    <th class="col-xs-2">Reprocessed By</th>
+                                    <th class="col-xs-2">Reprocessed On</th>
+                                    <th class="col-xs-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="process in monthlySalesProcessingList">
+                                    <td>{{ process.Month }}/{{ process.Year }}</td>
+                                    <td>{{ process.CreatedBy }}</td>
+                                    <td>{{ process.CreatedOn | date:'dd/MM/yyyy' }}</td>
+                                    <td>{{ process.ReprocessedBy }}</td>
+                                    <td>{{ process.ReprocessedOn | date:'dd/MM/yyyy' }}</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-default btn-sm" title="Reprocess" ng-click="showReprocessMonthlySalesProcessingModal(process)">
+                                            Reprocess
+                                        </button>   
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="finishedGoodEntryController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Finished Good Entry</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <form name="finishedGoodForm" novalidate>
+                        <div class="row">
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtProductionDate" style="font-weight: bold;" required="true">Production Date</label><br />
+                                <md-datepicker ng-model="ProductionDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtCloseBatch" style="font-weight: bold;">Close Production Group</label><br />
+                                <input type="checkbox" ng-model="IsClosedProductionGroup" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtProductionGroupId" style="font-weight: bold;" required="true">Production Group</label>
+                                <ui-select ng-model="selectedProductionGroup.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.ProductionGroupId}}</ui-select-match>
+                                        <ui-select-choices repeat="pg in productionGroupList | propsFilter: {ProductionGroupId: $select.search}">
+                                            <div ng-bind-html="pg.ProductionGroupId | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                            </div>
+                            <div class="form-group col-sm-5 col-xs-12">
+                                <label for="txtProductId" style="font-weight: bold;" required="true">Product Item</label>
+                                <ui-select ng-model="selectedProduct.selected" id="listProduct" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="prd in productList | propsFilter: {Name: $select.search, Thickness: $select.search}">
+                                        <div ng-bind-html="prd.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtQuantity">Quantity</label>
+                                <input id="txtQuantity" ng-model="Quantity" min="1" class="form-control" type="number" required />
+                            </div>
+
+                            <div class="form-group col-sm-1 col-xs-12" style="padding-top:23px;">
+                                <button type="button" class="btn btn-primary btn-sm" 
+                                        ng-disabled="finishedGoodForm.$invalid"
+                                        ng-click="addProductItem()">
+                                    <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Product Details
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelDetailMode === 2"
+                                           ng-click="cancelModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-2 text-center">PG No.</th>
+                                                <th class="col-xs-2 text-center">Product Code</th>
+                                                <th class="col-xs-5 text-center">Product Name</th>
+                                                <th class="col-xs-1 text-center">Quantity</th>
+                                                <th class="col-xs-2 text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pd in productDetail">
+                                                <td class="text-right">{{pd.ProductionGroupIdName}}</td>
+                                                <td class="text-left">{{pd.Code}}</td>
+                                                <td class="text-left">{{ pd.Name }}</td>
+                                                <td class="text-right">{{ pd.Quantity }}</td>
+                                                <td class="text-right">
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(pd)">
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(pd)">
+                                                        Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="!isFinishedGoodValidated"
+                                    ng-class="{ 'disabled': !isFinishedGoodValidated }"
+                                    ng-click="saveFinishedGood()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,263 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div id="voucherPageContent" ng-controller="voucherRptController">
+    <div class="row wrapper white-bg">
+        <div id="voucherContent" class="col-sm-12" style="background-color: #fff">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h2>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> <b>{{company.FullName}}</b>
+                    </h2>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}; Email: {{company.Email}}</p>
+                    <h3 class="font-bold"><u>{{voucher.TransactionType}} Voucher</u></h3>
+                </div>
+                <!--<div class="text-center">
+                    <h1>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> {{company.FullName}}
+                    </h1>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}</p>
+                    <p>Email: {{company.Email}}</p><br />
+                    <h3 class="font-bold">{{voucher.TransactionType}} Voucher</h3>
+                </div>-->
+                <div class="">
+                    <div class="col-sm-6 text-left">
+                        <p>
+                            Voucher No: <span class="font-bold">{{voucher.TransactionNo}}</span>
+                        </p>
+                        <br />
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <p>Dated: <span class="font-bold">{{voucher.TransactionDate | date:'dd-MMM-yyyy'}}</span></p>
+                    </div>
+                </div>
+                <hr />
+                <div ng-if="voucher.TransactionType === 'Payment'">
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <th class="text-center">Particulars</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td class="text-left font-bold">Account: </td>
+                            </tr>
+                            <tr style="border-style: hidden;" ng-repeat="vd in voucher.VoucherDetail">
+                                <td class="text-left" ng-if=" vd.DrAmount !== 0">
+                                    <span style="padding-left: 20px;">{{vd.AccountHeadName}}</span>
+                                    <pre class="customPreTag" style="padding-left: 40px !important; font-style: italic;" ng-if="vd.Note.length > 0">({{vd.Note}})</pre>
+                                </td>
+                                <td class="text-right font-bold" ng-if="vd.DrAmount !== 0">
+                                    <span style="padding-left: 20px;">{{vd.DrAmount | currency : ""}}</span>
+                                </td>
+                            </tr>
+
+                            <tr style="border-style: hidden;">
+                                <td class="text-left font-bold" style="padding-top: 100px;">Through: </td>
+                            </tr>
+                            <tr style="border-style: hidden" ng-repeat="vd in voucher.VoucherDetail">
+                                <td class="text-left" ng-if="vd.CrAmount !==0 ">
+                                    <span style="padding-left: 20px;">{{vd.AccountHeadName}}</span>
+                                    <pre class="customPreTag" style="padding-left: 40px !important; font-style: italic;" ng-if="vd.Note.length > 0">({{vd.Note}})</pre>
+                                </td>
+
+                            </tr>
+                            <tr style="border-left-style: hidden; border-right-style: hidden; border-top-style: hidden;">
+                                <td colspan="1" class="text-left font-bold">Amount (in Words): </td>
+                            </tr>
+                            <tr style="border-style: hidden;">
+                                <td>
+                                    <span style="padding-left: 20px;">{{convertAmountInWord()}}</span>
+                                </td>
+                            </tr>
+
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td style="border-bottom-style: hidden !important"></td>
+                                <td class="text-right font-bold">
+                                    {{voucher.TransactionAmount | currency : "Tk "}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-if="voucher.TransactionType === 'Receipt'">
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <th class="text-center">Particulars</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td class="text-left font-bold">Account: </td>
+                            </tr>
+                            <tr style="border-style: hidden;" ng-repeat="vd in voucher.VoucherDetail">
+                                <td class="text-left" ng-if=" vd.CrAmount !== 0">
+                                    <span style="padding-left: 20px;">{{vd.AccountHeadName}}</span>
+                                    <pre class="customPreTag" style="padding-left: 40px !important; font-style: italic;" ng-if="vd.Note.length > 0">({{vd.Note}})</pre>
+                                </td>
+                                <td class="text-right font-bold" ng-if="vd.CrAmount !== 0"><span style="padding-left: 20px;">{{vd.CrAmount | currency : ""}}</span></td>
+                            </tr>
+
+                            <tr style="border-style: hidden;">
+                                <td class="text-left font-bold" style="padding-top: 100px;">Through: </td>
+                            </tr>
+                            <tr style="border-style: hidden;" ng-repeat="vd in voucher.VoucherDetail">
+                                <td class="text-left" ng-if="vd.DrAmount !==0 ">
+                                    <span style="padding-left: 20px;">{{vd.AccountHeadName}}</span>
+                                    <pre class="customPreTag" style="padding-left: 40px !important; font-style: italic;" ng-if="vd.Note.length > 0">({{vd.Note}})</pre>
+                                </td>
+                            </tr>
+                            <tr style="border-left-style: hidden; border-right-style: hidden; border-top-style: hidden;">
+                                <td colspan="1" class="text-left font-bold">Amount (in Words): </td>
+                            </tr>
+                            <tr style="border-style: hidden;">
+                                <td>
+                                    <span style="padding-left: 20px;">{{convertAmountInWord()}}</span>
+                                </td>
+                            </tr>
+
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td style="border-bottom-style: hidden !important"></td>
+                                <td class="text-right font-bold">
+                                    {{voucher.TransactionAmount | currency : "Tk "}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-if="voucher.TransactionType === 'Journal'">
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <th class="text-center">Particulars</th>
+                                <th class="text-right">Debit</th>
+                                <th class="text-right">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-left-style: hidden; border-right-style: hidden; border-bottom-style: hidden;" ng-repeat="vd in voucher.VoucherDetail | orderBy:'-DrAmount'">
+                                <td class="text-left">
+                                    <span class="font-italic" ng-if="vd.CrAmount !== 0">To</span>
+                                    <span ng-style="vd.CrAmount !== 0 ? { 'padding-left':'20px'} : { 'padding-left':'40px'}">{{vd.AccountHeadName}}</span>
+                                    <pre class="customPreTag" style="padding-left: 40px !important; font-style: italic;" ng-if="vd.Note.length > 0">({{vd.Note}})</pre>
+                                    <span class="font-italic" style="padding-left: 20px; float: right;" ng-if="vd.DrAmount !== 0">Dr</span>
+                                </td>
+                                <td class="text-right font-bold"><span style="padding-left: 20px;">{{vd.DrAmount > 0 ? (vd.DrAmount | currency : "") : ''}}</span></td>
+                                <td class="text-right font-bold"><span style="padding-left: 20px;">{{vd.CrAmount > 0 ? (vd.CrAmount | currency : "") : ''}}</span></td>
+                            </tr>
+                            <tr style="border-style: hidden;">
+                                <td colspan="1" class="text-left font-bold" style="padding-top: 100px;">On Account Of: </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr style="border-left-style: hidden; border-right-style: hidden; border-top-style: hidden;">
+                                <td style="border-bottom-style: hidden !important;">
+                                    <span style="padding-left: 20px;">{{voucher.Particulars}}</span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td style="border-bottom-style: hidden !important;"></td>
+                                <td class="text-right font-bold">
+                                    {{voucher.TransactionAmount | currency : "Tk "}}
+                                </td>
+                                <td class="text-right font-bold">
+                                    {{voucher.TransactionAmount | currency : "Tk "}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-if="voucher.TransactionType === 'Contra'">
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <th class="text-center">Particulars</th>
+                                <th class="text-right">Debit</th>
+                                <th class="text-right">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-left-style: hidden; border-right-style: hidden; border-bottom-style: hidden;" ng-repeat="vd in voucher.VoucherDetail | orderBy:'-CrAmount'">
+                                <td class="text-left">
+                                    <span class="font-italic" ng-if="vd.CrAmount !== 0">To</span>
+                                    <span ng-style="vd.CrAmount !== 0 ? { 'padding-left':'20px'} : { 'padding-left':'40px'}">{{vd.AccountHeadName}}</span>
+                                    <pre class="customPreTag" style="padding-left: 40px !important; font-style: italic;" ng-if="vd.Note.length > 0">({{vd.Note}})</pre>
+                                </td>
+                                <td class="text-right font-bold"><span style="padding-left: 20px;">{{vd.DrAmount > 0 ? (vd.DrAmount | currency : "") : ''}}</span></td>
+                                <td class="text-right font-bold"><span style="padding-left: 20px;">{{vd.CrAmount > 0 ? (vd.CrAmount | currency : "") : ''}}</span></td>
+                            </tr>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td style="padding-top: 100px;"></td>
+                                <td></td>
+                            </tr>
+                            <tr style="border-left-style: hidden; border-right-style: hidden;">
+                                <td style="border-bottom-style: hidden !important; border-top-style: hidden !important;"></td>
+                                <td class="text-right font-bold" style="border-left-style: hidden !important;">
+                                    {{voucher.TransactionAmount | currency : "Tk "}}
+                                </td>
+                                <td class="text-right font-bold" style="border-right-style: hidden !important">
+                                    {{voucher.TransactionAmount | currency : "Tk "}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="padding-top: 80px;">
+                    <div id="paymentVoucherSignatory" ng-if="voucher.TransactionType === 'Payment'">
+                        <div class="col-sm-3 text-center" style="padding: 0 30px;">
+                            <p style="border-top: 1px solid black;">Prepared By<br />{{voucher.CreatedByName}}<br />{{voucher.CreatedByDesignation}}<br />{{voucher.CreatedDate | date:'dd-MMM-yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-3 text-center" style="padding: 0 10px;">
+                            <p style="border-top: 1px solid black;">Receiver's Signature<br />(<span style="padding-left: 80%;">)</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center" style="padding: 0 30px;">
+                            <p style="border-top: 1px solid black;">Verified By<br />{{voucher.VerifiedByName}}<br />{{voucher.VerifiedByDesignation}}<br />{{voucher.VerifiedDate | date:'dd-MMM-yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-3 text-center" style="padding: 0 20px;">
+                            <p style="border-top: 1px solid black;">Authorised Signatory<br />Managing Director<br />{{voucher.ApprovedDate | date:'dd-MMM-yyyy'}}</p>
+                        </div>
+                    </div>
+                    <div ng-if="voucher.TransactionType !== 'Payment'">
+                        <div class="col-sm-4 text-center" style="padding: 0 40px;">
+                            <p style="border-top: 1px solid black;">Prepared By<br />{{voucher.CreatedByName}}<br />{{voucher.CreatedByDesignation}}<br />{{voucher.CreatedDate | date:'dd-MMM-yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-4 text-center" style="padding: 0 40px;">
+                            <p style="border-top: 1px solid black;">Verified By<br />{{voucher.VerifiedByName}}<br />{{voucher.VerifiedByDesignation}}<br />{{voucher.VerifiedDate | date:'dd-MMM-yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-4 text-center" style="padding: 0 40px;">
+                            <p style="border-top: 1px solid black;">Authorised Signatory<br />Managing Director<br />{{voucher.ApprovedDate | date:'dd-MMM-yyyy'}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

@@ -1,0 +1,97 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="productViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Product</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('854')" ng-click="navigateToProductEdit()">
+                    <span class=""></span> Edit
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Product Details
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Name: </label>
+                                        <span>{{productDetails.Name}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Code: </label>
+                                        <span>{{productDetails.Code}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Color: </label>
+                                        <span>{{productDetails.Color }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Product Standard Type Name: </label>
+                                        <span>{{productDetails.ProductStandardTypeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Thickness: </label>
+                                        <span>{{productDetails.Thickness}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Unit Price: </label>
+                                        <span>{{productDetails.UnitPrice}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Length: </label>
+                                        <span>{{productDetails.Length}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Unit Type Name: </label>
+                                        <span>{{productDetails.UnitTypeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Product Type Name: </label>
+                                        <span>{{productDetails.ProductTypeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>AccountHead Id: </label>
+                                        <span>{{productDetails.AccountHeadId}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created On: </label>
+                                        <span>{{productDetails.CreatedOn==null?'N/A':productDetails.CreatedOn|date:'MM/dd/yyyy'}}</span>
+                                    </div>
+                                   
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Updated On: </label>
+                                        <span>{{productDetails.UpdatedOn==null?'N/A':productDetails.UpdatedOn|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-12">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-click="gotoProductList()">
+                    <span class=""></span> Cancel
+                </button>
+            </h2>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="paymentAddController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Payment</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form name="paymentAddForm" novalidate>
+                            <div class="ibox-content" style="padding-bottom: 20px;">
+                                <div class="row">
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="txtTransactionNo" style="font-weight: bold;" required="true">Transaction No</label>
+                                        <input id="txtTransactionNo" class="form-control" style="width: 200px;" type="text" placeholder="Automatic"
+                                               ng-disabled="true"
+                                               ng-model="selectedTransaction.TranNo" />
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xs-12">
+                                        <label for="txtTransactionDate" style="font-weight: bold;" required="true">Transaction Date</label><br />
+                                        <md-datepicker ng-model="selectedTransaction.TranDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                       ng-click="clickDatePicker()"></md-datepicker>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="txtTransactionNo" style="font-weight: bold;" required="true">Account Head</label><br />
+                                        <ui-select ng-model="selectedHead.selected" style="width: 100%;" theme="select2" required>
+                                            <ui-select-match placeholder="" class="form-control" required>{{$select.selected.HeadName}}</ui-select-match>
+                                            <ui-select-choices repeat="head in accountsHead | propsFilter: {AccountNature: $select.search, AccountType: $select.search, PrimaryHead: $select.search, SubHead: $select.search, HeadName: $select.search}">
+                                                <div style="padding: 5px;">
+                                                    <small>
+                                                        <span style="font-style: italic" ng-bind-html="''+head.AccountNature | highlight: $select.search"></span> -
+                                                    </small>
+                                                    <small>
+                                                        <span style="font-style: italic" ng-bind-html="''+head.AccountType | highlight: $select.search"></span>
+                                                    </small>
+                                                    <div style="padding-left: 20px;">
+                                                        <small>
+                                                            <span style="font-style: italic" ng-bind-html="''+head.PrimaryHead | highlight: $select.search"></span> -
+                                                        </small>
+                                                        <small>
+                                                            <span style="font-style: italic" ng-bind-html="''+head.SubHead | highlight: $select.search"></span>
+                                                        </small>
+                                                        <div style="padding-left: 20px;" ng-bind-html="head.HeadName | highlight: $select.search"></div>
+                                                    </div>
+                                                </div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-3 col-xs-12">
+                                        <div style="margin-bottom: 5px;" ng-init="tranAmountType = 1">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optionTranAmount" ng-model="tranAmountType" value="1">Dr Amount
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optionTranAmount" ng-model="tranAmountType" value="2">Cr Amount
+                                            </label>
+                                        </div>
+                                        <input id="txtAmount" ng-model="tranAmount" class="form-control" style="width: 200px;" type="number" min="0" placeholder="0.00" />
+                                    </div>
+                                    <div class="form-group col-sm-9 col-xs-12">
+                                        <label for="txtNote" style="font-weight: bold;">Note</label>
+                                        <textarea id="txtNote" ng-model="Note" class="form-control col-xs-12" rows="4"></textarea>
+                                    </div>
+
+                                </div>
+                                <div class="inner-table" style="padding-bottom: 20px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Transaction Details
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="addToTransactionDetailList()">
+                                                    <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                                </button>
+                                               
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body form-group" style="padding-bottom: 0;">
+                                            <div class="ibox-content" style="padding-bottom: 0;">
+                                                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="col-xs-3">Accounts Head</th>
+                                                            <th class="col-xs-1">Dr</th>
+                                                            <th class="col-xs-1">Cr</th>
+                                                            <th class="col-xs-5">Note</th>
+                                                            <th class="col-xs-2"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="tran in selectedTransaction.TransactionDetail">
+                                                            <td>{{ tran.TranHead }}</td>
+                                                            <td style="text-align: right;">{{ tran.DrAmount }}</td>
+                                                            <td style="text-align: right;">{{ tran.CrAmount }}</td>
+                                                            <td><div ng-bind-html="noteFormat(tran.Note)"></div></td>
+                                                            <td style="text-align: right;">
+                                                                <button type="button" class="btn btn-default btn-sm" ng-click="selectTransactionDetail(tran)">
+                                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-default btn-sm" ng-click="removeTransactionDetailItem(tran)">
+                                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                            <td colspan="1">Total</td>
+                                                            <td>{{ totalDrAmount }}</td>
+                                                            <td>{{ totalCrAmount }}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="txtParticulars" style="font-weight: bold;" required="true">Particulars</label>
+                                        <textarea id="txtParticulars" ng-model="selectedTransaction.Particulars" class="form-control" rows="2" placeholder="Particulars"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                 <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <div style="float: left;">
+                                <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+                            </div>
+                            <div style="float: right;">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="paymentAdd.$invalid"
+                                        ng-click="SaveTransaction()">
+                                    {{ modelActionText }}
+                                </button>
+                               
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

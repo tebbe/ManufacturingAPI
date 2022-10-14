@@ -1,0 +1,72 @@
+﻿<div ng-controller="ledgerRptController">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 20px;">
+        <div class="col-sm-10">
+            <div class="form-group">
+                <label for="daterange3" class="control-label">Report - Ledger</label>
+                <input date-range-picker id="daterange3" name="daterange3" class="form-control date-picker" type="text"
+                       ng-model="date" options="opts" required />
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="GetLedger()">
+                    <span class="glyphicon glyphicon-list"></span> Show
+                </button>
+            </h2>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="PrintLedgerReport('ledgerReportPrint')">
+                    <span class="glyphicon glyphicon-print"></span> Print
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Ledger - {{ ledgerList.StartDate | date:'dd/MM/yyyy' }} to {{ ledgerList.EndDate | date:'dd/MM/yyyy' }}</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table id="ledgerReportPrint" datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1 text-center" style="vertical-align: middle" rowspan="2">Account Head No.</th>
+                                    <th class="col-xs-3 text-center" style="vertical-align: middle" rowspan="2">Account Head</th>
+                                    <!--<th class="col-xs-2 text-center" colspan="2">Opening Balance</th>-->
+                                    <th class="col-xs-2 text-center" colspan="4">Closing Balance</th>
+                                </tr>
+                                <tr>
+                                    <!--<th class="col-xs-1 text-center" colspan="1">Debit</th>
+                                    <th class="col-xs-1 text-center" colspan="1">Credit</th>-->
+                                    <th class="col-xs-2 text-center" colspan="1">Debit</th>
+                                    <th class="col-xs-2 text-center" colspan="1">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="ledger in ledgerList.Detail">
+                                    <td class="text-right">{{ ledger.AccountHeadId }}</td>
+                                    <td class="text-left">{{ ledger.AccountHead }}</td>
+                                    <!--<td class="text-right">{{ ledger.OpenDrAmount > 0 ? (ledger.OpenDrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td class="text-right">{{ ledger.OpenCrAmount > 0 ? (ledger.OpenCrAmount | currency : "Tk.") : '0' }}</td>-->
+                                    <td class="text-right">{{ ledger.DrAmount > 0 ? (ledger.DrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td class="text-right">{{ ledger.CrAmount > 0 ? (ledger.CrAmount | currency : "Tk.") : '0' }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" style="text-align: right; font-weight: bold;">Total in (Tk.)</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalDrAmount | currency : '' }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalCrAmount | currency : '' }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

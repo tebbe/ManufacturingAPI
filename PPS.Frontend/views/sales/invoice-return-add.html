@@ -1,0 +1,223 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="invoiceReturnController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Return Invoice/CR</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="form-group col-sm-3 col-xs-12">
+                            <label for="txtInvoiceDate" style="font-weight: bold;" required="true">Return Date</label><br />
+                            <md-datepicker ng-model="ReturnDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                           ng-click="clickDatePicker()"></md-datepicker>
+                        </div>
+
+                        <div class="form-group col-sm-6 col-xs-12">
+                            <label for="txtNote">Note</label>
+                            <input id="txtNote" ng-model="Note" class="form-control" type="text" />
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label for="txtinvoiceId" style="font-weight: bold;" required="true">Invoice No.</label>
+                                            <ui-select ng-model="InvoiceIdList.selected" ng-change="getInvoiceById(InvoiceIdList.selected)" style="width: 100%;" theme="select2">
+                                                <ui-select-match placeholder="" class="form-control" required>{{$select.selected.InvoiceNo}}</ui-select-match>
+                                                <ui-select-choices repeat="do in InvoiceIdList | propsFilter: {InvoiceNo: $select.search}">
+                                                    <div ng-bind-html="do.InvoiceNo | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label style="font-weight: bold;">Customer Name: </label><br />
+                                            <span ng-if="$scope.invoice.length !== 0">{{invoice.CustomerName}} ({{invoice.CustomerCode}})</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Product Details
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body form-group" style="padding-bottom: 0;">
+                                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-1 text-center">SL</th>
+                                                        <th class="col-xs-3 text-center">Product Name</th>
+                                                        <th class="col-xs-1 text-center">Delivred Quantity</th>
+                                                        <th class="col-xs-2 text-center">Unit Price</th>
+                                                        <th class="col-xs-1 text-center">Discount(%)</th>
+                                                        <th class="col-xs-2 text-center">Total Price</th>
+                                                        <th class="col-xs-2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="pd in invoiceProductDetail">
+                                                        <td style="text-align: center;">{{$index + 1}}</td>
+                                                        <td>{{ pd.ProductName }}</td>
+                                                        <td style="text-align: right;">{{ pd.DeliveredQuantity }}</td>
+                                                        <td style="text-align: right;">{{ pd.UnitPrice | currency : "" }}</td>
+                                                        <td style="text-align: right;">{{ pd.Discount | currency : "" }}</td>
+                                                        <td style="text-align: right;">{{ pd.TotalPrice | currency : "" }}</td>
+                                                        <td style="text-align: right;">
+                                                            <button type="button" class="btn btn-default btn-sm" ng-click="selectProductItemDetail(pd)">
+                                                                Select
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                        <td class="col-xs-8" colspan="3">Total</td>
+                                                        <td class="col-xs-1"></td>
+                                                        <td class="col-xs-1">{{ invoice.TotalAmount | number:2}}</td>
+                                                        <td class="col-xs-1"></td>
+                                                    </tr>
+
+                                                    <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="invoice.RegularDiscountInPercentage>0">
+                                                        <td class="col-xs-8" colspan="3">Regular Discount (%)</td>
+                                                        <td class="col-xs-1">{{invoice.RegularDiscountInPercentage}}</td>
+                                                        <td class="col-xs-1">{{ invoice.RegularDiscountAmount | number:2}}</td>
+                                                        <td class="col-xs-1"></td>
+                                                    </tr>
+
+
+                                                    <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                        <td class="col-xs-8" colspan="3">Total Discount</td>
+                                                        <td class="col-xs-1"></td>
+                                                        <td class="col-xs-1">{{ invoice.TotalDiscountAmount | number:2}}</td>
+                                                        <td class="col-xs-1"></td>
+                                                    </tr>
+                                                    <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                        <td class="col-xs-8" colspan="3">Grand Total</td>
+                                                        <td class="col-xs-1"></td>
+                                                        <td class="col-xs-1">{{ invoice.TotalGrandAmount | number:2}}</td>
+                                                        <td class="col-xs-1"></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12" style="padding-bottom: 20px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Product Details
+                                                <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                                   ng-show="modelDetailMode === 2"
+                                                   ng-click="cancelModelUpdate()">Cancel</a>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body form-group" style="padding-bottom: 0;">
+                                            <div class="row">
+                                                <form name="invoiceForm" novalidate>
+                                                    <div class="form-group col-sm-5 col-xs-12">
+                                                        <label for="txtProductId" style="font-weight: bold;" required>Product Item</label>
+                                                        <select class="form-control"
+                                                                id="optionSubGroup"
+                                                                ng-disabled="true"
+                                                                ng-model="selectedProduct"
+                                                                ng-options="prd.ProductName for prd in products"></select>
+                                                    </div>
+                                                    <div class="form-group col-sm-4 col-xs-12">
+                                                        <label for="txtFreshQuantity">Quantity</label>
+                                                        <input id="txtFreshQuantity" ng-model="ReturnQuantity" min="1" max="selectedProduct.DeliveredQuantity" class="form-control" type="number" />
+                                                    </div>
+
+                                                    <div class="form-group col-sm-2 col-xs-12">
+                                                        <label for="txtDiscount">Unit Price</label>
+                                                        <input id="txtDiscount" ng-disabled="true" ng-model="selectedProduct.UnitPrice" min="0" max="100" class="form-control" type="number" />
+                                                    </div>
+
+                                                    <div class="form-group col-sm-1 col-xs-12" style="padding-top: 23px;">
+                                                        <button type="button" class="btn btn-primary btn-sm"
+                                                                ng-click="addProductItem()">
+                                                            <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                                <div class="col-xs-12">
+                                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="col-xs-2 text-center">Product Name</th>
+                                                                <th class="col-xs-2 text-center">Return Quantity</th>
+                                                                <th class="col-xs-2 text-center">Unit Price</th>
+                                                                <th class="col-xs-2 text-center">Discount(%)</th>
+                                                                <th class="col-xs-2 text-center">Total Price</th>
+                                                                <th class="col-xs-2"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="pd in productDetail">
+                                                                <td>{{ pd.ProductName }}</td>
+                                                                <td style="text-align: right;">{{ pd.ReturnQuantity }}</td>
+                                                                <td style="text-align: right;">{{ pd.UnitPrice | currency : "" }}</td>
+                                                                <td style="text-align: right;">{{ pd.Discount | currency : "" }}</td>
+                                                                <td style="text-align: right;">{{ pd.TotalPrice | currency : "" }}</td>
+                                                                <td style="text-align: right;">
+                                                                    <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(pd)">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                                <td class="col-xs-9" colspan="3">Total</td>
+                                                                <td class="col-xs-1"></td>
+                                                                <td class="col-xs-1">{{invoiceTotalAmount | number:2}}</td>
+                                                                <td class="col-xs-1"></td>
+                                                            </tr>
+                                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                                <td class="col-xs-9" colspan="3">Regular Discount (%)</td>
+                                                                <td class="col-xs-1">{{invoice.RegularDiscountInPercentage}}</td>
+                                                                <td class="col-xs-1">{{invoiceRegularDiscountAmount | number:2}}</td>
+                                                                <td class="col-xs-1"></td>
+                                                            </tr>
+                                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                                <td class="col-xs-9" colspan="3">Total Discount</td>
+                                                                <td class="col-xs-1"></td>
+                                                                <td class="col-xs-1">{{invoiceTotalDiscountAmount | number:2}}</td>
+                                                                <td class="col-xs-1"></td>
+                                                            </tr>
+                                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                                <td class="col-xs-9" colspan="3">Grand Total</td>
+                                                                <td class="col-xs-1"></td>
+                                                                <td class="col-xs-1">{{invoiceTotalGrandAmount | number:2}}</td>
+                                                                <td class="col-xs-1"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="form-group col-xs-12 text-right">
+                                                <button type="button"
+                                                        class="btn btn-primary"
+                                                        ng-disabled="!isInvoiceValidated"
+                                                        ng-class="{ 'disabled': !isInvoiceValidated}"
+                                                        ng-click="saveReturnInvoice()">
+                                                    {{ modelActionText }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

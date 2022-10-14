@@ -1,0 +1,162 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="deliveryChallanEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Delivery Challan</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="deliveryChallanUpdateForm" novalidate>
+                            <div class="form-group col-sm-6 col-xs-6">
+                                <label for="txtInvoiceDate" style="font-weight: bold;" required="true">Delivery Challan Date</label><br />
+                                <md-datepicker ng-model="ChallanDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-6">
+                                <label for="txtNote">Note</label>
+                                <input id="txtNote" ng-model="deliveryChallan.Note" class="form-control" type="text" />
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+
+                                            <div class="form-group col-sm-5 col-xs-12">
+                                                <label style="font-weight: bold;">Invoice No: </label><br />
+                                                <span ng-disabled="true">{{deliveryChallan.InvoiceNo}}</span>
+                                            </div>
+                                            <div class="form-group col-sm-3 col-xs-12">
+                                                <label style="font-weight: bold;">Customer Name: </label><br />
+                                                <span ng-if="$scope.invoice.length !== 0">{{invoice.CustomerName}} ({{invoice.CustomerCode}})</span>
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label style="font-weight: bold;">Employee Name: </label><br />
+                                                <span ng-if="$scope.invoice.length !== 0">{{invoice.EmployeeName}} ({{invoice.EmployeeCode}})</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">
+                                                    Product Details
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body form-group" style="padding-bottom: 0;">
+                                                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="col-xs-1 text-center">SL</th>
+                                                            <th class="col-xs-2 text-center">Product Name</th>
+                                                            <th class="col-xs-1 text-center">Invoice Quantity</th>
+                                                            <th class="col-xs-1"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="pd in invoice.DeliveryChallanInvoiceDetailList">
+                                                            <td style="text-align: center;">{{$index + 1}}</td>
+                                                            <td>{{ pd.ProductName }}</td>
+                                                            <td style="text-align: right;">{{ pd.InvoiceQuantity }}</td>
+                                                            <td style="text-align: right;">
+                                                                <button type="button" class="btn btn-default btn-sm" ng-click="selectProductItemDetail(pd)">
+                                                                    Select
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12" style="padding-bottom: 20px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">
+                                                    Product Details
+                                                    <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                                       ng-show="modelDetailMode === 2"
+                                                       ng-click="cancelModelUpdate()">Cancel</a>
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body form-group" style="padding-bottom: 0;">
+                                                <div class="row">
+                                                    <form name="deliveryChallanForm" novalidate>
+                                                        <div class="form-group col-sm-7 col-xs-12">
+                                                            <label for="txtProductId" style="font-weight: bold;" required>Product Item</label>
+                                                            <select class="form-control"
+                                                                    id="optionSubGroup"
+                                                                    ng-disabled="true"
+                                                                    ng-model="selectedProduct"
+                                                                    ng-options="prd.ProductName for prd in Product"></select>
+                                                        </div>
+                                                        <div class="form-group col-sm-3 col-xs-12">
+                                                            <label for="txtQuantity">Delivery Quantity</label>
+                                                            <input id="txtQuantity" ng-model="Quantity" min="1" max="{{selectedProduct.InvoiceQuantity}}" class="form-control" type="number" required />
+                                                        </div>
+                                                        <div class="form-group col-sm-2 col-xs-12" style="padding-top: 23px;">
+                                                            <button type="button" class="btn btn-primary btn-sm"
+                                                                    ng-disabled="deliveryChallanForm.$invalid"
+                                                                    ng-click="addProductItem()">
+                                                                <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <div class="col-xs-12">
+                                                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="col-xs-1 text-center">SL</th>
+                                                                    <th class="col-xs-1 text-center">Product Name</th>
+                                                                    <th class="col-xs-1 text-center">Delivery Quantity</th>
+                                                                    <th class="col-xs-1"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="pd in ProductDetail">
+                                                                    <td style="text-align: center;">{{$index + 1}}</td>
+                                                                    <td>{{ pd.ProductName }}</td>
+                                                                    <td style="text-align: right;">{{ pd.Quantity }}</td>
+                                                                    <td style="text-align: right;">
+                                                                        <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(pd)">
+                                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <div class="form-group col-xs-12 text-right">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="!deliveryChallanUpdateForm.$dirty"
+                                        ng-click="updateDeliveryChallan()">
+                                    {{ modelActionText }}
+                                </button>
+                                <!--<button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="deliveryChallanUpdateForm.$invalid || !deliveryChallanUpdateForm.$dirty"
+                                        ng-click="updateDeliveryChallan()">
+                                    {{ modelActionText }}
+                                </button>-->
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

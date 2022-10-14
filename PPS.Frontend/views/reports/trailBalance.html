@@ -1,0 +1,81 @@
+﻿<div ng-controller="trailBalanceRptController">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 20px;">
+        <div class="col-sm-10">
+            <div class="form-group">
+                <label for="daterange3" class="control-label">Report - Trail Balance</label>
+                <input date-range-picker id="daterange3" name="daterange3" class="form-control date-picker" type="text"
+                       ng-model="date" options="opts" required />
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="GetTrailBalance()">
+                    <span class="glyphicon glyphicon-list"></span> Show
+                </button>
+            </h2>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="TrialBalanceReport('trialBalanceReport')">
+                    <span class="glyphicon glyphicon-print"></span> Print
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Trail Balance - {{ ledgerList.StartDate | date:'dd/MM/yyyy' }} to {{ ledgerList.EndDate | date:'dd/MM/yyyy' }}</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table id="trialBalanceReport" datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1" rowspan="2" style="vertical-align: middle" >SL</th>
+                                    <th class="col-xs-5" rowspan="2" style="vertical-align: middle" >Account Head</th>
+                                    <th class="col-xs-2" colspan="2" style="text-align: center;">Opening Balance</th>
+                                    <th class="col-xs-2" colspan="2" style="text-align: center;">Current Balance</th>
+                                    <th class="col-xs-2" colspan="2" style="text-align: center;">Closing Balance</th>
+                                </tr>
+                                <tr>
+                                    <th class="col-xs-1" colspan="1">Debit</th>
+                                    <th class="col-xs-1" colspan="1">Credit</th>
+                                    <th class="col-xs-1" colspan="1">Debit</th>
+                                    <th class="col-xs-1" colspan="1">Credit</th>
+                                    <th class="col-xs-1" colspan="1">Debit</th>
+                                    <th class="col-xs-1" colspan="1">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="ledger in ledgerList.Detail">
+                                    <td style="text-align: center;">{{ $index + 1 }}</td>
+                                    <td>{{ ledger.AccountHead }}</td>
+                                    <td style="text-align: right;" colspan="1">{{ ledger.OpenDrAmount > 0 ? (ledger.OpenDrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td style="text-align: right;" colspan="1">{{ ledger.OpenCrAmount > 0 ? (ledger.OpenCrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td style="text-align: right;" colspan="1">{{ ledger.CurrDrAmount > 0 ? (ledger.CurrDrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td style="text-align: right;" colspan="1">{{ ledger.CurrCrAmount > 0 ? (ledger.CurrCrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td style="text-align: right;" colspan="1">{{ ledger.CloseDrAmount > 0 ? (ledger.CloseDrAmount | currency : "Tk.") : '0' }}</td>
+                                    <td style="text-align: right;" colspan="1">{{ ledger.CloseCrAmount > 0 ? (ledger.CloseCrAmount | currency : "Tk.") : '0' }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" style="text-align: right; font-weight: bold;">Total in (Tk.)</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalOpenDrAmount | currency : '' }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalOpenCrAmount | currency : '' }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalCurrDrAmount | currency : '' }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalCurrCrAmount | currency : '' }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalCloseDrAmount | currency : '' }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ TotalCloseCrAmount | currency : '' }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

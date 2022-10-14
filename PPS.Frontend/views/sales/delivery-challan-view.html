@@ -1,0 +1,97 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="deliveryChallanViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-8">
+            <h2>Delivery Challan</h2>
+        </div>
+        <div class="col-xs-4">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('958')&&deliveryChallan.ApprovedBy===null" ng-click="navigateToDeliveryChallanEdit(deliveryChallan)">
+                    <span class=""></span> Edit
+                </button>
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('954')&&deliveryChallan.ApprovedBy===null" ng-click="approveDeliveryChallan(deliveryChallan)">Approve</button>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="wrapper wrapper-content animated fadeInRight">
+                    <div class="ibox-content">
+                        <div style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Delivery Challan Details
+                                    </h4>
+                                </div>
+                                <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                    <div class="col-sm-10 col-xs-12" style="padding-left: 0px !important">
+
+                                        <div class="col-sm-6 col-xs-6">
+                                            <label>Invoice Id: </label>
+                                            <span>{{deliveryChallan.InvoiceId }}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6" style="padding-left: 120px;">
+                                            <label>Created By: </label>
+                                            <span>{{deliveryChallan.CreatedBy>0?deliveryChallan.CreatedByName:'N/A'}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <label>Update By: </label>
+                                            <span>{{deliveryChallan.UpdateBy>0?deliveryChallan.UpdateByName:'N/A'}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6" style="padding-left: 120px;">
+                                            <label>Created On: </label>
+                                            <span>{{deliveryChallan.CreatedOn===null?'N/A': deliveryChallan.CreatedOn|  date : "dd/MM/yyyy"}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <label>Updated On: </label>
+                                            <span>{{deliveryChallan.UpdatedOn===null?'N/A': deliveryChallan.UpdatedOn|  date : "dd/MM/yyyy"}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6" style="padding-left: 120px;">
+                                            <label>Note: </label>
+                                            <span>{{deliveryChallan.Note===null?'N/A':deliveryChallan.Note}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <label>Approved By: </label>
+                                            <span>{{deliveryChallan.ApprovedBy>0?deliveryChallan.ApprovedByName:'N/A'}}</span>
+                                        </div>
+
+                                        <div class="col-sm-6 col-xs-6" style="padding-left: 120px;">
+                                            <label>Invoice No: </label>
+                                            <span>{{deliveryChallan.InvoiceNo}}</span>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <label>Approved On: </label>
+                                            <span>{{deliveryChallan.ApprovedOn===null?'N/A': deliveryChallan.ApprovedOn|  date : "dd/MM/yyyy"}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                <div class="modal-content">
+                                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-6 text-center">Product Name</th>
+                                                    <th class="col-xs-6 text-center">Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="challan in deliveryChallan.DeliveryQuantityDetail">
+                                                    <td style="text-align: left;">{{challan.ProductName}}</td>
+                                                    <td style="text-align: right;">{{challan.Quantity}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

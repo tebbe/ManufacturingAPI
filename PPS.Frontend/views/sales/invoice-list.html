@@ -1,0 +1,72 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="invoiceListController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Invoice</h2>
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-if="isAuthenticated('362')" ng-click="addNewInvoice()">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Invoice List</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1 text-center">Invoice No.</th>
+                                    <th class="col-xs-1 text-center">DO No.</th>
+                                    <th class="col-xs-2 text-left">Customer Name</th>
+                                    <th class="col-xs-1 text-center">Invoice Date</th>
+                                    <th class="col-xs-1 text-center">Invoice Amount</th>
+                                    <!--<th class="col-xs-1 text-center">Created By</th>-->
+                                    <th class="col-xs-1 text-center">Status</th>
+                                    <th class="col-xs-2 text-center">Note</th>
+                                    <th class="col-xs-3 text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="invoice in invoiceList">
+                                    <td class="text-right">{{ invoice.InvoiceNo }}</td>
+                                    <td class="text-right">{{ invoice.DemandOrderNo }}</td>
+                                    <td class="text-left">{{ invoice.CustomerName }}</td>
+                                    <td class="text-center">{{ invoice.InvoiceDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-center">{{ invoice.TotalGrandAmount | currency: '' }}</td>
+                                   <!-- <td class="text-left">{{ invoice.CreatedByName }}</td>-->
+                                    <td class="text-left">{{ invoice.InvoiceStatusName }}</td>
+                                    <td class="text-left">{{ invoice.Note }}</td>
+                                    <td class="text-right">
+                                        <button type="button" class="btn btn-default btn-sm" ng-if="isAuthenticated('364') && (invoice.DeliveredBy === null && invoice.ApprovedBy === null)" title="Edit" ng-click="navigateToInvoiceEdit(invoice)">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm" title="Invoice Print" ng-if="isAuthenticated('370')" ng-click="gotoInvoiceDetailsPrint(invoice)">
+                                            Invoice Print
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm" title="Challan Print" ng-if="isAuthenticated('369')" ng-click="navigateToInvoicePrint(invoice)">
+                                            Challan Print
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm" title="Invoice View" ng-if="isAuthenticated('363')" ng-click="navigateToInvoiceView(invoice)">
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿1. Role
+2. Policy
+
+1. Role (Based on Hierarchy)
+* Sales Executive
+	-> Create DO
+	-> Submit DO
+	-> View DO
+	-> List DO
+	-> Create Forecast
+	-> View Dealer List	
+	-> View Dealer Ledger
+	-> Dashboard Forecast Panel
+	-> List Delivery Challan (Based On Invoice)
+	-> View Delivery Challan
+
+ASM, RSM, DSM, AM, NSM, Manager, Sr. Manager : 
+	-> View DO
+	-> List DO
+	-> View Dealer List	
+	-> View Dealer Ledger
+	-> Dashboard Forecast Panel
+	-> List Delivery Challan (Based On Invoice)
+	-> View Delivery Challan
+	-> Forecast vs Collection
+
+DO Section
+	-> List DO
+	-> View DO
+	-> Verify DO
+	-> Create Customer Transaction
+	-> View Dealer List	
+	-> View Dealer Ledger
+	-> Dashboard Forecast Panel
+	-> List Delivery Challan (Based On Invoice)
+	-> View Delivery Challan
+	-> Forecast vs Collection
+	-> List Invoice
+	-> Create Invoice
+	-> Verify Customer
+	-> View Stock List Report
+	-> View Product Estimation
+
+Accounts Section:
+ * Executive Accounts 
+	-> Create Customer
+	-> Approve Invoice
+	-> Approve Customer Transaction
+	-> List Voucher
+	-> Create Voucher (Receive, Payment, Journal, Contra)
+	-> Edit Voucher
+	-> View Voucher
+	-> View Journal Report
+	-> View Ledger Account Report
+	-> View Individual Ledger Account Report
+
+* Asst. Account Manager
+	-> Approve Invoice
+	-> Create Ledger Account
+	-> List Voucher
+	-> Create Voucher (Receive, Payment, Journal, Contra)
+	-> Edit Voucher
+	-> View Voucher
+	-> View Journal Report
+	-> View Ledger Account Report
+	-> View Individual Ledger Account Report
+	-> View Trail Balance Report
+	-> View PL Account Report
+	-> View Balance Sheet Report
+	-> View Stock List Report
+
+* Managing Director
+	-> Approve Transaction
+	-> Approve Demand Order
+	-> Approve Purchase Order
+	-> Forecast vs Collection
+	-> View Dealer List	
+	-> View Dealer Ledger
+	-> View Voucher
+	-> View Journal Report
+	-> View Ledger Account Report
+	-> View Individual Ledger Account Report
+	-> View Trail Balance Report
+	-> View PL Account Report
+	-> View Balance Sheet Report
+	-> View Stock List Report
+	-> View Product Estimation
+
+Commercial:
+	-> List Purchase Order 
+	-> Create Purchase Order
+	-> View Purchase Order
+	-> Edit Purchase Order
+	-> Verify Purchase Order
+
+Central Store
+	-> List Purchase Order
+	-> View Purchase Order without pricing
+	-> Receive Purchase Order
+	-> Receive Batch Requisition
+	-> Send to Production Batch Requisition
+
+Factory Manager cum Floor Store
+	-> List Batch Requisition
+	-> Create Batch Requisition 
+	-> View Batch Requisition
+	-> Verify Batch Requisition
+	-> Create Product Estimation
+	-> View Product Estimation
+
+Product Store
+	-> Entry Finished Good based on Batch Requisition
+
+Delivery Section:
+	-> Confirm Product Delivery to Dealer (based on invoice)

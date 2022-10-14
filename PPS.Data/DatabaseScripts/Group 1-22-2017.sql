@@ -1,0 +1,12 @@
+﻿SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS ( SELECT * FROM sysobjects WHERE name = 'Group') 
+BEGIN
+	CREATE TABLE [dbo].[Group](
+		[Id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		[GroupName] [nvarchar](200) NOT NULL)
+END
+GO

@@ -1,0 +1,141 @@
+<toaster-container></toaster-container>
+<div ng-controller="approvalAccountsController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Pending Accounts Transaction</h2>
+        </div>
+        <!--Verify Modal-->
+        <div class="modal fade" pps-modal id="transactionVerifyModal" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeVerifyModal()">&times;</button>
+                        <h4 class="modal-title">Transaction Verify</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to verify this transaction?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeVerifyModal()">Close</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="verifyTransaction()">Verify</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Approval Modal -->
+        <div class="modal fade" pps-modal id="transactionApprovalModal" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeApprovalModal()">&times;</button>
+                        <h4 class="modal-title">Transaction Approval</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to approve this transaction?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeApprovalModal()">Close</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="approveTransaction()">Approve</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Rejction Modal -->
+        <div class="modal fade" pps-modal id="transactionRejectionModal" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeRejctionModal()">&times;</button>
+                        <h4 class="modal-title">Transaction Rejection</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <div class="form-group">
+                            <label for="email">Rejection Type:</label>
+                            <select ng-model="selectedTransactionRejectReasonTypeId" class="form-control">
+                                <option ng-repeat="x in transactionRejectReasonType" value="{{x.Id}}">{{x.ReasonText}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeRejctionModal()">Close</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-disabled="!selectedTransactionRejectReasonTypeId" ng-click="rejectTransaction()">Approve</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Pending Accounts Transactions Approval</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2">Tx. No.</th>
+                                    <th class="col-xs-1">Tx.Type</th>
+                                    <th class="col-xs-1">Tx. Date</th>
+                                    <th class="col-xs-1">Amount</th>
+                                    <th class="col-xs-2">Created</th>
+                                    <th class="col-xs-2">Verified</th>
+                                    <th class="col-xs-1">Tx. Status</th>
+                                    <th class="col-xs-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tran in transactions" data-tranid="{{ tran.TranId }}">
+                                    <td><span ng-if="tran.HasHistory === false">{{ tran.TranNo }}</span><span ng-if="tran.HasHistory === true" class="pps-link" title="History" ng-click="showHistory(tran.TranNo)">{{ tran.TranNo }}<i class="fa fa-history" aria-hidden="true" style="padding-left: 10px;"></i></span></td>
+                                    <td>{{ tran.TranType }}</td>
+                                    <td>{{ tran.TranDate | date:'dd/MM/yyyy' }}</td>
+                                    <td style="text-align: right;">{{ tran.TranAmount | currency : "" }}</td>
+                                    <td>{{ tran.CreatedByName }} ({{ tran.CreatedDate | date:'dd/MM/yyyy' }})</td>
+                                    <td><span ng-if="tran.VerifiedByName !== null">{{ tran.VerifiedByName }} ({{ tran.VerifiedDate | date:'dd/MM/yyyy' }})</span></td>
+                                    <td>{{ tran.Status }}</td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-default btn-sm" title="View" ng-if="(isAuthenticated('213')||isAuthenticated('223')||isAuthenticated('233')||isAuthenticated('243'))" ng-click="getVoucherDetail(tran.TranNo)">
+                                            View
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="Verify" ng-if="isAuthenticated('254') && tran.VerifiedByName === null && (tran.Accepted === false || tran.RejectedById === null)" ng-click="verifyTransactionClick(tran)">
+                                            Verify
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="Reject" ng-if="isAuthenticated('253') && tran.VerifiedByName !== null && (tran.Accepted === false || tran.RejectedById === null)" ng-click="rejectTransactionClick(tran)">
+                                            Reject
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" title="Approve" ng-if="isAuthenticated('252') && tran.VerifiedByName !== null && (tran.Accepted === false || tran.RejectedById === null)" ng-click="acceptTransactionClick(tran)">
+                                            Approve
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

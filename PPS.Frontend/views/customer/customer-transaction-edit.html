@@ -1,0 +1,145 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="customerTransactionEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Customer</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content" style="padding-bottom: 50px;">
+                    <div class="row">
+                        <form name="customerTransactionForm" novalidate>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtCustomerTransactionNo" style="font-weight: bold;" required="true">Customer Transaction No</label>
+                                    <input id="txtCustomerTransactionNo" class="form-control" type="text" placeholder="Automatic"
+                                           ng-disabled="true"
+                                           ng-model="transaction.Id" />
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label style="font-weight: bold;" required="true">Transaction Date</label><br />
+                                    <md-datepicker ng-model="transactionDate" ng-change="transaction.TransactionDate = transactionDate.toISOString()" md-min-date="" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()" required></md-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtAccountHeadId" style="font-weight: bold;" required="true">Cash/Bank Account</label><br />
+                                    <ui-select ng-model="selectedAccount.selected" ng-change="onChangeAccount(selectedAccount.selected)" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.AccountName}}</ui-select-match>
+                                        <ui-select-choices repeat="cb in cashBanks | propsFilter: {AccountName: $select.search}">
+                                            <div ng-bind-html="cb.AccountName | highlight: $select.search"></div>
+                                            <small>
+                                                Account Code : <span ng-bind-html="''+cb.AccountCode | highlight: $select.search"></span>
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtTransactionAmount">Transaction Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="CustomerTransaction.TransactionAmount" min="1" class="form-control" type="number" required />
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmount">Bank Charge</label>
+                                    <input id="txtTransactionAmount" ng-model="CustomerTransaction.BankChargeAmount" min="0" class="form-control" type="number" />
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtTransactionPIN">Transaction PIN</label>
+                                    <input id="txtTransactionPIN" ng-model="CustomerTransaction.TransactionReference" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtCustomerId" style="font-weight: bold;" required="true">Customer</label><br />
+                                    <ui-select ng-model="selectedCustomer.selected" ng-change="onChangeCustomer(selectedCustomer.selected)" id="listCustomer" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.CustomerName}} ({{$select.selected.CustomerCode}})</ui-select-match>
+                                        <ui-select-choices repeat="cust in customer | propsFilter: {CustomerName: $select.search, CustomerCode: $select.search}">
+                                            <div ng-bind-html="cust.CustomerName | highlight: $select.search"></div>
+                                            <small>
+                                                Customer Code: <span ng-bind-html="''+cust.CustomerCode | highlight: $select.search"></span>
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmountIndividualCustomer">Book No</label>
+                                    <input id="txtTransactionAmountIndividualCustomer" ng-model="BookNo" min="1" class="form-control" type="text" />
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtBookNo">Book Serial No</label>
+                                    <input id="txtBookNo" ng-model="BookSerialNo" class="form-control" type="text" />
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtBookSerialNo">Transaction Amount</label>
+                                    <input id="txtBookSerialNo" ng-model="TransactionAmount" min="1" max="{{CustomerTransaction.TransactionAmount + CustomerTransaction.BankChargeAmount - totalAmountInGrid + editedAmount}}" class="form-control required" type="number" required />
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12 text-right" style="padding-top:23px;">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-click="addTransaction()">
+                                        <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                    </button>
+                                    <!--<button type="button" class="btn btn-primary btn-sm"
+                                            ng-disabled="customerTransactionForm.$invalid||!customerTransactionForm.$dirty"
+                                            ng-click="addTransaction()">
+                                        <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                    </button>-->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12">
+                            <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Transaction List
+                                            <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                               ng-show="modelDetailMode === 2"
+                                               ng-click="cancelModelUpdate()">Cancel</a>
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-4 text-left">Customer Name</th>
+                                                    <th class="col-xs-2 text-right">Book No</th>
+                                                    <th class="col-xs-2 text-right">Book Serial No</th>
+                                                    <th class="col-xs-2 text-right">Amount</th>
+                                                    <th class="col-xs-2"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="tran in CustomerTransaction.CustomerTransactionDetail">
+                                                    <td style="text-align: left;">{{ tran.CustomerName}}</td>
+                                                    <td style="text-align: right;">{{ tran.BookNo}}</td>
+                                                    <td style="text-align: right;">{{ tran.BookSerialNo}}</td>
+                                                    <td style="text-align: right;">{{ tran.TransactionAmount|currency:''}}</td>
+                                                    <td class="text-right">
+                                                        <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(tran)">Edit</button>
+                                                        <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(tran)">Remove</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group col-xs-12 text-right">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="!isCustomerTransactionValidated"
+                                        ng-class="{ 'disabled': !isCustomerTransactionValidated}"
+                                        ng-click="updateCustomerTransaction()">
+                                    {{ modelActionText }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

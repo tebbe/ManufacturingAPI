@@ -1,0 +1,505 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="demandOrderViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Demand Order</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="((!demandOrder.Submitted || (demandOrder.Submitted && demandOrder.DOStatusName !=='Verified')) && demandOrder.DOStatusName !== 'Approved' ) && isAuthenticated('324')" ng-click="gotoDOEdit(demandOrder.Id)">
+                    <span class=""></span> Edit
+                </button>
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('323')" ng-click="navigateToDoPrint(demandOrder)">
+                    <span class=""></span> Print
+                </button>
+            </h2>
+        </div>
+        <!-- Submit Modal -->
+        <div class="modal fade" pps-modal id="submitDOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeDOModal()">&times;</button>
+                        <h4 class="modal-title">Submit Demand Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to submit <span style="font-weight: bold;">DO No. {{selectedDO.Id}}</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeDOModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-if="isAuthenticated('325')" ng-click="submitDOClick()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Verify Modal -->
+        <div class="modal fade" pps-modal id="verifyDOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeVerifyDOModal()">&times;</button>
+                        <h4 class="modal-title">Verify Demand Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to verify <span style="font-weight: bold;">DO No. {{selectedDO.Id}}</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeVerifyDOModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-if="isAuthenticated('326')" ng-click="verifyDOClick()">Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Approve Modal -->
+        <div class="modal fade" pps-modal id="approveDOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeApproveDOModal()">&times;</button>
+                        <h4 class="modal-title">Verify Demand Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to verify <span style="font-weight: bold;">DO No. {{selectedDO.Id}}</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeApproveDOModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-if="isAuthenticated('327')" ng-click="approveDOClick()">Approve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delivery Confirmed Modal -->
+        <!--<div class="modal fade" pps-modal id="deliveryConfirmedDOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeDeliveryConfirmedDOModal()">&times;</button>
+                        <h4 class="modal-title">Verify Demand Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to verify <span style="font-weight: bold;">DO No. {{selectedDO.Id}}</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeDeliveryConfirmedDOModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="deliveryConfirmedDOClick()">Delivered</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!-- Add Transaction Modal -->
+        <div class="modal fade" pps-modal id="transactionDOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeTransactionDOModal()">&times;</button>
+                        <h4 class="modal-title">Transaction</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <form name="formTransactionDO">
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>DO No.</label>
+                                    <span class="form-control">{{newDOTransaction.DemandOrderId}}</span>
+                                </div>
+                                <div class="form-group col-xs-6 col-xs-12">
+                                    <label for="txtDemandOrderDate" style="font-weight: bold;" required="true">Transaction Date</label><br />
+                                    <md-datepicker ng-model="newDOTransaction.TransactionDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()" required></md-datepicker>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Available Amount</label>
+                                    <span class="form-control">{{customerAvailableAmount}}</span>
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtTransactionAmount">Transaction Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="newDOTransaction.TransactionAmount" min="1" max="{{customerAvailableAmount > demandOrder.TotalDueAmount ? demandOrder.TotalDueAmount : customerAvailableAmount}}" class="form-control" type="number" required />
+                                </div>
+                            </div>
+                            <div class="row modal-footer">
+                                <div style="float: left;">
+                                    <button type="button" class="btn btn-default" ng-click="closeTransactionDOModal()">Cancel</button>
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-primary" ng-disabled="formTransactionDO.$invalid" ng-class="{ 'disabled': formTransactionDO.$invalid }" ng-click="saveTransactionDOClick()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header {{demandOrderPaymentStatusColorClass}}">
+                                <h4 class="modal-title">
+                                    Demand Order Info
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-10 col-xs-12" style="padding-left: 0px !important">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created By: </label>
+                                        <span>{{demandOrder.CreatedByName}}{{" - "}}{{demandOrder.CreatedDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Approved: </label>
+                                        <span>{{demandOrder.ApprovedByOn}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Verified: </label>
+                                        <span>{{demandOrder.VerifiedByOn}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Demand Order No: </label>
+                                        <span id="txtDemandOrderNo">{{demandOrder.DemandOrderNo}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Demand Order Date: </label>
+                                        <span>{{demandOrder.DODate |  date : "dd/MM/yyyy"}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Total Amount: </label>
+                                        <span>{{demandOrder.TotalAmount | currency : ""}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Grand Amount: </label>
+                                        <span>{{demandOrder.TotalGrandAmount | currency : ""}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Sale Type: </label>
+                                        <span>{{demandOrder.SaleTypeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Reference DO No.:</label>
+                                        <span>{{demandOrder.ReferenceNo}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Demand Order Type:</label>
+                                        <span>{{demandOrder.DemandOrderTypeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Employee Name: </label>
+                                        <span>{{demandOrder.EmployeeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Customer: </label>
+                                        <span>{{demandOrder.CustomerName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Employee Code: </label>
+                                        <span>{{demandOrder.EmployeeCode}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Note: </label>
+                                        <span>{{demandOrder.Note}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12">
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" ng-if="demandOrder.DOStatusName=='Initiated' && isAuthenticated('325')" title="Submit" ng-click="showSubmitDOModal(demandOrder)">Submit</button>
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" ng-if="demandOrder.DOStatusName=='Submitted' && isAuthenticated('326')" title="Verify" ng-click="showVerifyDOModal(demandOrder)">Verify</button>
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" ng-if="demandOrder.DOStatusName=='Verified' && isAuthenticated('327')" title="Approve" ng-click="showApproveDOModal(demandOrder)">Approve</button>
+                                    <!--<button type="button" class="btn btn-primary btn-sm pull-right" ng-if="demandOrder.DOStatus=='Approved'" title="Delivered" ng-click="showDeliveryConfirmedDOModal(demandOrder)">Delivered</button>-->
+                                </div>
+                                <div class="col-md-10 col-xs-12">
+                                    <hr />
+                                    <h4 class="modal-title">
+                                        Customer DO Details
+                                    </h4>
+                                    <hr />
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Total DO Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.TotalDOAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Total Invoice Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalInvoiceBalance| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Mature Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.CustomerMatureInvoiceAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Immature Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.CustomerImmatureInvoiceAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Mature Due: </label>
+                                        <span ng-style="demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalMatureDue > 0 && {'color': 'red'}">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerMatureInvoiceAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Immature Due: </label>
+                                        <span ng-style="demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalImmatureDue > 0 && {'color': 'red'}">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalImmatureDue| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalTransactionAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12"  style="padding-left: 120px;">
+                                        <label>Current Balance: </label>
+                                        <span>{{demandOrder.CustomerRemainingBalance| currency : "" }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-xs-12">
+                                    <hr />
+                                    <h4 class="modal-title">
+                                        DO Invoice Details
+                                    </h4>
+                                    <hr />
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Invoice Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.SingleDOInviceAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" style="padding-left: 120px;">
+                                        <label>Invoice Transaction Balance: </label>
+                                        <span>{{demandOrder.CustomerDoWithInvoiceDetails.SingleDoInvoiceTransactionAmount| currency : "" }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Invoice Due: </label>
+                                        <span ng-style="demandOrder.CustomerDoWithInvoiceDetails.SingleDOInvoiceDue > 0 && {'color': 'red'}">{{demandOrder.CustomerDoWithInvoiceDetails.SingleDOInvoiceDue| currency : "" }}</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Product Details
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptionsDemandOrderDetail" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1 text-center">SL</th>
+                                                <th class="col-xs-2 text-center">Product Code</th>
+                                                <th class="col-xs-4 text-center">Product Name</th>
+                                                <th class="col-xs-1 text-center">Quantity</th>
+                                                <th class="col-xs-1 text-center">Unit Price</th>
+                                                <th class="col-xs-2 text-center">Total Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pd in demandOrder.DemandOrderDetail">
+                                                <td style="text-align: right;">{{$index + 1}}</td>
+                                                <td style="text-align: left;">{{pd.ProductCode}}</td>
+                                                <td>{{ pd.ProductName }}</td>
+                                                <td style="text-align: right;">{{ pd.Quantity }}</td>
+                                                <td style="text-align: right;">{{ pd.UnitPrice | currency : "" }}</td>
+                                                <td style="text-align: right;">{{ pd.TotalPrice| currency : "" }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="5">Total</td>
+                                                <td>{{ demandOrder.TotalAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.RegularDiscount">
+                                                <td colspan="5">Regular Discount ( {{demandOrder.RegularDiscountInPercentage}} %)</td>
+                                                <td>{{ demandOrder.RegularDiscountAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="demandOrder.SpecialDiscountInPercentage > 0 || demandOrder.AdditionalDiscountInPercentage > 0 || demandOrder.ExtraDiscount > 0|| demandOrder.CashBack > 0">
+                                                <td colspan="5">Sub Total</td>
+                                                <td>{{ demandOrder.TotalAmount-demandOrder.RegularDiscountAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.SpecialDiscount && demandOrder.SpecialDiscountInPercentage > 0">
+                                                <td colspan="5">Special Discount ( {{demandOrder.SpecialDiscountInPercentage}} %)</td>
+                                                <td>{{ demandOrder.SpecialDiscountAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.AdditionalDiscount && demandOrder.AdditionalDiscountInPercentage > 0">
+                                                <td colspan="5">Additional Discount ( {{demandOrder.AdditionalDiscountInPercentage}} %)</td>
+                                                <td>{{ demandOrder.AdditionalDiscountAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.ExtraDiscount && demandOrder.ExtraDiscountInPercentage > 0">
+                                                <td colspan="5">Extra Discount ( {{demandOrder.ExtraDiscountInPercentage}} %)</td>
+                                                <td>{{ demandOrder.ExtraDiscountAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.CashBack && demandOrder.CashBackAmount > 0">
+                                                <td colspan="5">Cash Back ({{demandOrder.CashBackAmount}})</td>
+                                                <td>{{ demandOrder.CashBackAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="demandOrder.SpecialDiscountInPercentage > 0 || demandOrder.AdditionalDiscountInPercentage > 0 || demandOrder.ExtraDiscount > 0|| demandOrder.CashBack > 0">
+                                                <td colspan="5">Total Discount</td>
+                                                <td>{{ demandOrder.TotalDiscountAmount | number:2}}</td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="5">Grand Total</td>
+                                                <td>{{ demandOrder.TotalGrandAmount | number:2}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Invoice Details
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-2 text-center">Invoice No.</th>
+                                                <th class="col-xs-2 text-center">Total Ammount</th>
+                                                <th class="col-xs-1 text-center">Paid</th>
+                                                <th class="col-xs-1 text-center">Due</th>
+                                                <!--<th class="col-xs-1 text-center">Total Discount</th>
+                                                <th class="col-xs-1 text-center">Total Discount Amount</th>-->
+                                                <th class="col-xs-1 text-center">Date</th>
+                                                <th class="col-xs-1 text-center">Status</th>
+                                                <th class="col-xs-2 text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="invoice in demandOrder.InvoiceList">
+                                                <td style="text-align: right;">{{invoice.InvoiceNo}}</td>
+                                                <td style="text-align: right;">{{ invoice.TotalAmount| currency : "" }}</td>
+                                                <td style="text-align: right;">{{ invoice.TotalPaidAmount| currency : "" }}</td>
+                                                <td style="text-align: right;">{{ (invoice.TotalAmount-invoice.TotalPaidAmount)| currency : "" }}</td>
+                                                <!--<td style="text-align: right;">{{ invoice.TotalDiscountInPercent}}</td>
+                                                <td style="text-align: right;">{{ invoice.TotalDiscountAmount| currency : "" }}</td>-->
+                                                <td style="text-align: right;">{{ invoice.InvoiceDate|date:'MM/dd/yyyy' }}</td>
+                                                <td style="text-align: right;" ng-if="invoice.CreatedBy!=null&&invoice.ApprovedBy===null&&invoice.DeliveredBy===null">{{'Pending'}}</td>
+                                                <td style="text-align: right;" ng-if="invoice.CreatedBy!=null&&invoice.ApprovedBy!=null&&invoice.DeliveredBy===null">{{'Approved'}}</td>
+                                                <td style="text-align: right;" ng-if="invoice.CreatedBy!=null&&invoice.ApprovedBy!=null&&invoice.DeliveredBy!=null">{{'Delivered'}}</td>
+                                                <td style="text-align: right;"><a ng-click="goToInvoiceView(invoice.Id)">View</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--<span ng-if="demandOrder.InvoiceList.Count()===0">No Invoice to Display</span>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Transaction History
+                                        <a class="glyphicon glyphicon-plus btn btn-primary pull-right" ng-if="isAuthenticated('329') && demandOrder.TotalDueAmount > 0"
+                                           ng-click="showTransactionDOModal()">Add</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-2 text-center">SL</th>
+                                                <th class="col-xs-2 text-center">Tran. Date</th>
+                                                <th class="col-xs-3 text-center">Updated By</th>
+                                                <th class="col-xs-2 text-center">Updated On</th>
+                                                <th class="col-xs-3 text-center">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pd in demandOrder.DemandOrderTransaction">
+                                                <td style="text-align: right;">{{$index + 1}}</td>
+                                                <td style="text-align: center;">{{ pd.TransactionDate | date:'dd/MM/yyyy' }}</td>
+                                                <td style="text-align: left;">{{ pd.CreatedByName}}</td>
+                                                <td style="text-align: center;">{{ pd.CreatedOn | date:'dd/MM/yyyy'}}</td>
+                                                <td style="text-align: right;">{{ pd.TransactionAmount | currency : "" }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="4">Total</td>
+                                                <td>{{ demandOrder.TotalPaidAmount | currency : ""}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Customer Transaction History
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1 text-center">DO No.</th>
+                                                <th class="col-xs-1 text-center">DO Date</th>
+                                                <th class="col-xs-1 text-center">Sale Type</th>
+                                                <th class="col-xs-1 text-center">DO Amount</th>
+                                                <th class="col-xs-2 text-center">DO Paid Amount</th>
+                                                <th class="col-xs-2 text-center">DO Balance Amount</th>
+                                                <th class="col-xs-2 text-center">DO Invoice Amount</th>
+                                                <th class="col-xs-2 text-center">DO Invoice Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ct in CustomerTransactionHistory">
+                                                <td class="text-right">{{ ct.DemandOrderNo}}</td>
+                                                <td class="text-center">{{ ct.DemandOrderDate | date:'dd/MM/yyyy' }}</td>
+                                                <td class="text-left">{{ ct.SaleType}}</td>
+                                                <td class="text-right">{{ ct.DOAmount | currency : "" }}</td>
+                                                <td class="text-right">{{ ct.DOPaidAmount | currency : "" }}</td>
+                                                <td class="text-right">{{ct.DOBalanceAmount | currency : ""}}</td>
+                                                <td class="text-right">{{ ct.DOInvoiceAmount | currency : "" }}</td>
+                                                <td class="text-right" ng-if="ct.DOInvoiceBalance >= 0">{{ ct.DOInvoiceBalance | currency : ""}}</td>
+                                                <td class="text-right" ng-if="ct.DOInvoiceBalance < 0" style="color: red">({{ -ct.DOInvoiceBalance | currency : "" }})</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="text-right font-bold" style="background-color: #f0f0f0;">
+                                                <td colspan="3" class="text-center font-bold">Total</td>
+                                                <td>{{ TotalDOAmount | currency : ""}}</td>
+                                                <td>{{ TotalDOPaidAmount | currency : ""}}</td>
+                                                <td>{{ TotalDOBalanceAmount | currency : ""}}</td>
+                                                <td>{{ TotalDOInvoiceAmount | currency : ""}}</td>
+                                                <td>
+                                                    <span ng-if="TotalDOInvoiceBalance>=0">{{ TotalDOInvoiceBalance | currency : ""}}</span>
+                                                    <span ng-if="TotalDOInvoiceBalance<0">({{ -TotalDOInvoiceBalance | currency : ""}})</span>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

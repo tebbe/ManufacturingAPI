@@ -1,0 +1,125 @@
+﻿<style media="print">
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+
+    .footer {
+        display: none;
+    }
+</style>
+<div ng-controller="legalDocumentHistoryListController">
+    <div class="row wrapper white-bg">
+        <div class="col-sm-12" style="background-color: #fff">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h1>
+                        <img src="../../image/logo/PPSLogo.jpg" /> PPS Plastic Pipe Industries Ltd.
+                    </h1>
+                    <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                    <p>Phone: +88 01700 703333, +88 01700 703322</p>
+                    <p>Email: pps.plastic@gmail.com</p><br />
+                    <h3 class="font-bold">Legal Document History</h3>
+                    <br />
+                </div>
+
+                <div>
+                    <h3 class="text-center font-bold">Current Information</h3>
+                    <hr />
+                    <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Company: </label>
+                            <span>{{documentList.CompanyName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Document Type: </label>
+                            <span>{{documentList.DocumentTypeName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Renewal Category: </label>
+                            <span>{{documentList.DocumentRenewalCategoryName }}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Document Status: </label>
+                            <span>{{documentList.DocumentStatusName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Document Nnumber: </label>
+                            <span>{{documentList.DocumentNumber}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Issue Date: </label>
+                            <span>{{documentList.IssueDate|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Expire Date: </label>
+                            <span>{{documentList.ExpireDate|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Name: </label>
+                            <span>{{documentList.OrganizationName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Contact Person: </label>
+                            <span>{{documentList.OrganizationContactName}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Address: </label>
+                            <span>{{documentList.OrganizationAddress}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Email: </label>
+                            <span>{{documentList.OrganizationContactEmail}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Organization Contact: </label>
+                            <span>{{documentList.OrganizationPhoneNumber}}</span>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <label>Created On: </label>
+                            <span>{{documentList.CreatedOn|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-center font-bold">Previous History</h3>
+                <hr />
+                <div class="panel-body">
+                    <div class="col-xs-12">
+                        <table  class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1 text-center">Company</th>
+                                    <th class="col-xs-1 text-center">Document Type</th>
+                                    <th class="col-xs-1 text-center">Document Number</th>
+                                    <th class="col-xs-1 text-center">Issue Date</th>
+                                    <th class="col-xs-1 text-center">Expire Date</th>
+                                    <th class="col-xs-1 text-center">Organization Name</th>
+                                    <th class="col-xs-2 text-center">Created </th>
+                                    <th class="col-xs-2 text-center">Updated</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr ng-repeat="do in historyList">
+                                    <td class="text-left">{{ do.CompanyName }}</td>
+                                    <td class="text-left">{{ do.DocumentTypeName }}</td>
+                                    <td class="text-right">{{ do.DocumentNumber }}</td>
+                                    <td class="text-center">{{ do.IssueDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-center">{{do.ExpireDate==null?'N/A':do.ExpireDate| date:'dd/MM/yyyy'}}</td>
+                                    <td class="text-left">{{ do.OrganizationName}}</td>
+                                    <td class="text-left">{{ do.CreatedBy }}<br /> {{ do.CreatedOn | date:'dd/MM/yyyy'}}</td>
+                                    <td class="text-left">{{ do.UpdatedBy }}<br /> {{ do.UpdatedOn | date:'dd/MM/yyyy'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>

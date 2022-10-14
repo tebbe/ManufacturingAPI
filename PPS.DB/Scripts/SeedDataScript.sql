@@ -1,0 +1,5474 @@
+﻿-- --Variable Declaration
+--DECLARE @roleId INT;
+--DECLARE @policyId INT;
+--DECLARE @routeResourceId INT;
+--DECLARE @deptId INT;
+-- --END - Variable Declaration 
+--------------------------------------------------
+---- Role
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'General')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('General','General')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'Director')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('Director','Director')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'ManagingDirector')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('ManagingDirector', 'ManagingDirector')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'DirectorGeneralManager')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('DirectorGeneralManager', 'Director General Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'AccountsExecutive')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('AccountsExecutive', 'Accounts Executive')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'AssistantAccountsManager')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('AssistantAccountsManager','Assistant Accounts Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'AccountsManager')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('AccountsManager','Accounts Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'SalesManager')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('SalesManager', 'Sales Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'Manager')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('Manager', 'Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'NSM')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('NSM', 'National Sales Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'DSM')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('DSM', 'District Sales Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'ASM')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('ASM', 'Area Sales Manager')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'SalesOfficer')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('SalesOfficer', 'Sales Officer')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'ITOfficer')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('ITOfficer', 'IT Officer')
+--END
+--IF NOT EXISTS (SELECT * FROM [Role] WHERE RoleName = N'ITManager')
+--BEGIN
+--	INSERT INTO [dbo].[Role] 
+--	VALUES('ITManager', 'IT Manager')
+--END
+
+---- END - Role
+---------------------------------------------------------------------------------
+---- Policy
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccessLogin')
+--BEGIN
+--	INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccessLogin', 1, 'Access to application',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccessDashboard')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccessDashboard', 10, 'Access to the dashboard',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserViewList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserViewList', 100, 'Admin User View List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserView', 101, 'Admin User View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserAdd', 102, 'Admin User Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserUpdate')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserUpdate', 103, 'Admin User Update',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserUpdateStatusActive')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserUpdateStatusActive', 104, 'Admin User Update Status - Active',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserUpdateStatusDeactivate')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserUpdateStatusDeactivate', 105, 'Admin User Update Status - Deactivate',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserUpdateLock')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserUpdateLock', 106, 'Admin User Update - Lock',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserUpdateUnLock')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserUpdateUnLock', 107, 'Admin User Update - UnLock',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminUserPasswordReset')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminUserPasswordReset', 108, 'Admin User Password - Reset',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminRoleViewList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminRoleViewList', 120, 'Admin Role View List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminRoleAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminRoleAdd', 121, 'Admin Role Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminRoleView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminRoleView', 122, 'Admin Role View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminRoleUpdate')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminRoleUpdate', 123, 'Admin Role Update',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminMonthlySalesProcessingList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminMonthlySalesProcessingList', 140, 'Monthly Sales Processing List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminMonthlySalesProcessingAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminMonthlySalesProcessingAdd', 141, 'Monthly Sales Processing - Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AdminMonthlySalesProcessingReprocess')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AdminMonthlySalesProcessingReprocess', 142, 'Monthly Sales Processing - Reprocess',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeSalesLocation')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeSalesLocation',143, 'Employee Sales Location',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AddSalesArea')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AddSalesArea', 144, 'Add Sales Area',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AddSalesBase')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AddSalesBase', 145, 'Add Sales Base',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EditSalesArea')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EditSalesArea', 146, 'Edit Sales Area',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EditSalesBase')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EditSalesBase', 147, 'Edit Sales Base',1);
+--END
+----Accounts Ledger
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccountsLedgerList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccountsLedgerList', 200, 'Accounts Ledger List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccountsLedgerAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccountsLedgerAdd', 201, 'Accounts Ledger Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccountsLedgerView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccountsLedgerView', 202, 'Accounts Ledger View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccountsLedgerEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccountsLedgerEdit', 203, 'Accounts Ledger Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'AccountsLedgerDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('AccountsLedgerDelete', 204, 'Accounts Ledger Delete',1);
+--END
+----Accounts Ledger End
+----Transaction
+----Transaction Payment
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPaymentList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPaymentList', 211, 'Transaction Payment List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPaymentAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPaymentAdd', 212, 'Transaction Payment Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPaymentView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPaymentView', 213, 'Transaction Payment View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPaymentEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPaymentEdit', 214, 'Transaction Payment Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPaymentDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPaymentDelete', 215, 'Transaction Payment Delete',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPaymentPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPaymentPrint', 216, 'Transaction Payment Print',1);
+--END
+----Transaction Payment END
+----Transaction Receipt
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReceiptList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReceiptList', 221, 'Transaction Receipt List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReceiptAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReceiptAdd', 222, 'Transaction Receipt Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReceiptView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReceiptView', 223, 'Transaction Receipt View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReceiptEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReceiptEdit', 224, 'Transaction Receipt Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReceiptDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReceiptDelete', 225, 'Transaction Receipt Delete',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReceiptPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReceiptPrint', 226, 'Transaction Receipt Print',1);
+--END
+----Transaction Receipt END
+----Transaction Journal
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionJournalList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionJournalList', 231, 'Transaction Journal List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionJournalAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionJournalAdd', 232, 'Transaction Journal Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionJournalView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionJournalView', 233, 'Transaction Journal View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionJournalEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionJournalEdit', 234, 'Transaction Journal Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionJournalDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionJournalDelete', 235, 'Transaction Journal Delete',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionJournalPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionJournalPrint', 236, 'Transaction Journal Print',1);
+--END
+----Transaction Journal END
+----Transaction Contra
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionContraList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionContraList', 241, 'Transaction Contra List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionContraAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionContraAdd', 242, 'Transaction Contra Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionContraView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionContraView', 243, 'Transaction Contra View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionContraEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionContraEdit', 244, 'Transaction Contra Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionContraDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionContraDelete', 245, 'Transaction Contra Delete',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionContraPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionContraPrint', 246, 'Transaction Contra Print',1);
+--END
+----Transaction Contra END
+----Approval
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionAccounts-PendingList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionAccounts-PendingList', 251, 'Transaction Accounts Pending List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionApprove-Accounts')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionApprove-Accounts', 252, 'Accounts Transaction Approve',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReject-Accounts')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReject-Accounts', 253, 'Accounts Transaction Reject',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionVerify-Accounts')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionVerify-Accounts', 254, 'Accounts Transaction Verify',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionSales-PendingList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionSales-PendingList', 261, 'Transaction Sales Pending List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionApprove-Sales')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionApprove-Sales', 262, 'Sales Transaction Approve',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReject-Sales')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReject-Sales', 263, 'Sales Transaction Reject',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionPurchase-PendingList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionPurchase-PendingList', 271, 'Transaction Sales Pending List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionApprove-Purchase')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionApprove-Purchase', 272, 'Purchase Transaction Approve',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionReject-Purchase')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionReject-Purchase', 273, 'Purchase Transaction Reject',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionAccounts-RejectedList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionAccounts-RejectedList', 281, 'Transaction Accounts Rejected List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TransactionSearch')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TransactionSearch', 291, 'Transaction Search',1);
+--END
+----Approval End
+----Transaction End
+
+----Report Policy
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportJournal')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportJournal', 301, 'Report Journal',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportLedger')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportLedger', 302, 'Report Ledger',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportIndividualLedger')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportIndividualLedger', 303, 'Report Individual Ledger',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportTrailBalance')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportTrailBalance', 304, 'Report Trail Balance',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportProfitAndLossAccount')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportProfitAndLossAccount', 305, 'Report Profit & Loss Account',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportBalanceSheet')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportBalanceSheet', 306, 'Report Balance Sheet',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ReportCustomerStatement')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ReportCustomerStatement', 307, 'Report - Customer Statement',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'FinishedGoodStock')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('FinishedGoodStock', 308, 'Report - Finished Good Stock',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductReportList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductReportList', 309, 'Report - Product Report List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'TotalSalesReport')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('TotalSalesReport', 310, 'Report - Total Sales Report',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DealerAuditReport')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DealerAuditReport', 311, 'Report - Dealer Audit Report',1);
+--END
+----END REPORT POLICY
+
+----Sales
+----Demand Order
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderList', 321, 'Demand Order List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderAdd', 322, 'Add Demand Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderView', 323, 'View Demand Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderEdit', 324, 'Edit Demand Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderSubmit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderSubmit', 325, 'Submit Demand Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderVerify')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderVerify', 326, 'Verify Demand Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderApprove', 327, 'Approve Demand Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderDelivery')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderDelivery', 328, 'Delivery Demand Order',1);
+--END
+----IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderTransactionAdd')
+----BEGIN
+----	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+----	VALUES('DemandOrderTransactionAdd', 329, 'Add Transaction On Demand Order',1);
+----END
+----Demand Order End
+
+----Customer
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerList', 331, 'Customer List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerAdd', 332, 'Add Customer',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerView', 333, 'View Customer',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerEdit', 334, 'Edit Customer',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerDelete', 335, 'Delete Customer',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerApproval')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerApproval', 336, 'Approve Customer',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionAdd', 337, 'Add Customer Transaction',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionPendingList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionPendingList', 351, 'Customer Transaction Pending List',1);
+--END
+----Customer-End
+----Employee Hierarchy
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeHierarchy-Self')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeHierarchy-Self', 341, 'Self Employee Hierarchy',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeHierarchy')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeHierarchy', 342, 'Employee Hierarchy',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CompanySalesTargetList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CompanySalesTargetList', 355, 'Company Sales Target List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CompanySalesTargetAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CompanySalesTargetAdd', 356, 'Add Company Sales Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CompanySalesTargetView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CompanySalesTargetView', 357, 'View Company Sales Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CompanySalesTargetEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CompanySalesTargetEdit', 358, 'Edit Company Sales Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CompanySalesTargetDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CompanySalesTargetDelete', 359, 'Delete Company Sales Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CompanySalesTargetApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CompanySalesTargetApprove', 360, 'Approve Company Sales Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesTeamTargetList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesTeamTargetList', 451, 'Sales Team Target List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesTeamTargetAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesTeamTargetAdd', 452, 'Add Sales Team Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesTeamTargetView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesTeamTargetView', 453, 'View Sales Team Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesTeamTargetEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesTeamTargetEdit', 454, 'Edit Sales Team Target',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesTeamTargetDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesTeamTargetDelete', 455, 'Delete Sales Team Target',1);
+--END
+----Employee Hierarchy End
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesReportList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesReportList', 471, 'Sales Report List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductionForecastList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductionForecastList', 481, 'Production Forecast List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductionForecastAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductionForecastAdd', 482, 'Add Production Forecast',1);
+--END
+
+----Sales Person History
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'SalesPersonHistory')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('SalesPersonHistory', 345, 'Sales Person History',1);
+--END
+----Sales Person History End
+
+----Customer Transaction 
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionList', 421, 'Customer Transaction List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionAdd', 337, 'Add Customer Transaction', 1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionView', 423, 'View Customer Transaction',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionEdit', 424, 'Edit Customer Transaction',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'CustomerTransactionSearch')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('CustomerTransactionSearch', 425, 'Customer Transaction Search',1);
+--END
+---- Customer Transaction End
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderEarlyPaymentList', 431, 'Demand Order Early Payment List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderEarlyPaymentAdd', 432, 'Demand Order Early Payment Add',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentTransactionList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderEarlyPaymentTransactionList', 441, 'Demand Order Early Payment Transaction List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentTransactionVerify')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('DemandOrderEarlyPaymentTransactionVerify', 442, 'Verify Demand Order Early Payment Transaction',1);
+--END
+
+
+----End Sales Policy
+----Invoice
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceList', 361, 'Invoice List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceAdd', 362, 'Add Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceView', 363, 'View Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceEdit', 364, 'Edit Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDelete')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDelete', 365, 'Delete Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceApprove', 366, 'Approve Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDelivery')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDelivery', 367, 'Delivery Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceTransactionAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceTransactionAdd', 368, 'Add Transaction On Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoicePrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoicePrint', 369, 'Print Invoice',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDetailPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDetailPrint', 370, 'Print Invoice Detail',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceReturnList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceReturnList', 950, 'Invoice Return/CR List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceReturnAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceReturnAdd', 951, 'Invoice Return/CR Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceReturnView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceReturnView', 952, 'Invoice Return/CR View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceReturnEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceReturnEdit', 953, 'Invoice Return/CR Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceReturnApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceReturnApprove', 954, 'Invoice Return/CR Approve',1);
+--END
+
+----Invoice End
+----Invoice Delivery Start
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDeliveryQuantityList', 955, 'Invoice Delivery Quantity List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDeliveryQuantityAdd', 956, 'Invoice Delivery Quantity Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDeliveryQuantityView', 957, 'Invoice Delivery Quantity View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDeliveryQuantityEdit', 958, 'Invoice Delivery Quantity Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityApproved')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDeliveryQuantityApproved', 959, 'Invoice Delivery Quantity Approved',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceDeliveryQuantityPrint', 960, 'Invoice Delivery Quantity Print',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'InvoiceUndeliveredQuantityView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('InvoiceUndeliveredQuantityView', 961, 'Invoice Undelivered Quantity View',1);
+--END
+----Invoice Delivery End
+----Purchase Order
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderList', 371, 'Purchase Order List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderAdd', 372, 'Add Purchase Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderView', 373, 'View Purchase Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderEdit', 374, 'Edit Purchase Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderVerify')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderVerify', 375, 'Verify Purchase Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderApprove', 376, 'Approve Purchase Order',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderTransactionAdd', 377, 'Add Purchase Order Transaction',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionPendingList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderTransactionPendingList', 381, 'Pending Purchase Order Transaction List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderTransactionApprove', 382, 'Approve Purchase Order Transaction',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionApproveList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderTransactionApproveList', 383, 'Approve Purchase Order Transaction List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderSinglePrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderSinglePrint', 384, 'Purchase Order Single Print',1);
+--END
+----Purchase Order End
+---- Store
+----Batch Requisition
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductionGroupList')
+--BEGIN
+--	INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductionGroupList', 901, 'Production Group List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductionGroupAdd')
+--BEGIN
+--	INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductionGroupAdd', 902, 'Production Group Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductionGroupClose')
+--BEGIN
+--	INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductionGroupClose', 921, 'Production Group Close',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionList', 391, 'Batch Requisition List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionAdd', 392, 'Add Batch Requisition',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionView', 393, 'View Batch Requisition', 1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionEdit', 394, 'Edit Batch Requisition',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionDelivery')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionDelivery', 395, 'Delivery Batch Requisition',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionReceive')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionReceive', 396, 'Receive Batch Requisition',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionSendToProduction')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionSendToProduction', 397, 'Send To Production Batch Requisition',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'BatchRequisitionProductionEstimation')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('BatchRequisitionProductionEstimation', 398, 'Production Estimation of Batch Requisition',1);
+--END
+----Batch Requisition End
+
+----Pending Purchase Order
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderPendingList-Store')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderPendingList-Store', 401, 'Pending Purchase Order List - Store',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderAcceptedList-Store')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderAcceptedList-Store', 402, 'Accepted Purchase Order List - Store',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderPendingView-Store')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderPendingView-Store', 403, 'View Purchase Order - Store',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'PurchaseOrderAccept-Store')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('PurchaseOrderAccept-Store', 404, 'Accept Purchase Order - Store',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'RawMatrialOpeningReport-Store')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('RawMatrialOpeningReport-Store', 405, 'Raw Matrial Opening Report- Store',1);
+--END
+----Pending Purchase Order End
+
+----Finished Good
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'FinishedGoodList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('FinishedGoodList', 411, 'Finished Good List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'FinishedGoodAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('FinishedGoodAdd', 412, 'Add Finished Good',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'FinishedGoodApprove')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('FinishedGoodApprove', 413, 'Approve Finished Good',1);
+--END
+----Finished Good End
+
+---- End Store Policy
+----Legal Document
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'LegalDocumentList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('LegalDocumentList', 551, 'Legal Document List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'LegalDocumentAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('LegalDocumentAdd', 552, 'Legal Document add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'LegalDocumentEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('LegalDocumentEdit', 553, 'Legal Document Update',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'LegalDocumentView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('LegalDocumentView', 554, 'Legal Document View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'LegalDocumentPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('LegalDocumentPrint', 555, 'Legal Document Print',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'LegalDocumentHistoryList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('LegalDocumentHistoryList', 556, 'Legal Document History List',1);
+--END
+----Legal Document End
+----Employee Module
+----Employee Start
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeList', 651, 'Employee List',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeAdd', 652, 'Employee Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeView', 653, 'Employee View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeEdit', 654, 'Employee Edit',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeePrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeePrint', 655, 'Employee Print',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeHistoryList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeHistoryList', 656, 'Employee History List',1);
+--END
+
+----Employee End
+----Leave Management start
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeLeaveList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeLeaveList', 751, 'Employee Leave List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeLeaveAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeLeaveAdd', 752, 'Employee Leave Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeLeaveEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeLeaveEdit', 753, 'Employee Leave Edit',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeLeaveView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeLeaveView', 754, 'Employee Leave View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeAndEmployeeHierArchyLeaveList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeAndEmployeeHierArchyLeaveList', 755, 'Employee And HierArchy Leave',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeLeaveApproveOrReject')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeLeaveApproveOrReject', 756, 'Employee Leave Approve Or Reject',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'EmployeeLeaveApproveOrRejectByMD')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('EmployeeLeaveApproveOrRejectByMD', 757, 'Employee Leave Approve Or Reject By MD',1);
+--END
+
+
+----Leave management End
+---- Product policy start
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductList', 851, 'Product List',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductAdd')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductAdd', 852, 'Product Add',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductView')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductView', 853, 'Product View',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductEdit')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductEdit', 854, 'Product Edit',1);
+--END
+
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductHistory')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductHistory', 855, 'Product History',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductListPrint')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductListPrint', 856, 'Product List Print',1);
+--END
+--IF NOT EXISTS (SELECT * FROM [Policy] WHERE PolicyName = N'ProductDeliveryReportList')
+--BEGIN
+--	 INSERT INTO [dbo].[Policy]([PolicyName], [PolicyCode], [Description],[AppTypeId])
+--	VALUES('ProductDeliveryReportList', 857, 'ProductDeliveryReportList',1);
+--END
+----Product policy end
+
+----end of policy
+---------------------------------------------------------------------------------
+---- RouteResource
+---- User
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'GetUsers')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','GetUsers')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'GetUserRoleById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','GetUserRoleById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'Register')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','Register')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'UpdateUser')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','UpdateUser')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'UserActivate')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','UserActivate')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'UserDeactivate')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','UserDeactivate')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'UserLock')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','UserLock')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'UserUnlock')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','UserUnlock')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = 'ResetUser')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('User','ResetUser')
+--END
+---- END - User
+---- Role Policy
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = 'GetUserRoles')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Role','GetUserRoles')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = 'AddRole')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Role','AddRole')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = 'GetPolicyByRole')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Role','GetPolicyByRole')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = 'UpdateRolePolicy')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Role','UpdateRolePolicy')
+--END
+---- END - Role Policy
+---- Sales Processing 
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'MonthlyProcess' AND ActionName = 'GetMonthlySalesProcess')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('MonthlyProcess','GetMonthlySalesProcess')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'MonthlyProcess' AND ActionName = 'SaveMonthlySalesProcessing')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('MonthlyProcess','SaveMonthlySalesProcessing')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'MonthlyProcess' AND ActionName = 'ReprocessMonthlySalesProcessing')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('MonthlyProcess','ReprocessMonthlySalesProcessing')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetEmployeeSalesLocation')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetEmployeeSalesLocation')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'AddSalesArea')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','AddSalesArea')
+--END 
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'AddSalesBase')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','AddSalesBase')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesAreaById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesAreaById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesBaseById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesBaseById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'UpdateSalesArea')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','UpdateSalesArea')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'UpdateSalesBase')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','UpdateSalesBase')
+--END
+---- END Sales Processing
+---- Compnay
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Company' AND ActionName = 'GetCompanyList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Company','GetCompanyList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Company' AND ActionName = 'GetCompanyById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Company','GetCompanyById')
+--END
+---- END - Company
+---- Employee
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetAllEmployee')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetAllEmployee')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesEmployee')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesEmployee')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesHierarchyById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesHierarchyById')
+--END
+
+----Employee Module
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetActiveEmployeeList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetActiveEmployeeList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetInactiveEmployeeList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetInactiveEmployeeList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetEmployeeSalesLocationByEmployeeId')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetEmployeeSalesLocationByEmployeeId')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetEmployeeAreaList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetEmployeeAreaList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetEmployeeBaseList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetEmployeeBaseList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetEmployeeDropDownList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetEmployeeDropDownList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'AddNewEmployee')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','AddNewEmployee')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetEmployeeById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetEmployeeById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'EmployeeUpdate')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','EmployeeUpdate')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'EmployeeListPrint')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','EmployeeListPrint')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'EmployeeHistoryList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','EmployeeHistoryList')
+--END
+---- END - Employee
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesPersonHistoryByEmployeeId')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesPersonHistoryByEmployeeId')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'PayDOEarlyPaymentDiscountToCustomer')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','PayDOEarlyPaymentDiscountToCustomer')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderEarlyPaymentPendingTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderEarlyPaymentPendingTransactionList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderEarlyPaymentApprovedTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderEarlyPaymentApprovedTransactionList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'VerifyDOEarlyPaymentDiscountToCustomer')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','VerifyDOEarlyPaymentDiscountToCustomer')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetCompanySalesTargetList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetCompanySalesTargetList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveCompanySalesTarget')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveCompanySalesTarget')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetCompanySalesTargetById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetCompanySalesTargetById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'UpdateCompanySalesTarget')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','UpdateCompanySalesTarget')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'ApproveCompanySalesTarget')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','ApproveCompanySalesTarget')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesTeamTargetList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesTeamTargetList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveSalesTeamTarget')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveSalesTeamTarget')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesTeamTargetById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesTeamTargetById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'UpdateSalesTeamTarget')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','UpdateSalesTeamTarget')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesDivisionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesDivisionList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesAreaList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesAreaList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesAreaWithSalesOfficerWithCustomerList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesAreaWithSalesOfficerWithCustomerList')
+--END
+
+----Accounts
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'LedgerList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','LedgerList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'LedgerAccountTypeList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','LedgerAccountTypeList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'GetAccountPrimaryHeadListForLedger')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','GetAccountPrimaryHeadListForLedger')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'LedgerAccountPrimaryHeadList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','LedgerAccountPrimaryHeadList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'GetAccountHeadList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','GetAccountHeadList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'GetAccountSubHeadList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','GetAccountSubHeadList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'SaveAccountHead')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','SaveAccountHead')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'GetBankCashAccountHeadList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','GetBankCashAccountHeadList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'GetSalesAccount')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','GetSalesAccount')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = 'GetLCAccountHeadList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Accounts','GetLCAccountHeadList')
+--END
+----End Accounts
+----Transaction
+----Payment Transaction
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'PaymentTransaction' AND ActionName = 'GetPaymentTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('PaymentTransaction','GetPaymentTransactionList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'PaymentTransaction' AND ActionName = 'SaveTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('PaymentTransaction','SaveTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'PaymentTransaction' AND ActionName = 'UpdateTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('PaymentTransaction','UpdateTransaction')
+--END
+
+----Payment Transaction End
+
+----Receipt Transaction
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'ReceiptTransaction' AND ActionName = 'GetReceiptTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('ReceiptTransaction','GetReceiptTransactionList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'ReceiptTransaction' AND ActionName = 'SaveTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('ReceiptTransaction','SaveTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'ReceiptTransaction' AND ActionName = 'UpdateTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('ReceiptTransaction','UpdateTransaction')
+--END
+
+----Receipt Transaction End
+
+----Journal Transaction
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'JournalTransaction' AND ActionName = 'GetJournalTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('JournalTransaction','GetJournalTransactionList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'JournalTransaction' AND ActionName = 'SaveTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('JournalTransaction','SaveTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'JournalTransaction' AND ActionName = 'UpdateTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('JournalTransaction','UpdateTransaction')
+--END
+
+----Journal Transaction End
+
+----Contra Transaction
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'ContraTransaction' AND ActionName = 'GetContraTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('ContraTransaction','GetContraTransactionList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'ContraTransaction' AND ActionName = 'SaveTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('ContraTransaction','SaveTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'ContraTransaction' AND ActionName = 'UpdateTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('ContraTransaction','UpdateTransaction')
+--END
+
+----Receipt Transaction End
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = 'GetTransactionAccountsPendingList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Transaction','GetTransactionAccountsPendingList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = 'GetTransactionSalesPendingList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Transaction','GetTransactionSalesPendingList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = 'GetTransactionPurchasePendingList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Transaction','GetTransactionPurchasePendingList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = 'GetTransactionRejectReasonType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Transaction','GetTransactionRejectReasonType')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = 'GetTransactionAccountsRejectedList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Transaction','GetTransactionAccountsRejectedList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = 'GetTransactionByTransactionNo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Transaction','GetTransactionByTransactionNo')
+--END
+----Transaction-End
+
+----Approval
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Approval' AND ActionName = 'TransactionApproveAccounts')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Approval','TransactionApproveAccounts')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Approval' AND ActionName = 'TransactionRejectAccounts')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Approval','TransactionRejectAccounts')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Approval' AND ActionName = 'TransactionVerifyAccounts')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Approval','TransactionVerifyAccounts')
+--END
+----Approval-End
+----Transaction-End
+
+----REPORT
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetJournal')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetJournal')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetLedger')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetLedger')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetIndividualLedger')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetIndividualLedger')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetTrailBalance')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetTrailBalance')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetProfitAndLossAccount')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetProfitAndLossAccount')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetBalanceSheet')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetBalanceSheet')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetCustomerStatement')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetCustomerStatement')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetVoucherDetail')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetVoucherDetail')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetTransactionHistoryByTransactionNo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetTransactionHistoryByTransactionNo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetFinishedGoodStock')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetFinishedGoodStock')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'GetProductReportList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','GetProductReportList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetTotalSalesReportList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetTotalSalesReportList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = 'DealerAuditReport')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Report','DealerAuditReport')
+--END
+----END - REPORT
+
+----Sales
+----Demand Order
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSaleType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSaleType')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderType')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDiscountType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDiscountType')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderListForFiltering')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderListForFiltering')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderUnPaidList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderUnPaidList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderPartiallyPaidList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderPartiallyPaidList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderPaidList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderPaidList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderEarlyPaymentList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderEarlyPaymentList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderEarlyPaymentPendingList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderEarlyPaymentPendingList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderEarlyPaymentPaidList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderEarlyPaymentPaidList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderById')
+--END
+----IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveDemandOrderTransaction')
+----BEGIN
+----	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+----	VALUES('Sales','SaveDemandOrderTransaction')
+----END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveInvoiceTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveInvoiceTransaction')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'InvoiceReturnList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','InvoiceReturnList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetAllInvoiceList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetAllInvoiceList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveReturnInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveReturnInvoice')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetInvoiceReturnById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetInvoiceReturnById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'UpdateReturnInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','UpdateReturnInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'ApproveReturnInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','ApproveReturnInvoice')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'InvoiceDeliveryQuantityList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','InvoiceDeliveryQuantityList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'DeliveryQuantitySave')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','DeliveryQuantitySave')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDeliveryQuantityById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDeliveryQuantityById')
+--END
+----IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDeliveryQuantityById')
+----BEGIN
+----	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+----	VALUES('Sales','InvoiceDetailsByIdForDeliveryChallan')
+----END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'DeliveryQuantityUpdate')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','DeliveryQuantityUpdate')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'ApproveDeliveryQuantityById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','ApproveDeliveryQuantityById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetUndeliveryQuantityById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetUndeliveryQuantityById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetProductList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetProductList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveDemandOrder')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveDemandOrder')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'UpdateDemandOrder')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','UpdateDemandOrder')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetPostOfficeList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetPostOfficeList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetAreaList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetAreaList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SubmitDo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SubmitDo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'VerifyDo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','VerifyDo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'ApproveDo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','ApproveDo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'DeliveredDo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','DeliveredDo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetInvoiceList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetInvoiceList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderIdListForInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderIdListForInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetDemandOrderByIdFromInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetDemandOrderByIdFromInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'UpdateInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','UpdateInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetInvoiceById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetInvoiceById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'ApproveInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','ApproveInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'DeliveryInvoice')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','DeliveryInvoice')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetCustomerTransactionHistoryByCustomerId')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetCustomerTransactionHistoryByCustomerId')
+--END
+----Demand Order End
+----Customer
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetCustomerList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetCustomerList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetPendingDeactivatedCustomerList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetPendingDeactivatedCustomerList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetCustomerById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetCustomerById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'SaveCustomer')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','SaveCustomer')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'UpdateCustomer')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','UpdateCustomer')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'DeactivateCustomer')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','DeactivateCustomer')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'ActivateCustomer')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','ActivateCustomer')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'SaveCustomerTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','SaveCustomerTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'ApproveCustomerTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','ApproveCustomerTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetUnapprovedCustomerTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetUnapprovedCustomerTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetAvailableBalanceByCustomerId')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetAvailableBalanceByCustomerId')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetAttachmentType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetAttachmentType')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetCustomerTransactionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetCustomerTransactionList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetCustomerTransactionListForFiltering')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetCustomerTransactionListForFiltering')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetUnapprovedCustomerTransactionForFiltering')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetUnapprovedCustomerTransactionForFiltering')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'CustomerTransactionSearch')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','CustomerTransactionSearch')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'GetCustomerTransactionByTransactionId')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','GetCustomerTransactionByTransactionId')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = 'UpdateCustomerTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Customer','UpdateCustomerTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetSalesReportList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetSalesReportList')
+--END
+
+----Customer-End
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'GetProductionForecastList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','GetProductionForecastList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = 'SaveProductionForecast')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Sales','SaveProductionForecast')
+--END
+----Employee Hierarchy
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetAllEmployee')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetAllEmployee')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesEmployee')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesEmployee')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesHierarchyById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesHierarchyById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = 'GetSalesEmployeeWithSalesTargetByMonth')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Employee','GetSalesEmployeeWithSalesTargetByMonth')
+--END
+----Employee Hierarchy End
+
+----End Sales
+----Purchase Order
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetPurchaseOrderList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetPurchaseOrderList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetSupplierList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetSupplierList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetRawMaterialType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetRawMaterialType')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'SavePurchaseOrder')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','SavePurchaseOrder')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'UpdatePurchaseOrder')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','UpdatePurchaseOrder')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetPurchaseOrderById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetPurchaseOrderById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'VerifyPo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','VerifyPo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'ApprovePo')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','ApprovePo')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetSupplierById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetSupplierById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'SavePurchaseOrderTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','SavePurchaseOrderTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetUnapprovedPurchaseOrderTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetUnapprovedPurchaseOrderTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'GetApprovedPurchaseOrderTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','GetApprovedPurchaseOrderTransaction')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = 'ApprovePurchaseOrderTransaction')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Purchase','ApprovePurchaseOrderTransaction')
+--END
+
+----Purchase Order End
+
+----Store
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetProductionGroupList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetProductionGroupList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'SaveProductionGroup')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','SaveProductionGroup')
+--END
+
+----Batch
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetBatchRequisitionList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetBatchRequisitionList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetRawMaterialType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetRawMaterialType')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'SaveBatchRequisition')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','SaveBatchRequisition')
+--END
+----Batch End
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetPendingPoList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetPendingPoList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetAcceptedPoList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetAcceptedPoList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetPendingPoById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetPendingPoById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'SaveAcceptedPurchaseOrder')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','SaveAcceptedPurchaseOrder')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetBatchRequisitionById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetBatchRequisitionById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'DeliveryBr')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','DeliveryBr')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'ReceiveBr')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','ReceiveBr')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'SendToProductionBr')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','SendToProductionBr')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetBatchRequisitionListFromFloorStore')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetBatchRequisitionListFromFloorStore')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetProductionGroupListFromFloorStore')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetProductionGroupListFromFloorStore')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'SaveFinishedGood')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','SaveFinishedGood')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetFinishedGood')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetFinishedGood')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetFinishedGoodForFiltering')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetFinishedGoodForFiltering')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'ApproveFinishedGood')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','ApproveFinishedGood')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'CloseBatch')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','CloseBatch')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'CloseProductionGroup')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','CloseProductionGroup')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'SaveBrProductEstimation')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','SaveBrProductEstimation')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = 'GetRawMaterialType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Store','GetRawMaterialType')
+--END
+----Store End
+---- File
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'File' AND ActionName = 'UploadFile')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('File','UploadFile')
+--END
+---- END - File
+---- Legal document
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'GetLegalDocumentList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','GetLegalDocumentList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'LegalDocumentListPrint')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','LegalDocumentListPrint')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'LegalDocumentSinglePrint')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','LegalDocumentSinglePrint')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'SaveLegalDocument')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','SaveLegalDocument')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'UpdateLegalDocument')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','UpdateLegalDocument')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'GetLegalDocumentById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','GetLegalDocumentById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'GetLegalDocumentType')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','GetLegalDocumentType')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'GetRenewalCategory')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','GetRenewalCategory')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'GetLeglDocumentStatus')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','GetLeglDocumentStatus')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = 'LegalDocumentHistoryList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Document','LegalDocumentHistoryList')
+--END
+---- END - Legal Document
+
+----Leave Management start
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'GetEmployeeLeaveList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','GetEmployeeLeaveList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'GetEmployeeLeaveCategoryWithHierArchy')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','GetEmployeeLeaveCategoryWithHierArchy')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'SaveEmployeeLeave')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','SaveEmployeeLeave')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'GetEmployeeLeaveById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','GetEmployeeLeaveById')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'GetEmployeeAndEmployeeHierArchyLeaveList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','GetEmployeeAndEmployeeHierArchyLeaveList')
+--END
+
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'UpdateEmployeeLeave')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','UpdateEmployeeLeave')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = 'EmployeeLeaveApproveOrReject')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('LeaveManagement','EmployeeLeaveApproveOrReject')
+--END
+
+----Leave Management end
+---- Product RouteResource start
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'GetProductList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','GetProductList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'GetProductById')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','GetProductById')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'SaveProduct')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','SaveProduct')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'UpdateProduct')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','UpdateProduct')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'GetProductHistoryByProductId')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','GetProductHistoryByProductId')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'GetProductRelatedAllDropdownList')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','GetProductRelatedAllDropdownList')
+--END
+--IF NOT EXISTS (SELECT * FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = 'GetProductDeliveryReport')
+--BEGIN
+--	INSERT INTO [dbo].[RouteResource](ControllerName, ActionName) 
+--	VALUES('Product','GetProductDeliveryReport')
+--END
+
+
+---- Product RouteResource end
+---- END - RouteResource
+---------------------------------------------------------------------------------
+---- RouteResourcePolicy
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserViewList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'GetUsers');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Company' AND ActionName = N'GetCompanyList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetAllEmployee');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'GetUserRoleById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'Register');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserUpdate');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'UpdateUser');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserUpdateStatusActive');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'UserActivate');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserUpdateStatusDeactivate');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'UserDeactivate');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserUpdateLock');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'UserLock');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserUpdateUnLock');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'UserUnlock');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminUserPasswordReset');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'User' AND ActionName = N'ResetUser');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminRoleViewList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = N'GetUserRoles');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminRoleAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = N'AddRole');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminRoleUpdate');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = N'UpdateRolePolicy');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminMonthlySalesProcessingList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'MonthlyProcess' AND ActionName = N'GetMonthlySalesProcess');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminMonthlySalesProcessingAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'MonthlyProcess' AND ActionName = N'SaveMonthlySalesProcessing');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminMonthlySalesProcessingReprocess');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'MonthlyProcess' AND ActionName = N'ReprocessMonthlySalesProcessing');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeSalesLocation');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeAreaList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeSalesLocation');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AddSalesArea');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'AddSalesArea');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AddSalesBase');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'AddSalesBase');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EditSalesArea');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesAreaById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'UpdateSalesArea');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EditSalesBase');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesBaseById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'UpdateSalesBase');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Accounts
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AccountsLedgerList');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'LedgerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AccountsLedgerAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'LedgerAccountTypeList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountPrimaryHeadListForLedger');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'LedgerAccountPrimaryHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountSubHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'SaveAccountHead');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----End Accounts
+----Transaction
+----Payment Transaction
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionPaymentList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'PaymentTransaction' AND ActionName = N'GetPaymentTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetTransactionHistoryByTransactionNo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionPaymentAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'PaymentTransaction' AND ActionName = N'SaveTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionPaymentEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'PaymentTransaction' AND ActionName = N'UpdateTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionPaymentView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetVoucherDetail');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionPaymentPrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetVoucherDetail');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Payment Transaction End
+
+----Receipt Transaction
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionReceiptList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'ReceiptTransaction' AND ActionName = N'GetReceiptTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetTransactionHistoryByTransactionNo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionReceiptAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'ReceiptTransaction' AND ActionName = N'SaveTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionReceiptEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'ReceiptTransaction' AND ActionName = N'UpdateTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionReceiptPrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetVoucherDetail');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Receipt Transaction End
+
+----Journal Transaction
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionJournalList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'JournalTransaction' AND ActionName = N'GetJournalTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetTransactionHistoryByTransactionNo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionJournalAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'JournalTransaction' AND ActionName = N'SaveTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionJournalEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'JournalTransaction' AND ActionName = N'UpdateTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionJournalPrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetVoucherDetail');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Journal Transaction End
+
+----Contra Transaction
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionContraList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'ContraTransaction' AND ActionName = N'GetContraTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetTransactionHistoryByTransactionNo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionContraAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'ContraTransaction' AND ActionName = N'SaveTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionContraEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'ContraTransaction' AND ActionName = N'UpdateTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionContraPrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetVoucherDetail');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Contra Transaction End
+----Approval
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionAccounts-PendingList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionAccountsPendingList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionRejectReasonType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetTransactionHistoryByTransactionNo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionApprove-Accounts');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Approval' AND ActionName = N'TransactionApproveAccounts');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionReject-Accounts');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Approval' AND ActionName = N'TransactionRejectAccounts');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionVerify-Accounts');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Approval' AND ActionName = N'TransactionVerifyAccounts');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionSales-PendingList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionSalesPendingList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionRejectReasonType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionApprove-Sales');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'ApproveInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionPurchase-PendingList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionPurchasePendingList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionRejectReasonType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionApprove-Purchase');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'ApprovePurchaseOrderTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionAccounts-RejectedList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionAccountsRejectedList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Approval-End
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TransactionSearch');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Transaction' AND ActionName = N'GetTransactionByTransactionNo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----End Transaction
+
+----REPORT
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportJournal');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetJournal');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportLedger');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetLedger');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportIndividualLedger');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetIndividualLedger');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportTrailBalance');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetTrailBalance');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportProfitAndLossAccount');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetProfitAndLossAccount');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportBalanceSheet');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetBalanceSheet');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ReportCustomerStatement');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetCustomerStatement');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'FinishedGoodStock');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetFinishedGoodStock');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END 
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductReportList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'GetProductReportList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END 
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'TotalSalesReport');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetTotalSalesReportList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END 
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DealerAuditReport');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Report' AND ActionName = N'DealerAuditReport');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END 
+----END - REPORT
+----Sales Start
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderUnPaidList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderPartiallyPaidList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderPaidList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderListForFiltering');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSaleType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDiscountType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetProductList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveDemandOrder');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesEmployee');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderEdit');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSaleType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDiscountType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetProductList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'UpdateDemandOrder');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetCustomerTransactionHistoryByCustomerId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetAvailableBalanceByCustomerId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN --InvoiceTransactionAdd
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderTransactionAdd');
+----SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveDemandOrderTransaction');
+----IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+----BEGIN
+----	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+----	VALUES(@policyId, @routeResourceId)
+----END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceTransactionAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveInvoiceTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceReturnList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'InvoiceReturnList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceReturnAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetAllInvoiceList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetInvoiceById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveReturnInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceReturnEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetInvoiceReturnById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'UpdateReturnInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceReturnApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'ApproveReturnInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Invoice Delivery Quantity Start
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'InvoiceDeliveryQuantityList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetAllInvoiceList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'InvoiceDetailsByIdForDeliveryChallan');
+----IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+----BEGIN
+----	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+----	VALUES(@policyId, @routeResourceId)
+----END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'DeliveryQuantitySave');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDeliveryQuantityById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDeliveryQuantityById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetAllInvoiceList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'DeliveryQuantityUpdate');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDeliveryQuantityApproved');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'ApproveDeliveryQuantityById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceUndeliveredQuantityView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetUndeliveryQuantityById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Invoice Delivery Quantity End
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderSubmit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SubmitDo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderVerify');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'VerifyDo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'ApproveDo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderDelivery');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'DeliveredDo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Invoice
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetInvoiceList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'UpdateInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoicePrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetInvoiceById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDetailPrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetInvoiceById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderIdListForInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderByIdFromInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetInvoiceById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetAvailableBalanceByCustomerId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'ApproveInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'InvoiceDelivery');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'DeliveryInvoice');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Invoice End
+
+----Purchase Order
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetPurchaseOrderList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetLCAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetSupplierList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetRawMaterialType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetLCAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetBankCashAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'SavePurchaseOrder');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetPurchaseOrderById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetSupplierById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'UpdatePurchaseOrder');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderVerify');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'VerifyPo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'ApprovePo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'SavePurchaseOrderTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionPendingList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetUnapprovedPurchaseOrderTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'ApprovePurchaseOrderTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderTransactionApproveList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetApprovedPurchaseOrderTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderSinglePrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetPurchaseOrderById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Purchase Order End
+
+----Sales End
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'AdminRoleView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Role' AND ActionName = N'GetPolicyByRole');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Customer
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetPendingDeactivatedCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetPostOfficeList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetAttachmentType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'File' AND ActionName = N'UploadFile');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetAreaList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesEmployee');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'SaveCustomer');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetBankCashAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerEdit');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetPostOfficeList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetAreaList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesEmployee');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'UpdateCustomer');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerApproval');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'ActivateCustomer');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'DeactivateCustomer');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerTransactionAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetBankCashAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'SaveCustomerTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerTransactionPendingList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetUnapprovedCustomerTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetUnapprovedCustomerTransactionForFiltering');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'ApproveCustomerTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerTransactionList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerTransactionListForFiltering');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerTransactionSearch');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'CustomerTransactionSearch');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerTransactionView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerTransactionByTransactionId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CustomerTransactionEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerTransactionByTransactionId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Accounts' AND ActionName = N'GetBankCashAccountHeadList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'UpdateCustomerTransaction');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Customer-End
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderEarlyPaymentList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderEarlyPaymentPendingList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderEarlyPaymentPaidList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'PayDOEarlyPaymentDiscountToCustomer');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentTransactionList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderEarlyPaymentPendingTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetDemandOrderEarlyPaymentApprovedTransactionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'DemandOrderEarlyPaymentTransactionVerify');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'VerifyDOEarlyPaymentDiscountToCustomer');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CompanySalesTargetList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetCompanySalesTargetList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CompanySalesTargetAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveCompanySalesTarget');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CompanySalesTargetEdit');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetCompanySalesTargetById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'UpdateCompanySalesTarget');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'CompanySalesTargetApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'ApproveCompanySalesTarget');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'SalesTeamTargetList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesTeamTargetList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'SalesTeamTargetAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesEmployeeWithSalesTargetByMonth');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveSalesTeamTarget');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'SalesTeamTargetEdit');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesTeamTargetById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'UpdateSalesTeamTarget');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'SalesReportList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesReportList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesDivisionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesAreaList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesEmployee');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesAreaWithSalesOfficerWithCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductionForecastList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetProductionForecastList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductionForecastAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetProductList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'SaveProductionForecast');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Employee Hierarchy
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeHierarchy-Self');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetSalesHierarchyById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Employee Hierarchy End
+----Employee Module
+----Employee Start
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeList');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetActiveEmployeeList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeSalesLocationByEmployeeId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetInactiveEmployeeList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Company' AND ActionName = N'GetCompanyList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeDropDownList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeAreaList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeBaseList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'AddNewEmployee');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeView');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Company' AND ActionName = N'GetCompanyList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeDropDownList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeAreaList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeBaseList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'EmployeeUpdate');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeePrint');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'GetEmployeeById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'EmployeeListPrint');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeHistoryList');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Employee' AND ActionName = N'EmployeeHistoryList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Employee End
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'SalesPersonHistory');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Sales' AND ActionName = N'GetSalesPersonHistoryByEmployeeId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+----Purchase Order
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetPurchaseOrderList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'SavePurchaseOrder');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'GetPurchaseOrderById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderVerify');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'VerifyPo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Purchase' AND ActionName = N'ApprovePo');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Purchase Order End
+
+----Store
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductionGroupList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetProductionGroupList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductionGroupAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'SaveProductionGroup');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductionGroupClose');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'CloseProductionGroup');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'BatchRequisitionList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetBatchRequisitionList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'BatchRequisitionAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetRawMaterialType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'SaveBatchRequisition');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'BatchRequisitionView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetBatchRequisitionById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'BatchRequisitionDelivery');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'DeliveryBr');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'BatchRequisitionReceive');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'ReceiveBr');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'BatchRequisitionSendToProduction');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'SendToProductionBr');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderPendingList-Store');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetPendingPoList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderPendingView-Store');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetPendingPoById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderAccept-Store');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'SaveAcceptedPurchaseOrder');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'PurchaseOrderAcceptedList-Store');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetAcceptedPoList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'FinishedGoodList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetFinishedGood');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetFinishedGoodForFiltering');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'FinishedGoodAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetBatchRequisitionListFromFloorStore');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetProductionGroupListFromFloorStore');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'SaveFinishedGood');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'FinishedGoodApprove');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'ApproveFinishedGood');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'RawMatrialOpeningReport-Store');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Store' AND ActionName = N'GetRawMaterialType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Store End
+
+----Legal Document Start
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'LegalDocumentList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLegalDocumentList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END 
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'LegalDocumentHistoryList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'LegalDocumentHistoryList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'LegalDocumentView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLegalDocumentById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Company' AND ActionName = N'GetCompanyList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'LegalDocumentAdd');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLegalDocumentType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetRenewalCategory');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLeglDocumentStatus');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'SaveLegalDocument');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'LegalDocumentEdit');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLegalDocumentType');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLegalDocumentById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetRenewalCategory');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'GetLeglDocumentStatus');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'UpdateLegalDocument');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'LegalDocumentPrint');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'LegalDocumentListPrint');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Document' AND ActionName = N'LegalDocumentSinglePrint');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+
+----Legal document End
+----Leave Management Start
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeLeaveList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'GetEmployeeLeaveList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeLeaveAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'GetEmployeeLeaveCategoryWithHierArchy');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'SaveEmployeeLeave');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeLeaveEdit');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'GetEmployeeLeaveById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'UpdateEmployeeLeave');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeLeaveView');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'GetEmployeeLeaveById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeAndEmployeeHierArchyLeaveList');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'GetEmployeeAndEmployeeHierArchyLeaveList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeLeaveApproveOrReject');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'EmployeeLeaveApproveOrReject');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'EmployeeLeaveApproveOrRejectByMD');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'LeaveManagement' AND ActionName = N'EmployeeLeaveApproveOrReject');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+-----Leave Management end
+----Product PolicyRouteResource start
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductList');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductAdd');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductRelatedAllDropdownList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'SaveProduct');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductView');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductEdit');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductById');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductRelatedAllDropdownList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'UpdateProduct');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductHistory');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductHistoryByProductId');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductListPrint');
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @policyId = (SELECT TOP(1) Id FROM [Policy] WHERE PolicyName = N'ProductDeliveryReportList');
+
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Customer' AND ActionName = N'GetCustomerList');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+--SET @routeResourceId = (SELECT TOP(1) Id FROM [RouteResource] WHERE ControllerName = N'Product' AND ActionName = N'GetProductDeliveryReport');
+--IF NOT EXISTS (SELECT * FROM [PolicyRouteResource] WHERE PolicyId = @policyId AND RouteResourceId = @routeResourceId)
+--BEGIN
+--	INSERT INTO [dbo].[PolicyRouteResource](PolicyId, RouteResourceId) 
+--	VALUES(@policyId, @routeResourceId)
+--END
+----Product PolicyRouteResource end
+---- END - RouteResourcePolicy
+---------------------------------------------------------------------------------
+
+---- Department
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'Admin')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(1, 'Admin')
+--END
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'Sales & Marketing')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(2, 'Sales & Marketing')
+--END
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'Accounts')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(3, 'Accounts')
+--END
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'IT')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(4, 'IT')
+--END
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'HR')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(5, 'HR')
+--END
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'Maintenance')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(6, 'Maintenance')
+--END
+--IF NOT EXISTS (SELECT * FROM [Department] WHERE DepartmentName = N'Manufacture')
+--BEGIN
+--	INSERT INTO [dbo].[Department](Id, DepartmentName)
+--	VALUES(7, 'Manufacture')
+--END
+---- End - Department
+------------------------------------------------------------------------------------
+---- Designation
+----SET @deptId = (SELECT TOP(1) Id FROM [Department] WHERE DepartmentName = N'Accounts');
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Executive')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId) 
+----	VALUES(2, N'Executive', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Sr. Executive')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(3, N'Sr. Executive', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Jr. Executive')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(1, N'Jr. Executive', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Assistant Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(4, N'Assistant Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(5, N'Manager', @deptId)
+----END
+
+----SET @deptId = (SELECT TOP(1) Id FROM [Department] WHERE DepartmentName = N'Sales & Marketing');
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Senior Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(11, N'Senior Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'National Sales Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(12, N'National Sales Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Sales Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(13, N'Sales Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Assistant Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(14, N'Assistant Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Divisional Sales Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(15, N'Divisional Sales Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Regional Sales Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(16, N'Regional Sales Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Area Sales Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(17, N'Area Sales Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Territory Sales Officer')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(18, N'Territory Sales Officer', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Sales Officer')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(19, N'Sales Officer', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Manager' AND [DepartmentId] = @deptId)
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(20, N'Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Assistant Manager' AND [DepartmentId] = @deptId)
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(21, N'Assistant Manager', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Sales Officer(Trainee)')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(22, N'Sales Officer(Trainee)', @deptId)
+----END
+
+----SET @deptId = (SELECT TOP(1) Id FROM [Department] WHERE DepartmentName = N'Admin');
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Managing Director')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(50, N'Managing Director', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Director')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(51, N'Director', @deptId)
+----END
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Director Generel Manager')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(52, N'Director Generel Manager', @deptId)
+----END
+
+----SET @deptId = (SELECT TOP(1) Id FROM [Department] WHERE DepartmentName = N'IT');
+----IF NOT EXISTS (SELECT * FROM [Designation] WHERE DesignationName = N'Software Engineer')
+----BEGIN
+----	INSERT INTO [dbo].[Designation](Id, DesignationName, DepartmentId)
+----	VALUES(60, N'Software Engineer', @deptId)
+----END
+---- End - Designation
+
+
+---- Customer Status
+--IF NOT EXISTS (SELECT * FROM [CustomerStatus] WHERE [Status] = N'Pending')
+--BEGIN
+--	INSERT INTO [dbo].[CustomerStatus]([Id], [Status]) 
+--	VALUES(1, N'Pending')
+--END
+--IF NOT EXISTS (SELECT * FROM [CustomerStatus] WHERE [Status] = N'Activated')
+--BEGIN
+--	INSERT INTO [dbo].[CustomerStatus]([Id], [Status]) 
+--	VALUES(2, N'Activated')
+--END
+--IF NOT EXISTS (SELECT * FROM [CustomerStatus] WHERE [Status] = N'Deactivated')
+--BEGIN
+--	INSERT INTO [dbo].[CustomerStatus]([Id], [Status]) 
+--	VALUES(3, N'Deactivated')
+--END
+---- End - Customer Status
+
+---- User Status
+--IF NOT EXISTS (SELECT * FROM [UserStatus] WHERE [Status] = N'Active')
+--BEGIN
+--	INSERT INTO [dbo].[UserStatus]([Id], [Status]) 
+--	VALUES(1, N'Active')
+--END
+--IF NOT EXISTS (SELECT * FROM [UserStatus] WHERE [Status] = N'Inactive')
+--BEGIN
+--	INSERT INTO [dbo].[UserStatus]([Id], [Status]) 
+--	VALUES(2, N'Inactive')
+--END
+---- End - User Status
+
+---- Group
+--IF NOT EXISTS (SELECT * FROM [Group] WHERE [GroupName] = N'PPS')
+--BEGIN
+--	INSERT INTO [dbo].[Group]([GroupName]) 
+--	VALUES(N'PPS')
+--END
+---- End - Group
+---- Company 
+--DECLARE @groupId INT;
+--SET @groupId = (SELECT TOP(1) Id FROM [Group] WHERE [GroupName] = N'PPS');
+--IF NOT EXISTS (SELECT * FROM [Company] WHERE [Name] = N'PPS')
+--BEGIN
+--	INSERT INTO [dbo].[Company]([Id],[Name], [Address], [GroupId], [AllowedInvalid]) 
+--	VALUES(1, N'PPS', 'Uttara, Dhaka', @groupId, 0)
+--END
+--IF NOT EXISTS (SELECT * FROM [Company] WHERE [Name] = N'A Beautiful Mind')
+--BEGIN
+--	INSERT INTO [dbo].[Company]([Id],[Name], [Address], [GroupId], [AllowedInvalid]) 
+--	VALUES(2, N'A Beautiful Mind', 'Uttara, Dhaka', @groupId, 0)
+--END
+--IF NOT EXISTS (SELECT * FROM [Company] WHERE [Name] = N'S.S. Advertise')
+--BEGIN
+--	INSERT INTO [dbo].[Company]([Id],[Name], [Address], [GroupId], [AllowedInvalid]) 
+--	VALUES(3, N'S.S. Advertise', 'Uttara, Dhaka', @groupId, 0)
+--END
+--IF NOT EXISTS (SELECT * FROM [Company] WHERE [Name] = N'Ramate Ltd.')
+--BEGIN
+--	INSERT INTO [dbo].[Company]([Id],[Name], [Address], [GroupId], [AllowedInvalid]) 
+--	VALUES(4, N'Ramate Ltd.', 'Uttara, Dhaka', @groupId, 0)
+--END
+--IF NOT EXISTS (SELECT * FROM [Company] WHERE [Name] = N'Roslyn Ltd.')
+--BEGIN
+--	INSERT INTO [dbo].[Company]([Id],[Name], [Address], [GroupId], [AllowedInvalid]) 
+--	VALUES(5, N'Roslyn Ltd.', 'Uttara, Dhaka', @groupId, 0)
+--END
+---- End - Company
+
+
+---- Account Nature
+----DECLARE @companyId INT;
+----SET @companyId = 1; --(SELECT TOP(1) Id FROM [Company] WHERE [Name] = N'PPS');
+
+----IF NOT EXISTS (SELECT * FROM [AccountNature] WHERE [AccountNatureName] = N'Assets')
+----BEGIN
+---- INSERT INTO [dbo].[AccountNature]([Id],[AccountNatureName], [CompanyId]) 
+---- VALUES(1, N'Assets', @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountNature] WHERE [AccountNatureName] = N'Liabilities & Owner''s Equity')
+----BEGIN
+---- INSERT INTO [dbo].[AccountNature]([Id],[AccountNatureName], [CompanyId]) 
+---- VALUES(2, N'Liabilities & Owner''s Equity', @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountNature] WHERE [AccountNatureName] = N'Revenue')
+----BEGIN
+---- INSERT INTO [dbo].[AccountNature]([Id],[AccountNatureName], [CompanyId]) 
+---- VALUES(3, N'Revenue', @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountNature] WHERE [AccountNatureName] = N'Cost of Goods Sold')
+----BEGIN
+---- INSERT INTO [dbo].[AccountNature]([Id],[AccountNatureName], [CompanyId]) 
+---- VALUES(4, N'Cost of Goods Sold', @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountNature] WHERE [AccountNatureName] = N'Administrative  & Selling Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountNature]([Id],[AccountNatureName], [CompanyId]) 
+---- VALUES(5, N'Administrative  & Selling Expenses', @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountNature] WHERE [AccountNatureName] = N'Financial Cost')
+----BEGIN
+---- INSERT INTO [dbo].[AccountNature]([Id],[AccountNatureName], [CompanyId]) 
+---- VALUES(6, N'Financial Cost', @companyId)
+----END
+------ End - Account Nature
+
+
+------ Account Type
+---- --Account Nature = "Assests", Id = 1
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Noncurrent Assets')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(1, N'Noncurrent Assets', 1, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Current Assets')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(2, N'Current Assets', 1, @companyId)
+----END
+------ End - Account Nature = "Assests"
+
+------ Account Nature = "Liabilities & Owner's Equity", Id = 2
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Owner''s Equity')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(3, N'Owner''s Equity', 2, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Liabilities')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(4, N'Liabilities', 2, @companyId)
+----END
+------ End - Account Nature = "Liabilities & Owner's Equity", Id = 2
+
+------ Account Nature = "Revenue", Id = 3
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Sales')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(5, N'Sales', 3, @companyId)
+----END
+------ End - Account Nature = "Revenue", Id = 3
+
+------ Account Nature = "Cost of Goods Sold", Id = 4
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Row Materials')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(6, N'Row Materials', 4, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Direct Labour')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(7, N'Direct Labour', 4, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Factory Overhead')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(8, N'Factory Overhead', 4, @companyId)
+----END
+------ End - Account Nature = "Cost of Goods Sold", Id = 4
+
+------ Account Nature = "Administrative  & Selling Expenses", Id = 5
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Administrative Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(9, N'Administrative Expenses', 5, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Selling Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(10, N'Selling Expenses', 5, @companyId)
+----END
+------ End - Account Nature = "Administrative  & Selling Expenses", Id = 5
+
+------ Account Nature = "", Id = 6
+----IF NOT EXISTS (SELECT * FROM [AccountType] WHERE [AccountTypeName] = N'Financial Cost')
+----BEGIN
+---- INSERT INTO [dbo].[AccountType]([Id],[AccountTypeName], [AccountNatureId], [CompanyId]) 
+---- VALUES(11, N'Financial Cost', 6, @companyId)
+----END
+------ End - Account Nature = "", Id = 6
+------ End - Account Type
+
+
+------ Account Primary Head
+----DECLARE @accountTypeId INT;
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Noncurrent Assets');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Land & Land Development')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(1, N'Land & Land Development', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Building & Constraction')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(2, N'Building & Constraction', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Equipment')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(3, N'Equipment', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Furniture & Fixture')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(4, N'Furniture & Fixture', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Software')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(5, N'Software', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Current Assets');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Inventory')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(6, N'Inventory', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Accounts Receivable')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(7, N'Accounts Receivable', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Cash & Cash Equivalent')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(8, N'Cash & Cash Equivalent', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Prepayment & Advanced')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(9, N'Prepayment & Advanced', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Supplies')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(10, N'Supplies', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Short Term Investment')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(11, N'Short Term Investment', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'VAT Current Asset')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(101, N'VAT Current Asset', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Owner''s Equity');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Paid-up Capital')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(12, N'Paid-up Capital', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Retain Earning')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(13, N'Retain Earning', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Liabilities');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Long Term Liabilities')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(14, N'Long Term Liabilities', @accountTypeId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Current Liabilities')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(15, N'Current Liabilities', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Sales');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Sales')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(16, N'Sales', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Row Materials');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Row Materials')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(17, N'Row Materials', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Direct Labour');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Direct Labour')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(18, N'Direct Labour', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Factory Overhead');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Factory Overhead')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(19, N'Factory Overhead', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Administrative Expenses');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Administrative Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(20, N'Administrative Expenses', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Selling Expenses');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Selling Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(21, N'Selling Expenses', @accountTypeId, @companyId)
+----END
+
+----SET @accountTypeId = (SELECT TOP(1) Id FROM [AccountType] WHERE [AccountTypeName] = N'Financial Cost');
+
+----IF NOT EXISTS (SELECT * FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Financial Cost')
+----BEGIN
+---- INSERT INTO [dbo].[AccountPrimaryHead]([Id],[AccountPrimaryHeadName], [AccountTypeId], [CompanyId]) 
+---- VALUES(22, N'Financial Cost', @accountTypeId, @companyId)
+----END
+------ End - Account Primary Head
+
+
+------ Account Sub Head
+----DECLARE @accountPrimaryHeadId INT;
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Land & Land Development');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Land & Land Development')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(1, N'Land & Land Development', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Building & Constraction');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Building & Constraction')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(2, N'Building & Constraction', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Equipment');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Equipment')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(3, N'Equipment', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Furniture & Fixture');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Furniture & Fixture')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(4, N'Furniture & Fixture', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Software');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Software')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(5, N'Software', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Inventory');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Finished Goods')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(6, N'Finished Goods', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Raw Materials')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(7, N'Raw materials', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Work in Progress')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(8, N'Work in Progress', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Accounts Receivable');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Accounts Receivable')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(9, N'Accounts Receivable', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Cash & Cash Equivalent');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Cash in Hand')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(10, N'Cash in Hand', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Cash at Bank')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(11, N'Cash at Bank', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Prepayment & Advanced');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Prepayment & Advanced')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(12, N'Prepayment & Advanced', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Supplies');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Supplies')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(13, N'Supplies', @accountPrimaryHeadId, @companyId)
+----END
+ 
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Short Term Investment');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Short Term Investment')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(14, N'Short Term Investment', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Paid-up Capital');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Paid-up Capital')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(15, N'Paid-up Capital', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Retain Earning');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Retain Earning')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(16, N'Retain Earning', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Long Term Liabilities');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Long Term Liabilities')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(17, N'Long Term Liabilities', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Current Liabilities');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Accounts Payable')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(18, N'Accounts Payable', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Notes Payable')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(19, N'Notes Payable', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Provision')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(20, N'Provision', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Accomulated Depreciation')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(21, N'Accomulated Depreciation', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Accured Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(22, N'Accured Expenses', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Short Term Loan')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(23, N'Short Term Loan', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Sales');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Pipe')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(24, N'Pipe', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Fitting')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(25, N'Fitting', @accountPrimaryHeadId, @companyId)
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Others')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(26, N'Others', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Row Materials');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Row Materials')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(27, N'Row Materials', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Direct Labour');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Direct Labour')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(28, N'Direct Labour', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Factory Overhead');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Factory Overhead')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(29, N'Factory Overhead', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Administrative Expenses');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Administrative Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(30, N'Administrative Expenses', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Selling Expenses');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Selling Expenses')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(31, N'Selling Expenses', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'Financial Cost');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'Financial Cost')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(32, N'Financial Cost', @accountPrimaryHeadId, @companyId)
+----END
+
+----SET @accountPrimaryHeadId = (SELECT TOP(1) Id FROM [AccountPrimaryHead] WHERE [AccountPrimaryHeadName] = N'VAT Current Asset');
+
+----IF NOT EXISTS (SELECT * FROM [AccountSubHead] WHERE [AccountSubHeadName] = N'VAT')
+----BEGIN
+---- INSERT INTO [dbo].[AccountSubHead]([Id],[AccountSubHeadName], [AccountPrimaryHeadId], [CompanyId]) 
+---- VALUES(33, N'VAT', @accountPrimaryHeadId, @companyId)
+----END
+---- --End - Account Sub Head
+
+
+---- --Account Head - Raw Material => [AccountSubHeadId] = 7
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Resin')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Resin', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Calcium Carbonet')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Calcium Carbonet', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Stabilizer')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Stabilizer', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Stearic Acid')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Stearic Acid', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Paraffin Wax')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Paraffin Wax', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Titanium Dioxide')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Titanium Dioxide', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Dop Oil')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Dop Oil', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Hostar Lux')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Hostar Lux', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Black Carbon')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Black Carbon', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Green Color')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Green Color', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Yellow Color')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Yellow Color', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Pink')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Pink', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Pulpariser (Wastage)')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Pulpariser (Wastage)', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'PVC Compound')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('PVC Compound', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Wastage/Crush')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Wastage/Crush', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'HP,PP Pound SAVIC')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('HP,PP Pound SAVIC', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'CP,PP Pound EL-PRO')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('CP,PP Pound EL-PRO', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+----IF NOT EXISTS (SELECT * FROM [AccountHead] WHERE [AccountHeadName] = N'Filler,Calcium C/Additive')
+----BEGIN
+----	INSERT INTO [dbo].[AccountHead]([AccountHeadName],[AccountSubHeadId],[Active],[CompanyId],[CreatedById],[CreatedDate],[UpdatedById],[UpdatedDate])
+----	VALUES('Filler,Calcium C/Additive', 7, 1, 1, -1, GETDATE(), -1, GETDATE())
+----END
+------ END Account Head - Raw Material
+
+------ Entity Type
+----IF NOT EXISTS (SELECT * FROM [EntityType] WHERE [EntityTypeName] = N'AccountPrimaryHead')
+----BEGIN
+----	INSERT INTO [dbo].[EntityType](Id, EntityTypeName)
+----	VALUES(1, 'AccountPrimaryHead')
+----END
+----IF NOT EXISTS (SELECT * FROM [EntityType] WHERE [EntityTypeName] = N'AccountSubHead')
+----BEGIN
+----	INSERT INTO [dbo].[EntityType](Id, EntityTypeName)
+----	VALUES(2, 'AccountSubHead')
+----END
+----IF NOT EXISTS (SELECT * FROM [EntityType] WHERE [EntityTypeName] = N'AccountHead')
+----BEGIN
+----	INSERT INTO [dbo].[EntityType](Id, EntityTypeName)
+----	VALUES(3, 'AccountHead')
+----END
+------ END - Entity Type
+
+---- SystemWarningType
+--IF NOT EXISTS (SELECT * FROM [SystemWarningType] WHERE SystemWarningTypeName = N'CashInHand')
+--BEGIN
+--	INSERT INTO [dbo].[SystemWarningType](Id, SystemWarningTypeName, WarningPeriod, EntityId, EntityTypeId)
+--	VALUES(1, 'CashInHand', 1, 10, 2)
+--END
+--IF NOT EXISTS (SELECT * FROM [SystemWarningType] WHERE SystemWarningTypeName = N'CashAtBank')
+--BEGIN
+--	INSERT INTO [dbo].[SystemWarningType](Id, SystemWarningTypeName, WarningPeriod, EntityId, EntityTypeId)
+--	VALUES(2, 'CashAtBank', 1, 11, 2)
+--END
+---- END - SystemWarningType
+
+---- ProcessingType
+--IF NOT EXISTS (SELECT * FROM [ProcessingType] WHERE ProcessingTypeName = N'MonthlySalesProcessing')
+--BEGIN
+--	INSERT INTO [dbo].[ProcessingType](Id, ProcessingTypeName)
+--	VALUES(1, 'MonthlySalesProcessing')
+--END
+
+---- END - ProcessingType

@@ -1,0 +1,105 @@
+<!-- Wrapper-->
+<div id="wrapper" ng-controller="dashboardController">
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+        <!-- Main view  -->
+        <div class="col-sm-6 col-xs-12">
+            <div class="col-xs-12" style="padding: 15px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Today's Forcasting</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="col-xs-12" style="padding: 15px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Last 10 Verified / Approved DOs</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2">DO No</th>
+                                    <th class="col-xs-4">Customer</th>
+                                    <th class="col-xs-2">Amount</th>
+                                    <th class="col-xs-2">Due</th>
+                                    <th class="col-xs-2">Created</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="do in lastNDOs">
+                                    <td>{{do.DOId}}</td>
+                                    <td>{{do.CustomerName}}</td>
+                                    <td>{{do.TotalGrandAmount}}</td>
+                                    <td>{{do.TotalDueAmount}}</td>
+                                    <td>{{do.TotalDueAmount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" style="padding: 15px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Last 10 Sales</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" style="padding: 15px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Last 10 Customer Payment</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" style="padding: 15px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Last 10 Approved Transaction</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+</div>
+<!-- End wrapper-->

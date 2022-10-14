@@ -1,0 +1,130 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="productionGroupListController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Production Group</h2>
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-if="isAuthenticated('901')" ng-click="addNewProductionGroup()">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>
+
+        <!-- Add Production Group Modal -->
+        <div class="modal fade" pps-modal id="addProductionGroupModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="cancelAddProductionGroupModal()">&times;</button>
+                        <h4 class="modal-title">New Production Group</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>
+                            Do you want to create a new production group?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="cancelAddProductionGroupModal()">No</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="confirmAddProductionGroupClick()">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Close Production Group Modal -->
+        <div class="modal fade" pps-modal id="closeProductionGroupModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeCloseProductionGroupModal()">&times;</button>
+                        <h4 class="modal-title">Close Production Group</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>
+                            Do you want to close <span style="font-weight: bold;">Production Group No. {{selectedProductionGroup.Id}}</span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeCloseProductionGroupModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="closeProductionGroupClick()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Production Group</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2 text-left">Production Group No.</th>
+                                    <th class="col-xs-1 text-left">PG Status</th>
+                                    <th class="col-xs-4 text-left">Batch Requisition No - Status</th>
+                                    <th class="col-xs-2 text-left">Created By</th>
+                                    <th class="col-xs-1 text-center">Created Date</th>
+                                    <th class="col-xs-2 text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pg in productionGroupList">
+                                    <td class="text-left">{{ pg.ProductionGroupId }}</td>
+                                    <td class="text-left"><span ng-if="!pg.IsClosed">Open</span><span ng-if="pg.IsClosed">Closed</span></td>
+                                    <td>
+                                        <table class="table table-striped table-bordered table-hover" ng-if="pg.BatchRequisitionList.length>0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-6">BR No</th>
+                                                    <th class="col-xs-6">BR Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="br in pg.BatchRequisitionList">
+                                                <tr>
+                                                    <td>{{br.BatchRequisitionNo}}</td>
+                                                    <td>{{br.BRStatusName}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <!--<td class="text-right">{{ pg.BatchRequisitionNo }}</td>
+                                    <td class="text-left">{{pg.BRStatusName}}</td>-->
+                                    <td class="text-left">{{ pg.CreatedByName }}</td>
+                                    <td class="text-center">{{ pg.CreatedOn | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-right">
+                                        <button type="button" class="btn btn-default btn-sm" title="Close" ng-if="!pg.IsClosed && isAuthenticated('921')" ng-click="showCloseProductionGroupModal(pg)">
+                                            Close
+                                        </button>
+                                        <!--<button type="button" class="btn btn-default btn-sm" title="Close" ng-if="!pg.IsClosed && pg.BRStatusName=='Send To Production'" ng-click="showCloseProductionGroupModal(pg)">
+                                            Close
+                                        </button>-->
+                                        <!--<button type="button" class="btn btn-default btn-sm" title="View" ng-click="navigateToPrView(pg)">
+                                            View
+                                        </button>-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

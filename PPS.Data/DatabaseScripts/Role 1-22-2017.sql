@@ -1,0 +1,12 @@
+﻿SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS ( SELECT * FROM sysobjects WHERE name = 'Role') 
+BEGIN
+	CREATE TABLE [dbo].[Role](
+		[Id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		[RoleName] [nvarchar](50) NOT NULL)
+END
+

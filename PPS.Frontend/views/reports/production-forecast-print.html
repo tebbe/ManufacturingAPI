@@ -1,0 +1,69 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div id="productionForecastPrintPageContent" ng-controller="productionForecastPrintController">
+    <div class="row wrapper white-bg">
+        <div id="productionForecastPrint" class="col-sm-12" style="background-color: #fff" ng-if="isReportGenerated===true">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h1>
+                        <img src="../../image/logo/PPSLogo.jpg" /> PPS Plastic Pipe Industries Ltd.
+                    </h1>
+                    <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                    <p>Phone: +88 01700 703311</p>
+                    <p>Email: abc@gmail.com</p>
+                    <h3>Production Forecast Report</h3>
+                </div>
+                <div class="text-left font-bold" style="padding-bottom: 30px;">
+                    <span style="float: left;">
+                        Dated: {{productionForecastList[0].TargetDate | date: 'MMM-yyyy'}}
+                    </span>
+                </div>
+                <div>
+                    <table dt-options="dtOptions" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-6 text-left">Product Name</th>
+                                <th class="col-xs-2 text-right">UnitPrice</th>
+                                <th class="col-xs-2 text-right">Quantity</th>
+                                <th class="col-xs-2 text-right">Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pf in productionForecastList">
+                                <td class="text-left">{{ pf.ProductName }}</td>
+                                <td class="text-right">{{ pf.UnitPrice | currency: '' }}</td>
+                                <td class="text-right">{{ pf.Quantity}}</td>
+                                <td class="text-right">{{ pf.TotalUnitPrice | currency: '' }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="font-bold text-right">{{TotalPrice | currency: ''}}</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

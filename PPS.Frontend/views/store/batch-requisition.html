@@ -1,0 +1,234 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="batchRequisitionController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Batch Requisition</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="batchRequisitionForm" novalidate>
+                            <div class="row" style="margin-left:0;margin-right:0;">
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtBatchRequisitionNo" style="font-weight: bold;" required="true">Batch Requisition No</label>
+                                    <input id="txtBatchRequisitionNo" class="form-control" type="text" placeholder="Automatic"
+                                           ng-disabled="true"
+                                           ng-model="BatchRequisitionNo" />
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtPurchaseOrderDate" style="font-weight: bold;" required="true">Batch Requisition Date</label><br />
+                                    <md-datepicker ng-model="selectedBatchRequisition.BatchRequisitionDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()"></md-datepicker>
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtProductionGroupId" style="font-weight: bold;" required="true">Production Group</label>
+                                    <ui-select ng-model="selectedProductionGroup.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.ProductionGroupId}}</ui-select-match>
+                                        <ui-select-choices repeat="pg in productionGroupList | propsFilter: {ProductionGroupId: $select.search}">
+                                            <div ng-bind-html="pg.ProductionGroupId | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left:0;margin-right:0;">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtRawMaterialTypeId" style="font-weight: bold" required="true">Raw Material Item</label>
+                                    <ui-select ng-model="selectedRawMaterialType.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.RawMaterialTypeName}}</ui-select-match>
+                                        <ui-select-choices repeat="rm in rawMaterialType | propsFilter: {RawMaterialTypeName: $select.search}">
+                                            <div ng-bind-html="rm.RawMaterialTypeName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtAvailableQty">Available Qty</label><br />
+                                    <label>{{selectedRawMaterialType.selected.AvailableQty | number:''}} {{selectedRawMaterialType.selected.UnitTypeName}}</label>
+                                </div>
+
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtQuantity">Quantity</label>
+                                    <input id="txtQuantity" ng-model="Quantity" min="" max="{{selectedRawMaterialType.selected.AvailableQty}}" class="form-control" type="number" required />
+                                </div>
+
+                                <div class="form-group col-sm-2 col-xs-12" style="padding-top:23px;">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-disabled="batchRequisitionForm.$invalid"
+                                            ng-click="addRawMaterialItem()">
+                                        <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Raw Material Details
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelDetailMode === 2"
+                                           ng-click="cancelModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1 text-right">SL</th>
+                                                <th class="col-xs-5 text-left">Raw Material Name</th>
+                                                <th class="col-xs-1 text-left">Unit Type</th>
+                                                <th class="col-xs-1 text-right">Available Qty</th>
+                                                <th class="col-xs-1 text-right">Quantity</th>
+                                                <th class="col-xs-1 text-right">Balance Qty</th>
+                                                <th class="col-xs-2"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rm in rmDetail">
+                                                <td class="text-right">{{$index + 1}}</td>
+                                                <td class="text-left">{{ rm.RawMaterialTypeName }}</td>
+                                                <td class="text-left">{{rm.UnitTypeName}}</td>
+                                                <td class="text-right">{{rm.AvailableQty | number: '2'}}</td>
+                                                <td class="text-right">{{ rm.Quantity | number: '2' }}</td>
+                                                <td class="text-right">{{(rm.AvailableQty - rm.Quantity) | number: '2' }}</td>
+                                                <td class="text-right">
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(rm)">
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(rm)">
+                                                        Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--</div>
+                        <div class="row">-->
+                        <div class="form-group col-xs-12 text-right">
+                            <!--<button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="!isBatchRequisitionValidated"
+                                    ng-class="{ 'disabled': !isBatchRequisitionValidated }"
+                                    ng-click="saveBatchRequisition()">
+                                {{ modelActionText }}
+                            </button>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--<form name="bRProductionEstimationForm" novalidate>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtProductId" style="font-weight: bold;" required="true">Product Item</label>
+                                <select class="form-control"
+                                        id="optionSubGroup"
+                                        ng-model="selectedProduct"
+                                        ng-options="prd.Name for prd in productList" required></select>
+                            </div>
+
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="txtQuantity">Quantity</label>
+                                <input id="txtQuantity" ng-model="Quantity" min="1" class="form-control" type="number" required />
+                            </div>
+
+                            <div class="form-group col-sm-1 col-xs-12" style="padding-top:23px;">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        ng-disabled="bRProductionEstimationForm.$invalid"
+                                        ng-click="addProductItem()">
+                                    <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                </button>
+                            </div>
+                        </form>-->
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4 class="modal-title">
+                                                Batch Requisition Product Estimation
+                                            </h4>
+                                            <hr />
+                                        </div>
+                                        <form name="bRProductionEstimationForm" novalidate>
+                                            <div class="form-group col-sm-5 col-xs-12">
+                                                <label for="txtProductId" style="font-weight: bold;" required="true">Product Item</label>
+                                                <ui-select ng-model="selectedProduct.selected" id="listProduct" style="width: 100%;" theme="select2">
+                                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                                    <ui-select-choices repeat="prd in productList | propsFilter: {Name: $select.search, Thickness: $select.search}">
+                                                        <div ng-bind-html="prd.Name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+
+                                            <div class="form-group col-sm-3 col-xs-12">
+                                                <label for="txtQuantity">Quantity</label>
+                                                <input id="txtQuantity" ng-model="ProductQuantity" min="1" class="form-control" type="number" required />
+                                            </div>
+
+                                            <div class="form-group col-sm-1 col-xs-12" style="padding-top:23px;">
+                                                <button type="button" class="btn btn-primary btn-sm"
+                                                        ng-disabled="bRProductionEstimationForm.$invalid"
+                                                        ng-click="addProductItem()">
+                                                    <span class="glyphicon glyphicon-plus"></span> {{ modelProductDetailText }}
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <h4 class="modal-title">
+                                        Product Details
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelProductDetailMode === 2"
+                                           ng-click="cancelProductDetailModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-2 text-center">Product Code</th>
+                                                <th class="col-xs-6 text-center">Product Name</th>
+                                                <th class="col-xs-2 text-center">Quantity</th>
+                                                <th class="col-xs-2 text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pd in productDetail">
+                                                <td class="text-left">{{pd.Code}}</td>
+                                                <td class="text-left">{{ pd.Name }}</td>
+                                                <td class="text-right">{{ pd.Quantity }}</td>
+                                                <td class="text-right">
+                                                    <button type="button" class="btn btn-default btn-sm" title="Edit" ng-click="selectProductItemDetail(pd)">
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeProductItemDetail(pd)">
+                                                        Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--</div>
+                        <div class="row">-->
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="!isBatchRequisitionValidated"
+                                    ng-class="{ 'disabled': !isBatchRequisitionValidated }"
+                                    ng-click="saveBatchRequisition()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

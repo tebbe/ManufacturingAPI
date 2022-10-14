@@ -1,0 +1,186 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div id="voucherPageContent" ng-controller="demandOrderRptController">
+    <div class="row wrapper white-bg">
+        <div id="voucherContent" style="background-color: #fff">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h2>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> <b>{{company.FullName}}</b>
+                    </h2>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}; Email: {{company.Email}}</p>
+                    <h3 class="font-bold"><u>Demand Order</u></h3>
+                </div>
+                <div class="row col-sm-12">
+                    <div class="col-sm-4 text-left">
+                        <p>
+                            Dealer Name: <span class="font-bold">{{demandOrder.CustomerCode}} - {{demandOrder.CustomerName}}</span>
+                        </p>
+                        <p>
+                            Address: <span class="font-bold">{{demandOrder.CustomerAddress}}</span>
+                        </p>
+                        <p>
+                            Mobile: <span class="font-bold">{{demandOrder.CustomerMobile}}</span>
+                        </p>
+                        <br />
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            Dated: <span class="font-bold">{{demandOrder.DODate | date:'dd-MMM-yyyy'}}</span>
+                        </p>
+                        <p>
+                            Demand Order No.: <span class="font-bold">{{demandOrder.DemandOrderNo}}</span>
+                        </p>
+                        <p>
+                            Reference No.: <span class="font-bold">{{demandOrder.ReferenceNo}}</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            Note: <span class="font-bold">{{demandOrder.Note}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row col-sm-12">
+                    <div class="col-sm-4 col-xs-12 text-left">
+                        <p>
+                            Total DO Balance: <span class="font-bold">{{demandOrder.CustomerDoWithInvoiceDetails.TotalDOAmount| currency : ""}}</span>
+                        </p>
+                        <p>
+                            Total Invoice Balance: <span class="font-bold">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalInvoiceBalance| currency : ""}}</span>
+                        </p>
+                        <p>
+                            Transaction Balance: <span>{{demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalTransactionAmount| currency : "" }}</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-4 col-xs-12 text-left">
+
+                        <p>
+                            Mature Balance: <span class="font-bold">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerMatureInvoiceAmount| currency : "" }}</span>
+                        </p>
+                        <p>
+                            Mature Due:  <span ng-style="demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalMatureDue > 0 && {'color': 'red'}">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerMatureInvoiceAmount| currency : "" }}</span>
+                        </p>
+                        <p>
+                            Current Balance: <span>{{demandOrder.CustomerRemainingBalance| currency : "" }}</span>
+                        </p>
+
+                    </div>
+                    <div class="col-sm-4 col-xs-12 text-left">
+
+                        <p>
+                            Immature Due:<span ng-style="demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalImmatureDue > 0 && {'color': 'red'}">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerTotalImmatureDue| currency : "" }}</span>
+                        </p>
+                        <p>
+                            Immature Balance: <span class="font-bold">{{demandOrder.CustomerDoWithInvoiceDetails.CustomerImmatureInvoiceAmount| currency : "" }}</span>
+                        </p>
+
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1 text-right">SL No.</th>
+                                <th class="col-xs-6 text-left">Description of Goods</th>
+                                <th class="col-xs-2 text-right">Quantity</th>
+                                <th class="col-xs-1 text-right">Rate</th>
+                                <th class="col-xs-1 text-right">Per</th>
+                                <th class="col-xs-1 text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="do in demandOrder.DemandOrderDetail">
+                                <td class="text-right">{{$index + 1}}</td>
+                                <td class="text-left">{{ do.ProductName }}</td>
+                                <td class="text-right">{{ do.Quantity }} Pcs <span ng-if="do.Length !== 0">({{do.Length * do.Quantity}} {{do.UnitTypeName}})</span></td>
+                                <td class="text-right">{{ do.UnitPrice | number:2 }}</td>
+                                <td class="text-right">Pcs</td>
+                                <td class="text-right">{{ do.TotalPrice| number:2 }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                <td colspan="2">Total</td>
+                                <td>{{ TotalQuantity}} Pcs</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ demandOrder.TotalAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.RegularDiscount">
+                                <td colspan="5">Regular Discount ( {{demandOrder.RegularDiscountInPercentage | number: 2}} %)</td>
+                                <td>{{ demandOrder.RegularDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="demandOrder.SpecialDiscountInPercentage > 0 || demandOrder.AdditionalDiscountInPercentage > 0 || demandOrder.ExtraDiscount > 0|| demandOrder.CashBack > 0">
+                                <td colspan="5">Sub Total</td>
+                                <td>{{ subTotal | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.SpecialDiscount && demandOrder.SpecialDiscountInPercentage > 0">
+                                <td colspan="5">Special Discount ( {{demandOrder.SpecialDiscountInPercentage}} %)</td>
+                                <td>{{ demandOrder.SpecialDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.AdditionalDiscount && demandOrder.AdditionalDiscountInPercentage > 0">
+                                <td colspan="5">Additional Discount ( {{demandOrder.AdditionalDiscountInPercentage}} %)</td>
+                                <td>{{ demandOrder.AdditionalDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.ExtraDiscount && demandOrder.ExtraDiscountInPercentage > 0">
+                                <td colspan="5">Extra Discount ( {{demandOrder.ExtraDiscountInPercentage}} %)</td>
+                                <td>{{ demandOrder.ExtraDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.CashBack && demandOrder.CashBackAmount > 0">
+                                <td colspan="5">Cash Back</td>
+                                <td>{{ demandOrder.CashBackAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="demandOrder.SpecialDiscountInPercentage > 0 || demandOrder.AdditionalDiscountInPercentage > 0 || demandOrder.ExtraDiscount > 0|| demandOrder.CashBack > 0">
+                                <td colspan="5">Total Discount</td>
+                                <td>{{ demandOrder.TotalDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                <td colspan="5">Grand Total</td>
+                                <td>{{ demandOrder.TotalGrandAmount | number:2}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div>
+                    <div class="col-xs-12">
+                        <p class="font-bold">Amount (in words): {{convertAmountInWord()}}</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="font-bold" style="padding-top: 25px; padding-bottom: 50px;">for <b>{{company.FullName}}</b></p>
+                        <div class="col-sm-4 text-center" style="padding: 0 40px;">
+                            <p style="border-top: 1px solid black;">Prepared By<br />{{demandOrder.CreatedByName}}<br />{{demandOrder.CreatedByDesignation}}<br />{{demandOrder.CreatedOn | date: 'dd/MM/yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-4 text-center" style="padding: 0 40px;">
+                            <p style="border-top: 1px solid black;">Verified By<br />{{demandOrder.VerifiedByName}}<br />{{demandOrder.VerifiedByDesignation}}<br />{{demandOrder.VerifiedOn | date: 'dd/MM/yyyy'}}</p>
+                        </div>
+                        <div class="col-sm-4 text-center" style="padding: 0 40px;">
+                            <p style="border-top: 1px solid black;">Authorised Signatory<br />Managing Director<br />{{demandOrder.ApprovedOn | date: 'dd/MM/yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

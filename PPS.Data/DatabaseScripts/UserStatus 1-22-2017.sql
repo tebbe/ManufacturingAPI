@@ -1,0 +1,11 @@
+﻿SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS ( SELECT * FROM sysobjects WHERE name = 'UserStatus') 
+BEGIN
+	CREATE TABLE [dbo].[UserStatus](
+		[Id] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		[Status] [nvarchar](50) NOT NULL)
+END

@@ -1,0 +1,78 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="salesReportController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Sales Report List</h2>
+            <div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 20px;">
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <label for="daterange3" class="control-label">Date range</label>
+                        <input date-range-picker id="daterange3" name="daterange3" class="form-control date-picker" type="text"
+                               ng-model="reportDateRange" options="opts" required />
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <h2>
+                        <button type="button" class="btn btn-primary" ng-click="GetSalesReport()">
+                            <span class="glyphicon glyphicon-list"></span> Show
+                        </button>
+                    </h2>
+                </div>
+                <div class="col-sm-1">
+                    <h2>
+                        <button type="button" class="btn btn-primary" ng-click="PrintSalesReport('salesReportPrint')">
+                            <span class="glyphicon glyphicon-print"></span> Print
+                        </button>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <div class="panel-body">
+                        <div class="col-xs-12" style="overflow-x: scroll;">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <table datatable="ng" id="salesReportPrint" dt-options="dtOptionsAll" class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-3 text-left">Date</th>
+                                                <th class="col-xs-9 text-center">Amount</th>
+                                                <!--<th class="col-xs-1 text-center">sale Qty</th>
+                                                <th class="col-xs-1 text-center">Invoice Qty</th>
+                                                <th class="col-xs-1 text-right">Delivery Qty</th>
+                                                <th class="col-xs-1 text-right">Amount</th>-->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="sale in salesTotalReportList">
+                                                <td class="text-right">{{sale.SalesDate|date:'dd/MM/yyyy'}}</td>
+                                                <td class="text-right">{{sale.TotalAmount|currency:''}}</td>
+                                                <!--<td class="text-left">{{ sale.Name+'-'+sale.Color+' '+' '+sale.Thickness}}</td>
+                                                <td class="text-center">{{sale.Code===null?'N/A':sale.Code}}</td>
+                                                <td class="text-right">{{sale.DemansalerderQuantity}}</td>
+                                                <td class="text-right">{{sale.InvoiceQuantity}}</td>
+                                                <td class="text-right">{{sale.DeliveryQuantity}}</td>
+                                                <td class="text-right">{{sale.Ammount|currency:''}}</td>-->
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="1">Total Amount</td>
+                                                <td>{{ SumOfTotalAmount| number:2}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

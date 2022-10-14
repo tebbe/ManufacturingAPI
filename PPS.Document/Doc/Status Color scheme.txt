@@ -1,0 +1,9 @@
+﻿Status	-	Color
+======================
+NotApproved - black
+Danger	-	red
+Warning -	orange
+PayDay	-	blue
+Regular	-	lightskyblue
+Paid	-	green
+

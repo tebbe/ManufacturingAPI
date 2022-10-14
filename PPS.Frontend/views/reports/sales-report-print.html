@@ -1,0 +1,82 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div id="salesReportPrintPageContent" ng-controller="salesReportPrintController">
+    <div class="row wrapper white-bg">
+        <div id="salesTeamTarget" class="col-sm-12" style="background-color: #fff" ng-if="isReportGenerated===true">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h2>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> <b>{{company.FullName}}</b>
+                    </h2>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}; Email: {{company.Email}}</p>
+                    <h3 class="font-bold"><u>Sales Report</u></h3>
+                </div>
+                <div class="text-left font-bold" style="padding-bottom: 30px;">
+                    <span style="float: left;">
+                        Dated: {{startDate | date: 'dd-MMM-yyyy'}} to {{endDate | date: 'dd-MMM-yyyy'}}
+                    </span>
+                </div>
+                <div>
+                    <table dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1 text-right">SL No.</th>
+                                <!--<th class="col-xs-2 text-center">DO Date</th>
+                                <th class="col-xs-1 text-left">Division</th>
+                                <th class="col-xs-1 text-left">Area</th>
+                                <th class="col-xs-2 text-left">Sales Officer</th>-->
+                                <th class="col-xs-5 text-left">Customer(Code)</th>
+                                <!--<th class="col-xs-1 text-right">DONo</th>-->
+                                <th class="col-xs-2 text-right">Inv Amnt</th>
+                                <th class="col-xs-2 text-right">Inv Paid</th>
+                                <th class="col-xs-2 text-right">Inv Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="sr in salesReportList">
+                                <td class="text-right">{{$index+1}}</td>
+                                <!--<td class="text-center">{{ sr.DODate | date : 'dd/MM/yyyy' }}</td>
+                                <td class="text-left">{{ sr.SalesDivisionName }}</td>
+                                <td class="text-left">{{ sr.SalesAreaName }}</td>
+                                <td class="text-left">{{ sr.SalesOfficer }}</td>-->
+                                <td class="text-left">{{ sr.CustomerName }} ({{sr.CustomerCode}})</td>
+                                <!--<td class="text-right">{{ sr.DONo }}</td>-->
+                                <td class="text-right">{{ sr.DOAmount | currency: '' }}</td>
+                                <td class="text-right">{{ sr.DOPaid | currency: '' }}</td>
+                                <td class="text-right">{{ sr.DOBalance | currency: '' }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                <td colspan="2">Total</td>
+                                <td>{{ TotalInvoiceAmount | currency:''}}</td>
+                                <td>{{ TotalPaidAmount | currency:''}}</td>
+                                <td>{{ TotalBalanceAmount | currency:''}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

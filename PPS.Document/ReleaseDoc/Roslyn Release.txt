@@ -1,0 +1,14 @@
+﻿Web Config:
+
+<add key="CompanyId" value="5" />
+<add key="SendSMS" value="false" />
+<add key="SendDelarReceiptSMS" value="false" />
+=================================================================================
+authService.js
+
+var serviceBase = 'http://erp.roslyn.com.bd/';
+=================================================================================
+login.html
+
+h1 tag for Roslyn
+=================================================================================

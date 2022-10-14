@@ -1,0 +1,102 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="customerTransactionViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Customer Transaction Details</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('424')&&customerTransaction.IsApproved!=true" ng-click="navigateToCustomerTransactionEdit(customerTransaction)">
+                    <span class=""></span> Edit
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="row wrapper white-bg" style="padding-bottom: 30px;">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Customer Transaction
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Account Name: </label>
+                                        <span>{{customerTransaction.AccountName +" ("+customerTransaction.TransactionReference+")"}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction Amount: </label>
+                                        <span>{{customerTransaction.TransactionAmount|currency:''}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Bank Charge Amount: </label>
+                                        <span>{{customerTransaction.BankChargeAmount|currency:''}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction Date: </label>
+                                        <span>{{customerTransaction.TransactionDate|date:'dd/MM/yyyy' }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created By: </label>
+                                        <span>{{customerTransaction.CreatedByName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created On: </label>
+                                        <span>{{customerTransaction.CreatedOn|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Updated By: </label>
+                                        <span>{{customerTransaction.UpdatedByName!=null?customerTransaction.UpdatedByName:'N/A'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Updated On: </label>
+                                        <span>{{customerTransaction.UpdatedOn==null?'N/A':customerTransaction.UpdatedOn|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Transaction Details
+                                </h4>
+                            </div>
+                            <div class="modal-body form-group" style="padding-bottom: 0;">
+                                <table dt-options="dtOptionsAll" class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-xs-3 text-left">Custome Name</th>
+                                            <th class="col-xs-3 text-left">Transaction Amount</th>
+                                            <th class="col-xs-3 text-left">Book No</th>
+                                            <th class="col-xs-3 text-left">Book Serial No</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="tranDetail in customerTransactionDetail">
+                                            <td class="text-left">{{tranDetail.CustomerName}}</td>
+                                            <td class="text-right">{{tranDetail.TransactionAmount|currency:''}}</td>
+                                            <td class="text-right">{{tranDetail.BookNo!=null?tranDetail.BookNo:'N/A'}}</td>
+                                            <td class="text-right">{{tranDetail.BookSerialNo!=null?tranDetail.BookSerialNo:'N/A'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-click="gotoTransactionList()">
+                    <span class=""></span> Cancel
+                </button>
+            </h2>
+        </div>
+    </div>
+</div>

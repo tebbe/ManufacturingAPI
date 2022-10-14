@@ -1,0 +1,70 @@
+﻿<div ng-controller="journalRptController">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 20px;">
+        <div class="col-sm-10">
+            <div class="form-group">
+                <label for="daterange3" class="control-label">Date range</label>
+                <input date-range-picker id="daterange3" name="daterange3" class="form-control date-picker" type="text"
+                       ng-model="date" options="opts" required />
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="GetJournal()">
+                    <span class="glyphicon glyphicon-list"></span> Show
+                </button>
+            </h2>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="PrintJurnalReport('jurnalReportPrint')">
+                    <span class="glyphicon glyphicon-print"></span> Print
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div id="journalEntryList" class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div  class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Day Book - {{ journalList.StartDate | date:'dd/MM/yyyy' }} to {{ journalList.EndDate | date:'dd/MM/yyyy' }}</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table id="jurnalReportPrint" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1 text-center">Date</th>
+                                    <th class="col-xs-2 text-center">Tran No.</th>
+                                    <th class="col-xs-1 text-center">Type</th>
+                                    <th class="col-xs-4 text-center">Account Head</th>
+                                    <th class="col-xs-1 text-center">Dr/Cr</th>
+                                    <th class="col-xs-1 text-center">Debit</th>
+                                    <th class="col-xs-1 text-center">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="journal in journalList.JournalEntry">
+                                    <td class="text-center" ng-show="journal.Count" rowspan="{{ journal.Count }}">{{ journal.TransactionDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-right" ng-show="journal.Count" rowspan="{{ journal.Count }}">{{ journal.TransactionNo }}</td>
+                                    <td class="text-left" ng-show="journal.Count" rowspan="{{ journal.Count }}">{{ journal.TransactionType }}</td>
+                                    <td class="text-left">{{ journal.AccountHead }}</td>
+                                    <td class="text-center">{{ journal.Debit > 0 ? 'Dr' : 'Cr' }}</td>
+                                    <td class="text-right">{{ journal.Debit > 0 ? (journal.Debit | currency : "Tk.") : '' }}</td>
+                                    <td class="text-right">{{ journal.Credit > 0 ? (journal.Credit | currency : "Tk.") : '' }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="background-color: #F5F5F6;">
+                                    <td colspan="5" style="text-align: right; font-weight: bold;">Total in (Tk.)</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ journalList.DebitTotal | currency : "" }}</td>
+                                    <td style="font-weight: bold; text-align: right;">{{ journalList.CreditTotal | currency : "" }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

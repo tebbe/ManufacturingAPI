@@ -1,0 +1,51 @@
+<toaster-container></toaster-container>
+<div ng-controller="rejectedAccountsTransactionListController">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Rejected Accounts Transactions List</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1 text-left">Tran. No.</th>
+                                    <th class="col-xs-1 text-left">T.Type</th>
+                                    <th class="col-xs-1 text-center">T.Date</th>
+                                    <th class="col-xs-1 text-right">Amount</th>
+                                    <th class="col-xs-2 text-left">Created By</th>
+                                    <th class="col-xs-1 text-center">Date</th>
+                                    <th class="col-xs-2 text-left">Rejected By</th>
+                                    <th class="col-xs-1 text-center">Date</th>
+                                    <th class="col-xs-1 text-left">Reason</th>
+                                    <th class="col-xs-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tran in transactions" data-tranid="{{ tran.TranId }}">
+                                    <td class="text-left">{{ tran.TranNo }}</td>
+                                    <td class="text-left">{{ tran.TranType }}</td>
+                                    <td class="text-center">{{ tran.TranDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-right">{{ tran.TranAmount | currency : "" }}</td>
+                                    <td class="text-left">{{ tran.CreatedByName }}</td>
+                                    <td class="text-center">{{ tran.CreatedDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-left">{{ tran.RejectedByName }}</td>
+                                    <td class="text-center">{{ tran.RejectedDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-left">{{ tran.RejectedReasonTypeName }}</td>
+                                    <td class="text-right">
+                                        <button type="button" class="btn btn-default btn-sm" title="View" ng-if="(isAuthenticated('213')||isAuthenticated('223')||isAuthenticated('233')||isAuthenticated('243'))" ng-click="getVoucherDetail(tran.TranNo)">
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E1A1A29-2A3A-4991-8D61-1EFA2B7EB9EF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PPS.API.Shared</RootNamespace>
+    <AssemblyName>PPS.API.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ViewModel\packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\ActionTypeEnum.cs" />
+    <Compile Include="Enums\EmployeeTypeEnum.cs" />
+    <Compile Include="Enums\LeaveCategoryType.cs" />
+    <Compile Include="Constants\LeaveSettingConstant.cs" />
+    <Compile Include="Enums\ProcessingTypeEnum.cs" />
+    <Compile Include="Enums\DemandOrderDiscountTypeEnum.cs" />
+    <Compile Include="Enums\DoMaturityLabelEnum.cs" />
+    <Compile Include="Enums\CustomerStatusEnum.cs" />
+    <Compile Include="Enums\DepartmentEnum.cs" />
+    <Compile Include="Enums\FileTypeEnum.cs" />
+    <Compile Include="Enums\MasterSetting.cs" />
+    <Compile Include="Enums\MonthEnum.cs" />
+    <Compile Include="Enums\PaymentStatusEnum.cs" />
+    <Compile Include="Enums\PolicyEnum.cs" />
+    <Compile Include="Enums\PurchaseOrderStatusEnum.cs" />
+    <Compile Include="Enums\DemandOrderStatusEnum.cs" />
+    <Compile Include="Enums\DemandOrderTransactionStatusEnum.cs" />
+    <Compile Include="Enums\ReferenceTableEnum.cs" />
+    <Compile Include="Enums\SaleTypeEnum.cs" />
+    <Compile Include="Enums\EntityTypeEnum.cs" />
+    <Compile Include="Enums\SortDirectionEnum.cs" />
+    <Compile Include="Enums\SystemWarningTypeEnum.cs" />
+    <Compile Include="Enums\TransactionTypeEnum.cs" />
+    <Compile Include="RequestVm\EmployeeRequestVm.cs" />
+    <Compile Include="RequestVm\DemandOrderEarlyPaymentRequestVm.cs" />
+    <Compile Include="RequestVm\CompanySalesTargetRequestVm.cs" />
+    <Compile Include="RequestVm\RequestVm.cs" />
+    <Compile Include="Utility\ConfigUtils.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestVm\InvoiceRequestVm.cs" />
+    <Compile Include="RequestVm\PurchaseOrderWithSupplierRequestVm.cs" />
+    <Compile Include="ReturnVm\ReturnVm.cs" />
+    <Compile Include="ViewModel\Account\AcceptRejectTransactionVm.cs" />
+    <Compile Include="ViewModel\Account\AccountHeadModel.cs" />
+    <Compile Include="ViewModel\Account\AccountHeadVm.cs" />
+    <Compile Include="ViewModel\Account\AccountSubHeadModel.cs" />
+    <Compile Include="ViewModel\Account\AccountPrimaryHeadModel.cs" />
+    <Compile Include="ViewModel\Account\AccountTypeModel.cs" />
+    <Compile Include="ViewModel\Company\CompanyVm.cs" />
+    <Compile Include="ViewModel\Customer\AttachmentTypeVm.cs" />
+    <Compile Include="ViewModel\Employee\EmployeeTypeVm.cs" />
+    <Compile Include="ViewModel\Leave\CompanyLeaveVm.cs" />
+    <Compile Include="ViewModel\Leave\EmployeeLeaveDetailVm.cs" />
+    <Compile Include="ViewModel\Leave\EmployeeLeaveVm.cs" />
+    <Compile Include="ViewModel\Employee\DepartmentVm.cs" />
+    <Compile Include="ViewModel\Employee\DesignationVm.cs" />
+    <Compile Include="ViewModel\Employee\EmployeeHierArchyVm.cs" />
+    <Compile Include="ViewModel\Employee\EmployeeSalesLocationVm.cs" />
+    <Compile Include="ViewModel\Employee\SalesBaseVm.cs" />
+    <Compile Include="ViewModel\Leave\LeaveCategoryVm.cs" />
+    <Compile Include="ViewModel\Filter\FilterVm.cs" />
+    <Compile Include="ViewModel\Product\AccountSubHeadVm.cs" />
+    <Compile Include="ViewModel\Product\DatePickerVm.cs" />
+    <Compile Include="ViewModel\Product\ProductDeliveryListVm.cs" />
+    <Compile Include="ViewModel\Product\ProductHistoryVm.cs" />
+    <Compile Include="ViewModel\Product\ProductStandardTypeVm.cs" />
+    <Compile Include="ViewModel\Product\ProductTypeVm.cs" />
+    <Compile Include="ViewModel\Product\ProductVm.cs" />
+    <Compile Include="ViewModel\Product\UnitTypeVm.cs" />
+    <Compile Include="ViewModel\Report\AuditDemandOrderVm.cs" />
+    <Compile Include="ViewModel\Report\DealerAuditReportVm.cs" />
+    <Compile Include="ViewModel\Report\ProductListVm.cs" />
+    <Compile Include="ViewModel\Sales\CustomerDOWithInvoiceTransactionDetailsVm.cs" />
+    <Compile Include="ViewModel\Sales\DeliveryChallanInvoiceDetailVm.cs" />
+    <Compile Include="ViewModel\Sales\DeliveryChallanInvoiceVm.cs" />
+    <Compile Include="ViewModel\Sales\DeliveryQuantityDetailVm.cs" />
+    <Compile Include="ViewModel\Sales\DeliveryQuantityVm.cs" />
+    <Compile Include="ViewModel\Sales\InvoiceReturnDetailVm.cs" />
+    <Compile Include="ViewModel\Sales\InvoiceReturnVm.cs" />
+    <Compile Include="ViewModel\Sales\InvoiceTransactionVm.cs" />
+    <Compile Include="ViewModel\Sales\SalesReportVm.cs" />
+    <Compile Include="ViewModel\Customer\CustomerStatementDetailVm.cs" />
+    <Compile Include="ViewModel\Customer\CustomerStatementVm.cs" />
+    <Compile Include="ViewModel\Customer\CustomerTransactionDetailVm.cs" />
+    <Compile Include="ViewModel\Document\LegalDocumentVm.cs" />
+    <Compile Include="ViewModel\Employee\EmployeeDetailVm.cs" />
+    <Compile Include="ViewModel\Employee\EmployeeVm.cs" />
+    <Compile Include="ViewModel\File\FileViewModel.cs" />
+    <Compile Include="ViewModel\Process\MonthlySalesProcessVm.cs" />
+    <Compile Include="ViewModel\Purchase\PurchaseOrderTransactionVm.cs" />
+    <Compile Include="ViewModel\Report\VoucherDetailVm.cs" />
+    <Compile Include="ViewModel\Report\VoucherVm.cs" />
+    <Compile Include="ViewModel\Report\TransactionDetailVm.cs" />
+    <Compile Include="ViewModel\Report\TransactionEntryVm.cs" />
+    <Compile Include="ViewModel\Sales\SalesAreaVm.cs" />
+    <Compile Include="ViewModel\Sales\SalesDivisionVm.cs" />
+    <Compile Include="ViewModel\Sales\ProductionForecastVm.cs" />
+    <Compile Include="ViewModel\Sales\SalesTeamTargetVm.cs" />
+    <Compile Include="ViewModel\Sales\CustomerTransactionHistoryVm.cs" />
+    <Compile Include="ViewModel\Sales\DealerMonthlyHistoryVm.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderDiscountTransactionVm.cs" />
+    <Compile Include="ViewModel\Sales\CompanySalesTargetVm.cs" />
+    <Compile Include="ViewModel\Sales\InvoiceDetailVm.cs" />
+    <Compile Include="ViewModel\Sales\InvoiceVm.cs" />
+    <Compile Include="ViewModel\Sales\SalesMonthlyHistoryVm.cs" />
+    <Compile Include="ViewModel\Sales\SalesPersonVm.cs" />
+    <Compile Include="ViewModel\Sales\UndeliveryQuantityDetailVm.cs" />
+    <Compile Include="ViewModel\Sales\UndeliveryQuantityVm.cs" />
+    <Compile Include="ViewModel\Store\BatchRequisitionDetailVm.cs" />
+    <Compile Include="ViewModel\Store\ProductionGroupVm.cs" />
+    <Compile Include="ViewModel\Store\BatchRequisitionVm.cs" />
+    <Compile Include="ViewModel\Bank\BankVm.cs" />
+    <Compile Include="ViewModel\Customer\CustomerTransactionVm.cs" />
+    <Compile Include="ViewModel\LogOnModel.cs" />
+    <Compile Include="ViewModel\Purchase\PurchaseOrderVm.cs" />
+    <Compile Include="ViewModel\Purchase\PurchaseOrderDetailModel.cs" />
+    <Compile Include="ViewModel\Purchase\PurchaseOrderModel.cs" />
+    <Compile Include="ViewModel\Purchase\RawMaterialTypeVm.cs" />
+    <Compile Include="ViewModel\Purchase\SupplierVm.cs" />
+    <Compile Include="ViewModel\Report\IndividualLedgerModel.cs" />
+    <Compile Include="ViewModel\Report\JournalModel.cs" />
+    <Compile Include="ViewModel\Report\BalanceSheetModel.cs" />
+    <Compile Include="ViewModel\Report\ProfitAndLossAccountModel.cs" />
+    <Compile Include="ViewModel\Report\TrailBalanceModel.cs" />
+    <Compile Include="ViewModel\Report\LedgerModel.cs" />
+    <Compile Include="ViewModel\RoleModel.cs" />
+    <Compile Include="ViewModel\Sales\CustomerTypeModel.cs" />
+    <Compile Include="ViewModel\Sales\AreaModel.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderDetailVm.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderTransactionVm.cs" />
+    <Compile Include="ViewModel\Sales\PostOfficeModel.cs" />
+    <Compile Include="ViewModel\Sales\CustomerModel.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderDetailModel.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderModel.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderTypeModel.cs" />
+    <Compile Include="ViewModel\Sales\DemandOrderVm.cs" />
+    <Compile Include="ViewModel\Sales\DiscountTypeModel.cs" />
+    <Compile Include="ViewModel\Sales\ProductModel.cs" />
+    <Compile Include="ViewModel\Sales\SaleTypeModel.cs" />
+    <Compile Include="ViewModel\Store\BatchRequisitionProductionEstimationVm.cs" />
+    <Compile Include="ViewModel\Store\FinishedGoodVm.cs" />
+    <Compile Include="ViewModel\Store\FloorStoreRawMaterialVm.cs" />
+    <Compile Include="ViewModel\Store\StoreRawMaterialVm.cs" />
+    <Compile Include="ViewModel\Transaction\TransactionDetailModel.cs" />
+    <Compile Include="ViewModel\Transaction\TransactionListVm.cs" />
+    <Compile Include="ViewModel\Transaction\TransactionModel.cs" />
+    <Compile Include="ViewModel\Account\TransactionRejectReasonTypeVm.cs" />
+    <Compile Include="ViewModel\UserModel.cs" />
+    <Compile Include="ViewModel\UserPasswordChangeModel.cs" />
+    <Compile Include="ViewModel\User\RolePolicyVm.cs" />
+    <Compile Include="ViewModel\User\PolicyVm.cs" />
+    <Compile Include="ViewModel\User\RoleVm.cs" />
+    <Compile Include="ViewModel\User\UserRegisterVm.cs" />
+    <Compile Include="ViewModel\User\UserVm.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62548</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62548/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

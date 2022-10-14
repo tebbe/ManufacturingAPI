@@ -1,0 +1,134 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        size: A4;
+        margin: 0 -6cm;
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div ng-controller="invoiceDetailsPrintController">
+    <div class="row wrapper white-bg">
+        <div class="col-sm-12" style="background-color: #fff">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h2>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> <b>{{company.FullName}}</b>
+                    </h2>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}; Email: {{company.Email}}</p>
+                    <h3 class="font-bold"><u>Invoice</u></h3>
+                </div>
+                <div class="">
+                    <div class="col-sm-6 col-xs-6">
+                        <div class="col-sm-6 col-xs-6 text-left" style="padding-left: 0;">
+                            <p>Invoice No: <span class="font-bold">{{invoice.InvoiceNo}}</span></p>
+                        </div>
+                        <div class="col-sm-6 col-xs-6 text-right">
+                            <p>Date: <span class="font-bold">{{invoice.InvoiceDate | date : "dd/MM/yyyy"}}</span></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <p>Invoice Amount: <span class="font-bold">{{invoice.TotalGrandAmount | currency : "" }}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <p>Customer Name: <span class="font-bold">{{invoice.CustomerName}} ({{invoice.CustomerCode}})</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <p> Address: <span class="font-bold">{{invoice.CustomerAddress}}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <p> Customer Mobile: <span class="font-bold">{{invoice.CustomerMobile}}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <p> Note: <span class="font-bold">{{invoice.DONote}}</span></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="">
+                    <table dt-options="dtOptions" class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1 text-right">SL</th>
+                                <th class="col-xs-5 text-left">Product Name</th>
+                                <th class="col-xs-2 text-right">Quantity</th>
+                                <th class="col-xs-2 text-right">Unit Price</th>
+                                <th class="col-xs-2 text-right">Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pd in invoice.InvoiceDetail">
+                                <td class="text-right">{{$index + 1}}</td>
+                                <td class="text-left">{{ pd.ProductName }}</td>
+                                <td class="text-right">{{pd.AllocatedQuantity}}</td>
+                                <td class="text-right">{{ pd.UnitPrice | currency : "" }}</td>
+                                <td class="text-right">{{ pd.TotalPrice | currency : "" }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                <td class="col-xs-9" colspan="2">Total</td>
+                                <td class="col-xs-1">{{ TotalQuantity | number: ''}}</td>
+                                <td class="col-xs-1"></td>
+                                <td class="col-xs-1">{{ invoice.TotalAmount | currency:''}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.RegularDiscount">
+                                <td class="col-xs-11" colspan="4">Discount ({{invoice.RegularDiscountInPercentage | number : 2}} %)</td>
+                                <!--<td class="col-xs-1">{{invoice.RegularDiscountInPercentage | number : 2}}</td>-->
+                                <td class="col-xs-1">{{ invoice.RegularDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="invoice.SpecialDiscountInPercentage > 0 || invoice.AdditionalDiscountInPercentage > 0 || invoice.ExtraDiscount > 0|| invoice.CashBack > 0">
+                                <td class="col-xs-11" colspan="4">Sub Total</td>
+                                <!--<td class="col-xs-1"></td>-->
+                                <td class="col-xs-1">{{ invoice.TotalAmount - invoice.RegularDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.SpecialDiscount && invoice.SpecialDiscountInPercentage > 0">
+                                <td class="col-xs-11" colspan="4">Special Discount ({{invoice.SpecialDiscountInPercentage | number : 2}} %)</td>
+                                <!--<td class="col-xs-1">{{invoice.SpecialDiscountInPercentage | number : 2}}</td>-->
+                                <td class="col-xs-1">{{ invoice.SpecialDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.AdditionalDiscount && invoice.AdditionalDiscountInPercentage > 0">
+                                <td class="col-xs-11" colspan="4">Additional Discount ({{invoice.AdditionalDiscountInPercentage | number : 2}} %)</td>
+                                <!--<td class="col-xs-1">{{invoice.AdditionalDiscountInPercentage | number : 2}}</td>-->
+                                <td class="col-xs-1">{{ invoice.AdditionalDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.ExtraDiscount && invoice.ExtraDiscountInPercentage > 0">
+                                <td class="col-xs-11" colspan="4">Extra Discount ({{invoice.ExtraDiscountInPercentage | number : 2}} %)</td>
+                                <!--<td class="col-xs-1">{{invoice.ExtraDiscountInPercentage | number : 2}}</td>-->
+                                <td class="col-xs-1">{{ invoice.ExtraDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.CashBack && invoice.CashBackAmount > 0">
+                                <td class="col-xs-11" colspan="4">Cash Back ({{ invoice.CashBackAmount | number : 2}})</td>
+                                <!--<td class="col-xs-1">{{ invoice.CashBackAmount | number : 2}}</td>-->
+                                <td class="col-xs-1">{{ invoice.CashBackAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="invoice.SpecialDiscountInPercentage > 0 || invoice.AdditionalDiscountInPercentage > 0 || invoice.ExtraDiscount > 0|| invoice.CashBack > 0">
+                                <td class="col-xs-11" colspan="4">Total Discount</td>
+                                <!--<td class="col-xs-1"></td>-->
+                                <td class="col-xs-1">{{ invoice.TotalDiscountAmount | number:2}}</td>
+                            </tr>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                <td class="col-xs-11" colspan="4">Grand Total</td>
+                                <!--<td class="col-xs-1"></td>-->
+                                <td class="col-xs-1">{{ invoice.TotalGrandAmount | number:2}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

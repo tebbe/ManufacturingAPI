@@ -1,0 +1,145 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="purchaseOrderEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Purchase Order</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="purchaseOrderEdit" novalidate>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtPurchaseOrderNo" style="font-weight: bold;" required="true">Purchase Order No</label>
+                                <input id="txtPurchaseOrderNo" class="form-control" type="text" placeholder="Automatic"
+                                       ng-disabled="true"
+                                       ng-model="purchaseOrder.PurchaseOrderNo" />
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="txtPurchaseOrderDate" style="font-weight: bold;" required="true">Purchase Order Date</label><br />
+                                <md-datepicker ng-model="purchaseOrder.PurchaseOrderDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="txtSupplierId" style="font-weight: bold;" required="true">Supplier</label>
+                                <select class="form-control"
+                                        id="optionSubGroup"
+                                        ng-model="selectedSupplier"
+                                        ng-options="sp.SupplierName for sp in suppliers"></select>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtNote">Note</label>
+                                <input id="txtUNote" ng-model="purchaseOrder.Note" class="form-control" type="text" required/>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtPaymentType">Payment Type</label>
+                                <input id="txtPaymentType" ng-model="purchaseOrder.PaymentType" class="form-control" type="text" required/>
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="txtEstimatedDeliveryDate" style="font-weight: bold;" required="true">Estimated Delivery Date</label><br />
+                                <md-datepicker ng-model="purchaseOrder.EstimatedDeliveryDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtPriceValidity">Price Validity</label>
+                                <input id="txtPriceValidity" ng-model="purchaseOrder.PriceValidity" class="form-control" type="number" required/>
+                            </div>
+
+                            <div class="form-group col-sm-7 col-xs-12">
+                                <label for="txtRawMaterialTypeId" style="font-weight: bold;" required="true">Raw Material Item</label>
+                                <select class="form-control"
+                                        id="optionSubGroup"
+                                        ng-model="selectedRawMaterialType"
+                                        ng-options="rm.RawMaterialTypeName for rm in rawMaterialType"></select>
+                            </div>
+
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtQuantity">Quantity</label>
+                                <input id="txtQuantity" ng-model="purchaseOrder.Quantity" min="1" class="form-control" type="number" required/>
+                            </div>
+
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtPrice">Price</label>
+                                <input id="txtPrice" ng-model="purchaseOrder.Price" min="1" class="form-control" type="number" required/>
+                            </div>
+
+                            <div class="form-group col-sm-1 col-xs-12" style="padding-top:23px;">
+                                <button type="button" class="btn btn-primary btn-sm" 
+                                        ng-disabled="purchaseOrderEdit.$invalid"
+                                        ng-click="addRawMaterialItem()">
+                                    <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Raw Material Details
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelDetailMode === 2"
+                                           ng-click="cancelModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1">SL</th>
+                                                <th class="col-xs-6">Raw Material Name</th>
+                                                <th class="col-xs-1">Quantity</th>
+                                                <th class="col-xs-1">Unit</th>
+                                                <th class="col-xs-1">Unit Price</th>
+                                                <th class="col-xs-1">Total Price</th>
+                                                <th class="col-xs-1"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rm in purchaseOrder.PurchaseOrderDetail">
+                                                <td style="text-align: center;">{{$index + 1}}</td>
+                                                <td>{{ rm.RawMaterialTypeName }}</td>
+                                                <td style="text-align: right;">{{ rm.Quantity }}</td>
+                                                <td style="text-align: right;">{{ rm.UnitTypeName }}</td>
+                                                <td style="text-align: right;">{{ rm.Price }}</td>
+                                                <td style="text-align: right;">{{rm.TotalUnitPrice}}</td>
+                                                <td style="text-align: right;">
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(rm)">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(rm)">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td class="col-xs-4" colspan="4"></td>
+                                                <td class="col-xs-1">Total</td>
+                                                <td class="col-xs-1">{{ purchaseOrder.TotalAmount }}</td>
+                                                <td class="col-xs-1"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="!isPurchaseOrderEditValidated"
+                                    ng-class="{ 'disabled':  !isPurchaseOrderEditValidated }"
+                                    ng-click="updatePurchaseOrder()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

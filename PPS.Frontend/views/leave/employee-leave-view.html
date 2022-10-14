@@ -1,0 +1,124 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="employeeLeaveViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-12">
+            <h2>Employee Leave</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="col-lg-10">
+                                    <h2>Details </h2>
+                                </div>
+                                <div class="col-lg-2">
+                                    <h2 style="float: right;">
+                                        <button type="button" class="btn btn-default btn-sm" ng-if="isAuthenticated('756')&&employeeLeaveDetails.ApprovedByDepartmentHead===false&&employeeLeaveDetails.IsApproved==null" title="Approved By department Head" ng-click="navigateToApprovedBy(employeeLeaveDetails,'head')">
+                                            Approve
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-if="isAuthenticated('757')&&employeeLeaveDetails.ApprovedByDepartmentHead===true&&employeeLeaveDetails.IsApproved===null" title="Approved By MD" ng-click="navigateToApprovedBy(employeeLeaveDetails,'MD')">
+                                            Approve
+                                        </button>
+                                     
+                                        <button type="button" class="btn btn-default btn-sm" ng-if="isAuthenticated('756')&&employeeLeaveDetails.ApprovedByDepartmentHead===false&&employeeLeaveDetails.IsApproved==null" title="Reject By department Head" ng-click="navigateToRejectedBy(employeeLeaveDetails,'head')">
+                                            Reject
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-if="isAuthenticated('757')&&employeeLeaveDetails.ApprovedByDepartmentHead===true&&employeeLeaveDetails.IsApproved==null" title="Reject By MD" ng-click="navigateToRejectedBy(employeeLeaveDetails,'MD')">
+                                            Reject
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Company Name: </label>
+                                        <span>{{employeeLeaveDetails.CompanyName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Department Name: </label>
+                                        <span>{{employeeLeaveDetails.DepartmentName }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Designation Name: </label>
+                                        <span>{{employeeLeaveDetails.DesignationName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Name: </label>
+                                        <span>{{employeeLeaveDetails.FirstName+" "+employeeLeaveDetails.LastName}}</span>
+                                    </div>
+
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Nature Of Leave: </label>
+                                        <span>{{employeeLeaveDetails.NatureOfLeaveName }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Paid Leave Days: </label>
+                                        <span>{{employeeLeaveDetails.LeaveDays}}</span>
+                                    </div>
+
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Reason Of Leave: </label>
+                                        <span>{{employeeLeaveDetails.ReasonOfLeave}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Unpaid Leave Days: </label>
+                                        <span>{{employeeLeaveDetails.UnpaidLeaveDays}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Date Of Application: </label>
+                                        <span>{{employeeLeaveDetails.DateOfApplication|date:'MM/dd/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>From: </label>
+                                        <span>{{employeeLeaveDetails.FromDate|date:'MM/dd/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Approved By Department Head: </label>
+                                        <span>{{employeeLeaveDetails.ApprovedByDepartmentHead}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>To: </label>
+                                        <span>{{employeeLeaveDetails.ToDate|date:'MM/dd/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Approved By MD: </label>
+                                        <span>{{employeeLeaveDetails.ApprovedByMD}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" ng-if="employeeLeaveDetails.IsApproved===-1">
+                                        <label>Leave Status: </label>
+                                        <span>{{'Rejected'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" ng-if="employeeLeaveDetails.IsApproved===1">
+                                        <label>Leave Status: </label>
+                                        <span>{{'Accepted'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12" ng-if="employeeLeaveDetails.IsApproved===0">
+                                        <label>Leave Status: </label>
+                                        <span>{{'Pending'}}</span>
+                                    </div>
+                                </div>
+
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-12">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-click="gotoEmployeeLeaveList()">
+                    <span class=""></span> Cancel
+                </button>
+            </h2>
+        </div>
+    </div>
+</div>

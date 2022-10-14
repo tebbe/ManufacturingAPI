@@ -1,0 +1,121 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="paymentViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-12">
+            <h2>{{modelHeading}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom:0px;">
+                        <div class="modal-content">
+                            <div class="modal-header {{demandOrderPaymentStatusColorClass}}">
+                                <h4 class="modal-title">
+                                    {{moduleText.toUpperCase()}} {{modelDetailText}}
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" >
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction No: </label>
+                                        <span>{{transactionDetails.voucherDetail.TransactionNo}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction Date: </label>
+                                        <span>{{transactionDetails.voucherDetail.TransactionDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Updated On: </label>
+                                        <span>{{transactionDetails.voucherDetail.UpdateDate|date:'dd/MM/yyyy' }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction Type: </label>
+                                        <span>{{transactionDetails.voucherDetail.TransactionType}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Transaction Amount: </label>
+                                        <span>{{transactionDetails.voucherDetail.TransactionAmount}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Particulars: </label>
+                                        <span>{{transactionDetails.voucherDetail.Particulars===null?'N/A':transactionDetails.voucherDetail.Particulars}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created By Name: </label>
+                                        <span>{{transactionDetails.voucherDetail.CreatedByName===null?'N/A':transactionDetails.voucherDetail.CreatedByName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created By Designation: </label>
+                                        <span>{{transactionDetails.voucherDetail.CreatedByDesignation===null?'N/A':transactionDetails.voucherDetail.CreatedByDesignation}}</span>
+                                    </div>
+
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created On: </label>
+                                        <span>{{transactionDetails.voucherDetail.CreatedBy<=0?'N/A':transactionDetails.voucherDetail.CreatedDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Verified By Name: </label>
+                                        <span>{{transactionDetails.voucherDetail.VerifiedBy>0?transactionDetails.voucherDetail.VerifiedByName:'N/A'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Verified By Designation: </label>
+                                        <span>{{transactionDetails.voucherDetail.VerifiedBy>0?transactionDetails.voucherDetail.VerifiedByDesignation:'N/A'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Verified On: </label>
+                                        <span>{{transactionDetails.voucherDetail.VerifiedBy<=0?'N/A':transactionDetails.voucherDetail.VerifiedDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Approved On: </label>
+                                        <span>{{transactionDetails.voucherDetail.ApprovedBy<=0?'N/A':transactionDetails.voucherDetail.ApprovedDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-content">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="col-xs-1 text-center">Account Head Name</th>
+                                                            <th class="col-xs-1 text-center">Debit</th>
+                                                            <th class="col-xs-1 text-center">Credit</th>
+                                                            <th class="col-xs-1 text-center">Note</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <tr ng-repeat="do in voucherDetail">
+                                                            <td class="text-left">{{ do.AccountHeadName }}</td>
+                                                            <td class="text-right">{{ do.DrAmount }}</td>
+                                                            <td class="text-right">{{ do.CrAmount }}</td>
+                                                            <td class="text-right">{{ do.Note }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row wrapper white-bg" style="padding-bottom:40px;">
+        <div class="col-xs-12">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-click="gotoPaymentTransactionList()">
+                    <span class=""></span> Cancel
+                </button>
+            </h2>
+        </div>
+    </div>
+</div>

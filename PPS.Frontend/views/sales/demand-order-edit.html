@@ -1,0 +1,218 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="demandOrderEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Demand Order</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <form name="demandOrderEditForm" novalidate>
+                        <div class="row">
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtDemandOrderNo" style="font-weight: bold;" required="true">Demand Order No</label>
+                                <input id="txtDemandOrderNo" class="form-control" type="text" placeholder="Automatic"
+                                       ng-disabled="true"
+                                       ng-model="demandOrder.DemandOrderNo" />
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtDemandOrderDate" style="font-weight: bold;" required="true">Demand Order Date</label><br />
+                                <md-datepicker ng-model="demandOrder.DODate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtUserId">Reference DO No.</label>
+                                <input id="txtUserId" ng-model="demandOrder.ReferenceNo" class="form-control" type="text" />
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtCustomerId" style="font-weight: bold;" required="true">Customer</label><br />
+                                <ui-select ng-model="selectedCustomer.selected" ng-change="onChangeCustomer(selectedCustomer.selected)" style="width: 100%;" theme="select2" title="Choose a person">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.CustomerName}}</ui-select-match>
+                                    <ui-select-choices repeat="customer in customers | propsFilter: {CustomerName: $select.search, CustomerCode: $select.search}">
+                                        <div ng-bind-html="customer.CustomerName | highlight: $select.search"></div>
+                                        <small>
+                                            Code: <span ng-bind-html="''+customer.CustomerCode | highlight: $select.search"></span>
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="optionSalesAccount" style="font-weight: bold;" required="true">Sales Officer</label><br />
+                                <ui-select ng-model="selectedSalesAccount.selected" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.FullName}} ({{$select.selected.Designation}})</ui-select-match>
+                                    <ui-select-choices repeat="so in salesOfficer | propsFilter: {FullName: $select.search, EmployeeCode: $select.search, Designation: $select.search}">
+                                        <div ng-bind-html="so.FullName + ' (' + so.Designation + ')' | highlight: $select.search"></div>
+                                        <small>
+                                            Employee Code: <span ng-bind-html="''+so.EmployeeCode | highlight: $select.search"></span>
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <label for="txtNote">Note</label>
+                                <textarea id="txtNote" ng-model="demandOrder.Note" class="form-control" type="text" rows="2"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="listProduct" style="font-weight: bold;" required="true">Product Item</label>
+                                <ui-select ng-model="selectedProduct.selected" id="listProduct" ng-change="onChangedDisplayUnitPrice(selectedProduct.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="prd in products | propsFilter: {Name: $select.search}">
+                                        <div ng-bind-html="prd.Name | highlight: $select.search"></div>
+                                        <!--<small>
+                                            Product Code: <span ng-bind-html="''+prd.Code | highlight: $select.search"></span>
+                                        </small>-->
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label>Unit Price</label>
+                                <label class="form-control">{{selectedProductUnitPrice}}</label>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtQuantity">Quantity</label>
+                                <input id="txtQuantity" ng-model="Quantity" min="1" class="form-control" type="number" required ng-keydown="addPrdToGrid($event)" />
+                            </div>
+
+                            <div class="form-group col-sm-2 col-xs-12 text-right" style="padding-top:23px;">
+                                <button type="button" class="btn btn-primary btn-sm"
+                                        ng-disabled="demandOrderEditForm.$invalid"
+                                        ng-click="addProductItem()">
+                                    <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Product Details
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelDetailMode === 2"
+                                           ng-click="cancelModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1">SL</th>
+                                                <th class="col-xs-6">Product Name</th>
+                                                <th class="col-xs-1">Quantity</th>
+                                                <th class="col-xs-1">Unit Price</th>
+                                                <th class="col-xs-1">Total Price</th>
+                                                <th class="col-xs-2"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="pd in demandOrder.DemandOrderDetail">
+                                                <td style="text-align: center;">{{$index + 1}}</td>
+                                                <td>{{ pd.ProductName }}</td>
+                                                <td style="text-align: right;">{{ pd.Quantity }}</td>
+                                                <td style="text-align: right;">{{ pd.UnitPrice | currency : "" }}</td>
+                                                <td style="text-align: right;">{{ pd.TotalPrice | currency : "" }}</td>
+                                                <td style="text-align: right;">
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(pd)">
+                                                        <!--<span class="glyphicon glyphicon-edit"></span>-->Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(pd)">
+                                                        <!--<span class="glyphicon glyphicon-trash"></span>-->Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="2">Total</td>
+                                                <td>{{TotalQuantity}}</td>
+                                                <td></td>
+                                                <td>{{ demandOrder.TotalAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--Regular Discount-->
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.RegularDiscount">
+                                                <td colspan="3">Regular Discount (%)</td>
+                                                <td><input id="txtRegularDiscount" ng-model="demandOrder.RegularDiscountInPercentage" ng-change="regularDiscountChange()" class="form-control" min="0" max="100" ng-disabled="false" type="number" /></td>
+                                                <td>{{ demandOrder.RegularDiscountAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--Sub Total-->
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="demandOrder.SpecialDiscountInPercentage >= 0 || demandOrder.AdditionalDiscountInPercentage >= 0 || demandOrder.ExtraDiscount >= 0|| demandOrder.CashBack >= 0">
+                                                <td colspan="3">Sub Total </td>
+                                                <td></td>
+                                                <td>{{ SubTotal | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--Special Discount-->
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.SpecialDiscount && demandOrder.SpecialDiscountInPercentage >= 0 ">
+                                                <td colspan="3">Special Discount (%)</td>
+                                                <td><input id="txtSpecialDiscount" ng-model="demandOrder.SpecialDiscountInPercentage" ng-change="specialDiscountChange()" class="form-control" min="0" max="100" ng-disabled="false" type="number" /></td>
+                                                <td>{{ demandOrder.SpecialDiscountAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--Additional Discount-->
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.AdditionalDiscount && demandOrder.AdditionalDiscountInPercentage >= 0 ">
+                                                <td colspan="3">Additional Discount (%)</td>
+                                                <td><input id="txtAdditionalDiscount" ng-model="demandOrder.AdditionalDiscountInPercentage" ng-change="additionalDiscountChange()" class="form-control" min="0" max="100" ng-disabled="false" type="number" /></td>
+                                                <td>{{ demandOrder.AdditionalDiscountAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--Extra Discount-->
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.ExtraDiscount && demandOrder.ExtraDiscountInPercentage >= 0 ">
+                                                <td colspan="3">Extra Discount (%)</td>
+                                                <td><input id="txtExtraDiscount" ng-model="demandOrder.ExtraDiscountInPercentage" ng-change="extraDiscountChange()" class="form-control" min="0" max="100" ng-disabled="false" type="number" /></td>
+                                                <td>{{ demandOrder.ExtraDiscountAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <!--Cash Back-->
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="DemandOrderDiscountSetting.CashBack && demandOrder.CashBackAmount >= 0 ">
+                                                <td colspan="3">Cash Back</td>
+                                                <td><input id="txtCashBackAmount" ng-model="demandOrder.CashBackAmount" ng-change="cashBackAmountChange()" class="form-control" min="0" ng-disabled="false" type="number" /></td>
+                                                <td>{{ demandOrder.CashBackAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;" ng-if="demandOrder.SpecialDiscountInPercentage >= 0 || demandOrder.AdditionalDiscountInPercentage >= 0 || demandOrder.ExtraDiscount >= 0|| demandOrder.CashBack >= 0">
+                                                <td colspan="3">Total Discount Amount</td>
+                                                <td></td>
+                                                <td>{{ demandOrder.TotalDiscountAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="3">Grand Total</td>
+                                                <td></td>
+                                                <td>{{ demandOrder.TotalGrandAmount | number:2}}</td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="!isDemandOrderEditValidated"
+                                    ng-class="{ 'disabled': !isDemandOrderEditValidated }"
+                                    ng-click="updateDemandOrder()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                        <!--<div class="form-group col-xs-12">
+                            <button type="button" class="btn btn-primary" ng-click="saveDemandOrder()">Save</button>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

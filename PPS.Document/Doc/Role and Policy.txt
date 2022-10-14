@@ -1,0 +1,67 @@
+﻿Policies:
+======================================================
+AccessLogin
+AccessProfieBasic
+AccessProfieAdvanced
+AccessDeshboard
+--AccessDeshboardRecentTransaction
+--AccessDeshboardRecentTransactionApproval
+--AccessDeshboardRecentDOValidation
+--AccessDeshboardRecentDOApproval
+--AccessDeshboardRecentDOChallan
+--AccessDeshboardRecentRawMaterialRequisitionApproval
+--AccessDeshboardRecentPurchaseOrder
+--AccessDeshboardRecentRawMaterialRequisitionReceive
+--AccessDeshboardRecentDODelivery???
+--AccessDeshboardRecentEstimatedProduction
+--AccessDeshboardRecentFinishedGoods
+AccessTransaction - Read Only
+AccessTransaction - Read and Write
+AccessTransactionRemove
+AccessTransactionApproval
+AccessDemandOrder
+AccessDemandOrderValidation
+AccessDemandOrderApproval
+
+AccessProduct
+AccessProductReturn
+
+AccessRawMaterialRequisition
+AccessRawMaterialRequisitionValidation
+AccessRawMaterialRequisitionApproval
+AccessRawMaterialRequisitionReceive
+
+AccessPurchaseOrder
+
+AccessBatchRequisition
+AccessBatchRequisitionApproval
+
+AccessRawMaterialChallan
+AccessRawMaterialChallanReceive
+
+AccessEstimateProduction
+
+AccessFinishedGoods
+
+AccessDOUpdate
+
+AccessUserManager
+
+Roles:
+============================================
+General
+Director
+Managing Director
+Director General Manager
+Accountant
+Accounts Manager
+IT Officer
+IT Manager
+Sales Manager
+Sales Officer
+Sales Audit
+
+Permission:
+============================================
+Read Only
+Edit

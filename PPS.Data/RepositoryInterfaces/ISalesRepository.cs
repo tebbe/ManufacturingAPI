@@ -1,0 +1,90 @@
+﻿using PPS.API.Shared.ViewModel.Sales;
+using PPS.Data.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using PPS.API.Shared.RequestVm;
+using PPS.API.Shared.ViewModel.User;
+using PPS.Data.Edmx;
+using PPS.API.Shared.ViewModel.Filter;
+
+namespace PPS.Data.RepositoryInterfaces
+{
+    public interface ISalesRepository
+    {
+        List<SaleTypeModel> GetSaleType();
+        List<DemandOrderTypeModel> GetDemandOrderType();
+        List<DiscountTypeModel> GetDiscountType();
+        List<ProductModel> GetProductList();
+        DemandOrderModel SaveDemandOrder(DemandOrderModel demandOrderModel);
+        DemandOrderModel UpdateDemandOrder(DemandOrderModel demandOrderEntryVm);
+        IList<DemandOrderVm> GetDemandOrderList(int userId, int paymentStatus);
+        DemandOrderVm GetDemandOrderById(int userId, int doId);
+        IList<PostOfficeModel> GetPostOfficeList();
+        IList<AreaModel> GetAreaList();
+        Task<bool> SubmitDO(int doId, int userId);
+        Task<bool> VerifyDO(int doId, int userId);
+        Task<bool> DeliveryConfirmedDO(int doId, int userId);
+        Task<bool> ApproveDO(int doId, int userId);
+        Task<bool> SaveDemandOrderTransactionAsync(DemandOrderTransactionVm doTransactionVm);
+        IList<InvoiceVm> GetInvoiceList(int userId);
+        List<DemandOrderVm> GetDemandOrderIdListForInvoice(int userId);
+        DemandOrderVm GetDemandOrderByIdFromInvoice(int userId, int doId, int invoiceId);
+        InvoiceVm SaveInvoice(InvoiceVm invoiceVm);
+        InvoiceVm UpdateInvoice(InvoiceVm invoiceVm);
+        InvoiceVm GetInvoiceById(int userId, int invoiceId);
+        Task<bool> ApproveInvoice(InvoiceRequestVm invoiceRequestVm);
+        Task<bool> DeliveryInvoice(int invoiceId, int userId);
+        IList<CustomerTransactionHistoryVm> GetCustomerTransactionHistoryByCustomerId(int userId, int doId);
+        SalesPersonVm GetSalesPersonHistoryByEmployeeId(int userId, int employeeId, int year);
+        IList<DemandOrderVm> GetDemandOrderEarlyPaymentList(int userId);
+        IList<DemandOrderVm> GetDemandOrderEarlyPaymentPendingList(int userId);
+        IList<DemandOrderVm> GetDemandOrderEarlyPaymentPaidList(int userId);
+        Task<bool> PayDOEarlyPaymentDiscountToCustomer(int doId, int userId);
+        IList<DemandOrderVm> GetDemandOrderEarlyPaymentPendingTransactionList(int userId);
+        IList<DemandOrderVm> GetDemandOrderEarlyPaymentApprovedTransactionList(int userId);
+        Task<bool> VerifyDOEarlyPaymentDiscountToCustomer(DemandOrderEarlyPaymentRequestVm demandOrderEarlyPaymentRequestVm);
+        IList<CompanySalesTargetVm> GetCompanySalesTargetList(int userId);
+        CompanySalesTargetVm SaveCompanySalesTarget(CompanySalesTargetVm companySalesTarget);
+        CompanySalesTargetVm UpdateCompanySalesTarget(CompanySalesTargetVm companySalesTarget);
+        Task<bool> ApproveCompanySalesTarget(int companySalesTargetId, int userId);
+        CompanySalesTargetVm GetCompanySalesTargetById(int userId, int companySalesTargetId);
+        List<SalesTeamTargetVm> GetSalesTeamTargetList(int userId, int year, int month);
+        List<SalesTeamTargetVm> SaveSalesTeamTarget(List<SalesTeamTargetVm> salesTeamTargetVm);
+        SalesTeamTargetVm UpdateSalesTeamTarget(SalesTeamTargetVm salesTeamTargetVm);
+        CompanySalesTargetVm GetSalesTeamTargetById(int userId, int salesTeamTargetId);
+        List<SalesDivisionVm> GetSalesDivisionList(int userId);
+        List<SalesAreaVm> GetSalesAreaList(int userId);
+        List<SalesReportVm> GetSalesReportList(DateTime startDate, DateTime endDate, int salesDivisionId,
+            int salesAreaId, int employeeId, int customerId);
+        IQueryable<MonthlyProcessing> GetMonthlyProcessing();
+        IQueryable<EmployeeSalesTargetMonthly> GetEmployeeSalesTargetMonthly();
+        IQueryable<CustomerTransaction> GetCustomerTransaction();
+        IList<DemandOrderVm> GetDemandOrderListForFiltering(int userId, int paymentStatus, FilterVm filterVm);
+        IQueryable<DemandOrderTransaction> GetDemandOrderTransaction();
+        IQueryable<DemandOrder> GetDemandOrder();
+        Task<bool> ProcessMonthlyAchievement(MonthlyProcessing newMonthlyProcessing, List<EmployeeSalesTargetMonthly> monthlySalesTarget, bool reprocess, int year, int month, int userId);
+        List<ProductionForecastVm> GetProductionForecastList(int year, int month);
+        List<ProductionForecastVm> SaveProductionForecast(List<ProductionForecastVm> productionForecastList);
+        IQueryable<SalesArea> GetSalesAreaList();
+        IQueryable<Employee> GetEmployees();
+        IQueryable<Customer> GetCustomers();
+        Task<bool> SaveInvoiceTransaction(InvoiceTransactionVm invoiceTransactionVm);
+        IQueryable<InvoiceReturn> InvoiceReturnList();
+        IQueryable<Invoice> GetAllInvoiceList();
+        InvoiceReturn SaveReturnInvoice(InvoiceReturn returnInvoiceEntry);
+        InvoiceReturn GetInvoiceReturnById(int id);
+        InvoiceReturn UpdateReturnInvoice(InvoiceReturn returnInvoiceEdit);
+        InvoiceReturn ApproveReturnInvoice(InvoiceReturnVm invoiceReturn);
+        IQueryable<DeliveryQuantity> InvoiceDeliveryChallanList();
+        DeliveryQuantity DeliveryQuantitySave(DeliveryQuantity model);
+        DeliveryQuantity GetDeliveryQuantityById(int id);
+        DeliveryQuantity DeliveryQuantityUpdate(DeliveryQuantity deliveryChallan);
+        DeliveryQuantity ApproveDeliveryQuantityById(DeliveryQuantity deliveryApproved);
+        DeliveryQuantity GetUndeliveryQuantityById(int id);
+        Invoice InvoiceDetailsByIdForDeliveryChallan(int id);
+        IQueryable<Invoice> GetTotalSalesReportList(DateTime startDate, DateTime endDate);
+    }
+}

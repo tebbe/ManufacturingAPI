@@ -1,0 +1,45 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="companySalesTargetController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Add Company Sales Target</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="companySalesTargetForm" novalidate>
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="optionMonthSelect" style="font-weight: bold;" required="true">Months</label><br />
+                                <ui-select ng-model="selectedMonth.selected" ng-change="onChangedMonth(selectedMonth.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.monthName}}</ui-select-match>
+                                    <ui-select-choices repeat="m in months | propsFilter: {monthName: $select.search}">
+                                        <div ng-bind-html="m.monthName | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="" style="font-weight: bold;" required="true">Year</label><br />
+                                <label for="">{{currentYear}}</label>
+                            </div>
+
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtSalesTarget">Sales Target</label>
+                                <input id="txtSalesTarget" ng-model="selectedCompanySalesTarget.SalesTarget" min="1" class="form-control" type="number" required />
+                            </div>
+                            
+                            <div class="form-group col-sm-3 col-xs-12" style="padding-top: 23px;">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="companySalesTargetForm.$invalid"
+                                        ng-click="saveCompanySalesTarget()">
+                                    {{ modelActionText }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

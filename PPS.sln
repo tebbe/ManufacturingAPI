@@ -1,0 +1,171 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Service", "PPS.Service\PPS.Service.csproj", "{E044209D-77B4-4D01-9D15-CDCB29C29D93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Core", "PPS.Core\PPS.Core.csproj", "{4D1A0893-4A80-4D29-832C-2FBE4418FA9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Data", "PPS.Data\PPS.Data.csproj", "{F95CFAAA-A9B6-4BB3-A565-FC850126481B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.API.Shared", "PPS.API.Shared\PPS.API.Shared.csproj", "{2E1A1A29-2A3A-4991-8D61-1EFA2B7EB9EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Frontend", "PPS.Frontend\PPS.Frontend.csproj", "{1C970B41-EB1C-4E24-9205-8ACA5D5D9494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Document", "PPS.Document\PPS.Document.csproj", "{8AB3C855-C86C-4D7B-8A30-FAE92ECBA946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Shared.Service", "PPS.Shared.Service\PPS.Shared.Service.csproj", "{2AD09B9A-C5E0-4315-A89C-F2240D6EA80F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Shared.Service.Tests", "PPS.Shared.Service.Tests\PPS.Shared.Service.Tests.csproj", "{28F259AF-5C0E-40B5-894E-49D6156B743F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Service.Tests", "PPS.Service.Tests\PPS.Service.Tests.csproj", "{1E171A40-28CE-4D13-B07D-9353368431C9}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PPS.DB", "PPS.DB\PPS.DB.sqlproj", "{7BA8F3D5-205B-477F-AF90-70C96FE613E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Data.Tests", "PPS.Data.Tests\PPS.Data.Tests.csproj", "{FF953651-1C0D-4D39-A704-136AC082296B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Operation", "PPS.Operation\PPS.Operation.csproj", "{AEB357B9-A5A5-462E-B418-C0EFAC6F40F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Caching", "PPS.Caching\PPS.Caching.csproj", "{5E3B9EC3-08C4-4468-9AE9-3C32C708B29A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.API", "PPS.API\PPS.API.csproj", "{6C29061F-ED52-4BF8-99DF-1A6B30D27B73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Shared.Core", "PPS.Shared.Core\PPS.Shared.Core.csproj", "{1725BEFF-12EE-48D2-A1AF-9F5FDCFCB4DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.Logging", "PPS.Logging\PPS.Logging.csproj", "{2C6EA29E-07A9-4CCA-B752-4AE3D134B63A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E044209D-77B4-4D01-9D15-CDCB29C29D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E044209D-77B4-4D01-9D15-CDCB29C29D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E044209D-77B4-4D01-9D15-CDCB29C29D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E044209D-77B4-4D01-9D15-CDCB29C29D93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D1A0893-4A80-4D29-832C-2FBE4418FA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D1A0893-4A80-4D29-832C-2FBE4418FA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D1A0893-4A80-4D29-832C-2FBE4418FA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D1A0893-4A80-4D29-832C-2FBE4418FA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95CFAAA-A9B6-4BB3-A565-FC850126481B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95CFAAA-A9B6-4BB3-A565-FC850126481B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95CFAAA-A9B6-4BB3-A565-FC850126481B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95CFAAA-A9B6-4BB3-A565-FC850126481B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E1A1A29-2A3A-4991-8D61-1EFA2B7EB9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1A1A29-2A3A-4991-8D61-1EFA2B7EB9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1A1A29-2A3A-4991-8D61-1EFA2B7EB9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E1A1A29-2A3A-4991-8D61-1EFA2B7EB9EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C970B41-EB1C-4E24-9205-8ACA5D5D9494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C970B41-EB1C-4E24-9205-8ACA5D5D9494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C970B41-EB1C-4E24-9205-8ACA5D5D9494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C970B41-EB1C-4E24-9205-8ACA5D5D9494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB3C855-C86C-4D7B-8A30-FAE92ECBA946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB3C855-C86C-4D7B-8A30-FAE92ECBA946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB3C855-C86C-4D7B-8A30-FAE92ECBA946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB3C855-C86C-4D7B-8A30-FAE92ECBA946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AD09B9A-C5E0-4315-A89C-F2240D6EA80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD09B9A-C5E0-4315-A89C-F2240D6EA80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD09B9A-C5E0-4315-A89C-F2240D6EA80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD09B9A-C5E0-4315-A89C-F2240D6EA80F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28F259AF-5C0E-40B5-894E-49D6156B743F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28F259AF-5C0E-40B5-894E-49D6156B743F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28F259AF-5C0E-40B5-894E-49D6156B743F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28F259AF-5C0E-40B5-894E-49D6156B743F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E171A40-28CE-4D13-B07D-9353368431C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E171A40-28CE-4D13-B07D-9353368431C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E171A40-28CE-4D13-B07D-9353368431C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E171A40-28CE-4D13-B07D-9353368431C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA8F3D5-205B-477F-AF90-70C96FE613E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA8F3D5-205B-477F-AF90-70C96FE613E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA8F3D5-205B-477F-AF90-70C96FE613E6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7BA8F3D5-205B-477F-AF90-70C96FE613E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA8F3D5-205B-477F-AF90-70C96FE613E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA8F3D5-205B-477F-AF90-70C96FE613E6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FF953651-1C0D-4D39-A704-136AC082296B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF953651-1C0D-4D39-A704-136AC082296B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF953651-1C0D-4D39-A704-136AC082296B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF953651-1C0D-4D39-A704-136AC082296B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB357B9-A5A5-462E-B418-C0EFAC6F40F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB357B9-A5A5-462E-B418-C0EFAC6F40F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB357B9-A5A5-462E-B418-C0EFAC6F40F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB357B9-A5A5-462E-B418-C0EFAC6F40F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3B9EC3-08C4-4468-9AE9-3C32C708B29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3B9EC3-08C4-4468-9AE9-3C32C708B29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3B9EC3-08C4-4468-9AE9-3C32C708B29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3B9EC3-08C4-4468-9AE9-3C32C708B29A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C29061F-ED52-4BF8-99DF-1A6B30D27B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C29061F-ED52-4BF8-99DF-1A6B30D27B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C29061F-ED52-4BF8-99DF-1A6B30D27B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C29061F-ED52-4BF8-99DF-1A6B30D27B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1725BEFF-12EE-48D2-A1AF-9F5FDCFCB4DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1725BEFF-12EE-48D2-A1AF-9F5FDCFCB4DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1725BEFF-12EE-48D2-A1AF-9F5FDCFCB4DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1725BEFF-12EE-48D2-A1AF-9F5FDCFCB4DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C6EA29E-07A9-4CCA-B752-4AE3D134B63A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C6EA29E-07A9-4CCA-B752-4AE3D134B63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C6EA29E-07A9-4CCA-B752-4AE3D134B63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C6EA29E-07A9-4CCA-B752-4AE3D134B63A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {581FF81D-2E50-46CC-9B67-50B4DDB1D849}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 17
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://atlaspps.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PPS.API.Shared\\PPS.API.Shared.csproj
+		SccProjectName1 = PPS.API.Shared
+		SccLocalPath1 = PPS.API.Shared
+		SccProjectUniqueName2 = PPS.Core\\PPS.Core.csproj
+		SccProjectName2 = PPS.Core
+		SccLocalPath2 = PPS.Core
+		SccProjectUniqueName3 = PPS.Data\\PPS.Data.csproj
+		SccProjectName3 = PPS.Data
+		SccLocalPath3 = PPS.Data
+		SccProjectUniqueName4 = PPS.Frontend\\PPS.Frontend.csproj
+		SccProjectName4 = PPS.Frontend
+		SccLocalPath4 = PPS.Frontend
+		SccProjectUniqueName5 = PPS.Service\\PPS.Service.csproj
+		SccProjectName5 = PPS.Service
+		SccLocalPath5 = PPS.Service
+		SccProjectUniqueName6 = PPS.Document\\PPS.Document.csproj
+		SccProjectName6 = PPS.Document
+		SccLocalPath6 = PPS.Document
+		SccProjectUniqueName7 = PPS.Shared.Service\\PPS.Shared.Service.csproj
+		SccProjectName7 = PPS.Shared.Service
+		SccLocalPath7 = PPS.Shared.Service
+		SccProjectUniqueName8 = PPS.Shared.Service.Tests\\PPS.Shared.Service.Tests.csproj
+		SccProjectName8 = PPS.Shared.Service.Tests
+		SccLocalPath8 = PPS.Shared.Service.Tests
+		SccProjectUniqueName9 = PPS.Service.Tests\\PPS.Service.Tests.csproj
+		SccProjectName9 = PPS.Service.Tests
+		SccLocalPath9 = PPS.Service.Tests
+		SccProjectUniqueName10 = PPS.DB\\PPS.DB.sqlproj
+		SccProjectName10 = PPS.DB
+		SccLocalPath10 = PPS.DB
+		SccProjectUniqueName11 = PPS.Data.Tests\\PPS.Data.Tests.csproj
+		SccProjectName11 = PPS.Data.Tests
+		SccLocalPath11 = PPS.Data.Tests
+		SccProjectUniqueName12 = PPS.Operation\\PPS.Operation.csproj
+		SccProjectName12 = PPS.Operation
+		SccLocalPath12 = PPS.Operation
+		SccProjectUniqueName13 = PPS.Caching\\PPS.Caching.csproj
+		SccProjectName13 = PPS.Caching
+		SccLocalPath13 = PPS.Caching
+		SccProjectUniqueName14 = PPS.API\\PPS.API.csproj
+		SccProjectName14 = PPS.API
+		SccLocalPath14 = PPS.API
+		SccProjectUniqueName15 = PPS.Shared.Core\\PPS.Shared.Core.csproj
+		SccProjectName15 = PPS.Shared.Core
+		SccLocalPath15 = PPS.Shared.Core
+		SccProjectUniqueName16 = PPS.Logging\\PPS.Logging.csproj
+		SccProjectName16 = PPS.Logging
+		SccLocalPath16 = PPS.Logging
+	EndGlobalSection
+EndGlobal

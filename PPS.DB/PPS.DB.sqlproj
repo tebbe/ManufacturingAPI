@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>PPS.DB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{7ba8f3d5-205b-477f-af90-70c96fe613e6}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>PPS.DB</RootNamespace>
+    <AssemblyName>PPS.DB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Scripts" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\AspNetRoles.sql" />
+    <Build Include="Tables\AspNetUserClaims.sql" />
+    <Build Include="Tables\AspNetUserLogins.sql" />
+    <Build Include="Tables\AspNetUserRoles.sql" />
+    <Build Include="Tables\AspNetUsers.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Scripts\Db_Scripts.sql" />
+    <Build Include="Tables\AccountHead.sql" />
+    <Build Include="Tables\AccountHeadOpening.sql" />
+    <Build Include="Tables\AccountNature.sql" />
+    <Build Include="Tables\AccountPrimaryHead.sql" />
+    <Build Include="Tables\AccountSubHead.sql" />
+    <Build Include="Tables\AccountType.sql" />
+    <Build Include="Tables\Area.sql" />
+    <Build Include="Tables\BankInfo.sql" />
+    <Build Include="Tables\BatchProduct.sql" />
+    <Build Include="Tables\BatchRequisition.sql" />
+    <Build Include="Tables\ClientInfo.sql" />
+    <Build Include="Tables\Company.sql" />
+    <Build Include="Tables\ControlType.sql" />
+    <Build Include="Tables\Customer.sql" />
+    <Build Include="Tables\CustomerType.sql" />
+    <Build Include="Tables\DemandOrder.sql" />
+    <Build Include="Tables\DemandOrderDetail.sql" />
+    <Build Include="Tables\DemandOrderType.sql" />
+    <Build Include="Tables\Department.sql" />
+    <Build Include="Tables\DiscountType.sql" />
+    <Build Include="Tables\District.sql" />
+    <Build Include="Tables\Employee.sql" />
+    <Build Include="Tables\FinishedGood.sql" />
+    <Build Include="Tables\FiscalYear.sql" />
+    <Build Include="Tables\Group.sql" />
+    <Build Include="Tables\Invoice.sql" />
+    <Build Include="Tables\Log.sql" />
+    <Build Include="Tables\PoliceStation.sql" />
+    <Build Include="Tables\Policy.sql" />
+    <Build Include="Tables\PolicyRouteResource.sql" />
+    <Build Include="Tables\PostOffice.sql" />
+    <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\ProductType.sql" />
+    <Build Include="Tables\PurchaseOrder.sql" />
+    <Build Include="Tables\PurchaseOrderDetail.sql" />
+    <Build Include="Tables\RejectedReasonType.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\RolePolicy.sql" />
+    <Build Include="Tables\RouteResource.sql" />
+    <Build Include="Tables\SaleType.sql" />
+    <Build Include="Tables\Supplier.sql" />
+    <Build Include="Tables\TransactionDetail.sql" />
+    <Build Include="Tables\TransactionEntry.sql" />
+    <Build Include="Tables\TransactionRejectReasonType.sql" />
+    <Build Include="Tables\TransactionStatus.sql" />
+    <Build Include="Tables\TransactionType.sql" />
+    <Build Include="Tables\UnitType.sql" />
+    <Build Include="Tables\UserRole.sql" />
+    <Build Include="Tables\UserStatus.sql" />
+    <Build Include="Tables\DemandOrderStatus.sql" />
+    <Build Include="Tables\DemandOrderTransaction.sql" />
+    <Build Include="Tables\CustomerTransaction.sql" />
+    <Build Include="Tables\CompanyHolidays.sql" />
+    <Build Include="Tables\BatchRequisitionDetail.sql" />
+    <Build Include="Tables\Designation.sql" />
+    <Build Include="Tables\StoreRawMaterial.sql" />
+    <Build Include="Tables\PurchaseOrderStatus.sql" />
+    <Build Include="Tables\ReferenceColumn.sql" />
+    <Build Include="Tables\BatchRequisitionDetail.sql" />
+    <Build Include="Tables\PurchaseOrderStatus.sql" />
+    <Build Include="Tables\StoreRawMaterial.sql" />
+    <Build Include="Tables\PurchaseOrderTransaction.sql" />
+    <Build Include="Tables\FloorStoreRawMaterial.sql" />
+    <Build Include="Tables\BatchRequisitionProductionEstimation.sql" />
+    <Build Include="Tables\CurrentProductStock.sql" />
+    <Build Include="Tables\InvoiceDetail.sql" />
+    <Build Include="Tables\CustomerStatus.sql" />
+    <Build Include="Tables\CustomerHistory.sql" />
+    <Build Include="Tables\TransactionEntryHistory.sql" />
+    <Build Include="Tables\TransactionDetailHistory.sql" />
+    <Build Include="Tables\AttachmentType.sql" />
+    <Build Include="Tables\CustomerAttachment.sql" />
+    <Build Include="Tables\FileType.sql" />
+    <Build Include="Tables\UserRoleHistory.sql" />
+    <Build Include="Tables\RolePolicyHistory.sql" />
+    <Build Include="Tables\EmployeeSalesTargetMonthly.sql" />
+    <Build Include="Tables\CustomerTransactionMonthly.sql" />
+    <Build Include="Tables\CustomerSalesCredit.sql" />
+    <Build Include="Tables\ReferenceTable.sql" />
+    <Build Include="Tables\ProductStandardType.sql" />
+    <Build Include="Tables\UserActivityLog.sql" />
+    <Build Include="Tables\CustomerSalesCreditHistory.sql" />
+    <Build Include="Tables\UserLoginLog.sql" />
+    <Build Include="Tables\ProductTypeGroup.sql" />
+    <Build Include="Tables\CustomerTransactionDetail.sql" />
+    <Build Include="Tables\PaymentStatus.sql" />
+    <Build Include="Tables\MasterSetting.sql" />
+    <Build Include="Tables\DemandOrderDiscountTransaction.sql" />
+    <Build Include="Tables\DemandOrderDiscountType.sql" />
+    <Build Include="Tables\FinishedGoodOpening.sql" />
+    <Build Include="Tables\SalesDivision.sql" />
+    <Build Include="Tables\SalesArea.sql" />
+    <Build Include="Tables\SalesBase.sql" />
+    <Build Include="Tables\CompanySalesTarget.sql" />
+    <Build Include="Tables\DocumentType.sql" />
+    <Build Include="Tables\DocumentRenewalCategory.sql" />
+    <Build Include="Tables\NotificationType.sql" />
+    <Build Include="Tables\NotificationSetting.sql" />
+    <Build Include="Tables\LegalDocument.sql" />
+    <Build Include="Tables\DocumentStatus.sql" />
+    <Build Include="Tables\SystemWarningType.sql" />
+    <Build Include="Tables\ProcessingType.sql" />
+    <Build Include="Tables\MonthlyProcessing.sql" />
+    <Build Include="Tables\StoreRawMaterialOpening.sql" />
+    <Build Include="Tables\ProductionForecastMonthly.sql" />
+    <Build Include="Tables\EntityType.sql" />
+    <Build Include="Tables\SystemWarning.sql" />
+    <Build Include="Tables\SystemWarningHistory.sql" />
+    <Build Include="Tables\LegalDocumentHistory.sql" />
+    <Build Include="Tables\EmployeeHistory.sql" />
+    <Build Include="Tables\EmployeeSalesLocation.sql" />
+    <Build Include="Tables\EmployeeSalesLocationHistory.sql" />
+    <Build Include="Tables\RawMaterialType.sql" />
+    <Build Include="Tables\EmployeeLeave.sql" />
+    <Build Include="Tables\LeaveCategory.sql" />
+    <Build Include="Tables\CompanyLeave.sql" />
+    <Build Include="Tables\EmployeeType.sql" />
+    <Build Include="Tables\ProductHistory.sql" />
+    <Build Include="Tables\ProductionGroup.sql" />
+    <Build Include="Tables\InvoiceTransaction.sql" />
+    <Build Include="Tables\InvoiceReturn.sql" />
+    <Build Include="Tables\InvoiceReturnDetail.sql" />
+    <Build Include="Tables\CrashedGood.sql" />
+    <Build Include="Tables\ProductDamageStatusType.sql" />
+    <Build Include="Tables\DeliveryQuantity.sql" />
+    <Build Include="Tables\DeliveryQuantityDetail.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PPS.DB_Dev.publish.xml" />
+    <None Include="Scripts\Test_Data_Script.sql" />
+    <None Include="PPS.DB.publish.xml" />
+    <PostDeploy Include="Scripts\SeedDataScript.sql" />
+    <None Include="Scripts\Accounts_Seed_Data.sql" />
+    <None Include="PPS.DB_Local.publish.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="PPS.DB.refactorlog" />
+  </ItemGroup>
+</Project>

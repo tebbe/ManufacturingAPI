@@ -1,0 +1,81 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="employeeLeaveEditController">
+    <div class="row wrapper white-bg" style="padding-bottom:12px;">
+        <h2>Employee Leave</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="employeeLeaveForm" novalidate>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtLeaveId" style="font-weight: bold;" required="true">Nature of Leave</label><br />
+                                <ui-select ng-model="selectedLeaveCategory.selected" ng-change="onChangeLeaveCategory(selectedLeaveCategory.selected)" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="cat in leaveCatregory | propsFilter: {Name: $select.search}">
+                                        <div ng-bind-html="cat.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtEmployeeHierArchy" style="font-weight: bold;" required="true">Select Applicant Name</label><br />
+                                <ui-select ng-model="selectedEmployeeHierArchy.selected" ng-change="onChangeEmployeeHierArchy(selectedEmployeeHierArchy.selected)" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.FullName}}</ui-select-match>
+                                    <ui-select-choices repeat="emp in employeeHierArchy | propsFilter: {FullName: $select.search}">
+                                        <div ng-bind-html="emp.FullName | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtToDate" style="font-weight: bold;">From Date</label><br />
+                                <md-datepicker ng-model="leaveDetails.FromDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtToDate" style="font-weight: bold;">To Date</label><br />
+                                <md-datepicker ng-model="leaveDetails.ToDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12" ng-if="leaveDetails.LeaveDays!=0">
+                                <label for="txtLeaveDays">Leave Days</label><br />
+                                <input id="leaveDays" ng-model="leaveDetails.LeaveDays" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12" ng-if="leaveDetails.UnpaidLeaveDays!=0">
+                                <label for="txtLeaveDays">Unpaid Leave Days</label><br />
+                                <input id="leaveDays" ng-model="leaveDetails.UnpaidLeaveDays" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtReasonOfLeave">Leave Reasons</label><br />
+                                <input id="reasonOfLeave" ng-model="leaveDetails.ReasonOfLeave" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtMobileNo">Mobile No.</label><br />
+                                <input id="mobileNo" ng-model="leaveDetails.MobileNo" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtAddress">Address</label><br />
+                                <input id="address" ng-model="leaveDetails.Address" class="form-control" type="text" required />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button" class="btn btn-primary" ng-click="gotoEmployeeLeaveList()">
+                                <span class=""></span> Cancel
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="employeeLeaveForm.$invalid||!employeeLeaveForm.$dirty"
+                                    ng-click="updateNewEmployeeLeave()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

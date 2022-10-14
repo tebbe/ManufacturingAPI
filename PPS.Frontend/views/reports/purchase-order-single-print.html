@@ -1,0 +1,117 @@
+﻿<style media="print">
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+
+    .footer {
+        display: none;
+    }
+</style>
+
+<div ng-controller="purchaseOrderSinglePrintController">
+    <div class="row wrapper white-bg">
+        <div class="col-sm-12" style="background-color: #fff">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h1>PPS Plastic Pipe Industries Ltd.</h1>
+                    <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                    <p>Phone: +88 01700 703333, +88 01700 703322</p>
+                    <p>Email: pps.plastic@gmail.com</p><br />
+                    <h3 class="font-bold">Purchase Order</h3>
+                    <br />
+                </div>
+                <div>
+                    <div class="col-xs-12">
+                        <div class="wrapper wrapper-content animated fadeInRight">
+                            <div class="">
+                                <div style="padding-bottom: 20px;">  
+                                   <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                            <div>
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <label for="txtPurchaseOrderNo">Purchase Order No: </label>
+                                                    <span id="txtPurchaseOrderNo">{{purchaseOrder.PurchaseOrderNo}}</span>
+                                                </div>
+
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <label for="txtPurchaseOrderDate">Purchase Order Date: </label>
+                                                    <span>{{purchaseOrder.PurchaseOrderDate |  date : "dd/MM/yyyy"}}</span>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <div>
+                                                        <label>Total Amount : </label>
+                                                        <span>{{purchaseOrder.TotalAmount | number : 2 }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-12">
+                                                    <label for="txtSupplierId">Supplier: </label>
+                                                    <span>{{purchaseOrder.SupplierName}}</span>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-12">
+                                                     <label>Paid Amount : </label>
+                                                     <span>{{purchaseOrder.PaidAmount | number : 2 }}</span>
+                                                </div>
+
+                                                <div class="col-xs-12">
+                                                    <label for="txtUserId">Note:</label>
+                                                    <span>{{purchaseOrder.Note}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">
+                                                    Details
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body" style="padding-bottom: 0;">
+                                                <table  class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="col-xs-1 text-center">SL</th>
+                                                            <th class="col-xs-7 text-center">Item Description</th>
+                                                            <th class="col-xs-1 text-center">Quantity</th>
+                                                            <th class="col-xs-1 text-center">Unit</th>
+                                                            <th class="col-xs-1 text-center">Unit Price</th>
+                                                            <th class="col-xs-1 text-center">Total Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="rm in purchaseOrder.PurchaseOrderDetail">
+                                                            <td class="text-center">{{$index + 1}}</td>
+                                                            <td class="text-left">{{ rm.RawMaterialTypeName }}</td>
+                                                            <td class="text-right">{{ rm.Quantity | currency : "" }}</td>
+                                                            <td class="text-left">{{ rm.UnitTypeName }}</td>
+                                                            <td class="text-right">{{ rm.Price | currency : "" }}</td>
+                                                            <td class="text-right">{{rm.TotalUnitPrice | currency : ""}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                            <td colspan="5">Total</td>
+                                                            <td class="text-right">{{ purchaseOrder.TotalAmount | currency:""}}</td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="employeeViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Employee</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('654')"  ng-click="gotoEmployeeEdit()">
+                    <span class=""></span> Edit
+                </button>
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('655')"   ng-click="navigateToEmployeeSinglePrint()">
+                    <span class=""></span> Print
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="row wrapper white-bg" style="padding-bottom: 30px;">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Employee Details
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Employee Code: </label>
+                                        <span>{{employeeList.EmployeeCode}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Name: </label>
+                                        <span>{{employeeList.FullName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Company: </label>
+                                        <span>{{employeeList.CompanyName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Department Name: </label>
+                                        <span>{{employeeList.DeptName }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Designation: </label>
+                                        <span>{{employeeList.Designation}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Email: </label>
+                                        <span>{{employeeList.Email}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Mobile: </label>
+                                        <span>{{employeeList.Mobile}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Active: </label>
+                                        <span>{{employeeList.IsActive==true?'Yes':'No'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Manager Name: </label>
+                                        <span>{{employeeList.ManagerName==""?'N/A':employeeList.ManagerName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Blood Group: </label>
+                                        <span>{{employeeList.BloodGroup}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Date of Joining: </label>
+                                        <span>{{employeeList.DateOfJoin===null?'N/A':employeeList.DateOfJoin===null|date:'MM/dd/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Date of Confirmation: </label>
+                                        <span>{{employeeList.JobConfirmationDate===null?'N/A':employeeList.JobConfirmationDate|date:'MM/dd/yyyy'}}</span>
+                                    </div>
+                                    <!--<div class="col-sm-6 col-xs-12">
+                                        <label>Sales Division: </label>
+                                        <span>{{employeeList.SalesDivision==""?'N/A':employeeList.SalesDivision}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Sales Area: </label>
+                                        <span>{{employeeList.SalesArea==""?'N/A':employeeList.SalesArea}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Sales Base: </label>
+                                        <span>{{employeeList.SalesBase==""?'N/A':employeeList.SalesBase}}</span>
+                                    </div>-->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Sales Location
+                                </h4>
+                            </div>
+                            <div class="modal-body form-group" style="padding-bottom: 0;">
+                                <table dt-options="dtOptionsAll" class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-xs-4 text-left">Division Name</th>
+                                            <th class="col-xs-4 text-left">Area Name</th>
+                                            <th class="col-xs-4 text-left">Base Name</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="location in employeeLocationList">
+                                            <td class="text-left">{{location.DivisionName}}</td>
+                                            <td class="text-left">{{location.AreaName}}</td>
+                                            <td class="text-left">{{location.BaseName}}</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-click="gotoEmployeeList()">
+                    <span class=""></span> Cancel
+                </button>
+            </h2>
+        </div>
+    </div>
+    
+</div>

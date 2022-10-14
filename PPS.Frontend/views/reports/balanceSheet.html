@@ -1,0 +1,215 @@
+﻿<div ng-controller="balanceSheetRptController">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 20px;">
+        <div class="col-sm-10">
+            <div class="form-group">
+                <label for="daterange3" class="control-label">Report - Balance Sheet</label>
+                <input date-range-picker id="daterange3" name="daterange3" class="form-control date-picker" type="text"
+                       ng-model="date" options="opts" required />
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="GetBalanceSheet()">
+                    <span class="glyphicon glyphicon-list"></span> Show
+                </button>
+            </h2>
+        </div>
+        <div class="col-sm-1">
+            <h2>
+                <button type="button" class="btn btn-primary" ng-click="BalanceSheetReport('balanceSheetReport')">
+                    <span class="glyphicon glyphicon-print"></span> Print
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Balance Sheet - {{ ledgerList.StartDate | date:'dd/MM/yyyy' }} to {{ ledgerList.EndDate | date:'dd/MM/yyyy' }}</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table id="balanceSheetReport" datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-1" style="vertical-align: middle">SL</th>
+                                    <th class="col-xs-5" style="vertical-align: middle">Account Head</th>
+                                    <th class="col-xs-2" style="text-align: center;">Opening Balance</th>
+                                    <th class="col-xs-2" style="text-align: center;">Current Balance</th>
+                                    <th class="col-xs-2" style="text-align: center;">Closing Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: left; font-weight: bold" colspan="5">Assets</td>
+                                </tr>
+                                <tr ng-repeat="ledger in ledgerList.AssetsDetail">
+                                    <td style="text-align: center;">{{ $index + 1 }}</td>
+                                    <td>{{ ledger.AccountHead }}</td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledger.OpenDrAmount >-1">{{(ledger.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledger.OpenDrAmount < 0">({{(-ledger.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledger.CurrDrAmount >-1">{{(ledger.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledger.CurrDrAmount < 0">({{(-ledger.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledger.CloseDrAmount >-1">{{(ledger.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledger.CloseDrAmount < 0">({{(-ledger.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; font-weight: bold" colspan="2">Total Assets</td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalAssets.OpenDrAmount >-1">{{(ledgerList.TotalAssets.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalAssets.OpenDrAmount < 0">({{(-ledgerList.TotalAssets.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalAssets.CurrDrAmount >-1">{{(ledgerList.TotalAssets.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalAssets.CurrDrAmount < 0">({{(-ledgerList.TotalAssets.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalAssets.CloseDrAmount >-1">{{(ledgerList.TotalAssets.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalAssets.CloseDrAmount < 0">({{(-ledgerList.TotalAssets.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="text-align: left; font-weight: bold" colspan="5">Liabilites</td>
+                                </tr>
+                                <tr ng-repeat="ledger in ledgerList.LiabilitiesDetail">
+                                    <td style="text-align: center;">{{ $index + 1 }}</td>
+                                    <td>{{ ledger.AccountHead }}</td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledger.OpenDrAmount >-1">{{(ledger.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledger.OpenDrAmount < 0">({{(-ledger.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledger.CurrDrAmount >-1">{{(ledger.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledger.CurrDrAmount < 0">({{(-ledger.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledger.CloseDrAmount >-1">{{(ledger.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledger.CloseDrAmount < 0">({{(-ledger.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; font-weight: bold" colspan="2">Total Liabilites</td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalLiabilities.OpenDrAmount >-1">{{(ledgerList.TotalLiabilities.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalLiabilities.OpenDrAmount < 0">({{(-ledgerList.TotalLiabilities.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalLiabilities.CurrDrAmount >-1">{{(ledgerList.TotalLiabilities.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalLiabilities.CurrDrAmount < 0">({{(-ledgerList.TotalLiabilities.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalLiabilities.CloseDrAmount >-1">{{(ledgerList.TotalLiabilities.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalLiabilities.CloseDrAmount < 0">({{(-ledgerList.TotalLiabilities.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="text-align: left; font-weight: bold" colspan="5">Owners Equity</td>
+                                </tr>
+                                <!--<tr>
+                                    <td style="text-align: left; font-weight: bold" colspan="5">Capital</td>
+                                </tr>-->
+                                <tr>
+                                    <td style="text-align: center;"></td>
+                                    <td>Capital</td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.OwnersEquityCapital.OpenDrAmount >-1">{{(ledgerList.OwnersEquityCapital.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.OwnersEquityCapital.OpenDrAmount < 0">({{(-ledgerList.OwnersEquityCapital.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.OwnersEquityCapital.CurrDrAmount >-1">{{(ledgerList.OwnersEquityCapital.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.OwnersEquityCapital.CurrDrAmount < 0">({{(-ledgerList.OwnersEquityCapital.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.OwnersEquityCapital.CloseDrAmount >-1">{{(ledgerList.OwnersEquityCapital.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.OwnersEquityCapital.CloseDrAmount < 0">({{(-ledgerList.OwnersEquityCapital.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;"></td>
+                                    <td>(+) Net Income</td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.NetIncome.OpenDrAmount >-1">{{(ledgerList.NetIncome.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.NetIncome.OpenDrAmount < 0">({{(-ledgerList.NetIncome.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.NetIncome.CurrDrAmount >-1">{{(ledgerList.NetIncome.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.NetIncome.CurrDrAmount < 0">({{(-ledgerList.NetIncome.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.NetIncome.CloseDrAmount >-1">{{(ledgerList.NetIncome.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.NetIncome.CloseDrAmount < 0">({{(-ledgerList.NetIncome.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+                                <!--<tr>
+                                    <td style="text-align: left; font-weight: bold" colspan="5">Drawing</td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td style="text-align: center;"></td>
+                                    <td>(-) Drawing</td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.OwnersEquityDrawing.OpenDrAmount >-1">{{(ledgerList.OwnersEquityDrawing.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.OwnersEquityDrawing.OpenDrAmount < 0">({{(-ledgerList.OwnersEquityDrawing.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.OwnersEquityDrawing.CurrDrAmount >-1">{{(ledgerList.OwnersEquityDrawing.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.OwnersEquityDrawing.CurrDrAmount < 0">({{(-ledgerList.OwnersEquityDrawing.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span ng-if="ledgerList.OwnersEquityDrawing.CloseDrAmount >-1">{{(ledgerList.OwnersEquityDrawing.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.OwnersEquityDrawing.CloseDrAmount < 0">({{(-ledgerList.OwnersEquityDrawing.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td style="text-align: left; font-weight: bold" colspan="5">Net Income</td>
+                                </tr>-->
+
+                                
+                                
+                                <tr>
+                                    <td style="text-align: right; font-weight: bold" colspan="2">Total Owners Equity</td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalOwnersEquity.OpenDrAmount >-1">{{(ledgerList.TotalOwnersEquity.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalOwnersEquity.OpenDrAmount < 0">({{(-ledgerList.TotalOwnersEquity.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalOwnersEquity.CurrDrAmount >-1">{{(ledgerList.TotalOwnersEquity.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalOwnersEquity.CurrDrAmount < 0">({{(-ledgerList.TotalOwnersEquity.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalOwnersEquity.CloseDrAmount >-1">{{(ledgerList.TotalOwnersEquity.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalOwnersEquity.CloseDrAmount < 0">({{(-ledgerList.TotalOwnersEquity.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; font-weight: bold" colspan="2">Total Liabilities and Owners Equity</td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalLiabilitiesAndOwnersEquity.OpenDrAmount >-1">{{(ledgerList.TotalLiabilitiesAndOwnersEquity.OpenDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalLiabilitiesAndOwnersEquity.OpenDrAmount < 0">({{(-ledgerList.TotalLiabilitiesAndOwnersEquity.OpenDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalLiabilitiesAndOwnersEquity.CurrDrAmount >-1">{{(ledgerList.TotalLiabilitiesAndOwnersEquity.CurrDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalLiabilitiesAndOwnersEquity.CurrDrAmount < 0">({{(-ledgerList.TotalLiabilitiesAndOwnersEquity.CurrDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                    <td style="text-align: right; font-weight: bold">
+                                        <span ng-if="ledgerList.TotalLiabilitiesAndOwnersEquity.CloseDrAmount >-1">{{(ledgerList.TotalLiabilitiesAndOwnersEquity.CloseDrAmount | currency : "Tk. ")}}</span>
+                                        <span ng-if="ledgerList.TotalLiabilitiesAndOwnersEquity.CloseDrAmount < 0">({{(-ledgerList.TotalLiabilitiesAndOwnersEquity.CloseDrAmount | currency : "Tk. ")}})</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

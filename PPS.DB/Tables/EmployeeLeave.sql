@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[EmployeeLeave]
+(
+	[Id]  INT IDENTITY (1, 1) NOT NULL,
+	[EmployeeId]	INT NOT NULL,
+    [LeaveCategoryId] INT NOT NULL, 
+    [LeaveDays] INT NULL, 
+	[UnpaidLeaveDays] INT NULL,
+    [FromDate] DATE NOT NULL, 
+    [ToDate] DATE NOT NULL, 
+    [ReasonOfLeave] NVARCHAR(300) NOT NULL, 
+    [Address] NVARCHAR(100) NULL, 
+    [MobileNo] VARCHAR(16) NOT NULL, 
+    [DateOfApplication] DATE NOT NULL, 
+	[ApprovedByDepartmentHead] BIT NULL,
+	[ApprovedByMD] BIT NULL,
+    [CreatedBy] INT NOT NULL, 
+    [CreatedOn] DATE NOT NULL, 
+    [UpdatedBy] INT NULL, 
+    [UpdatedOn] DATETIME NULL, 
+    [LeaveYear] INT NOT NULL, 
+    [IsApproved] INT NULL, 
+    [ApprovedByAdminOn] DATETIME NULL, 
+    [ApprovedByHeadOn] DATETIME NULL, 
+    CONSTRAINT [EmployeeLeave_Primary_key] PRIMARY KEY CLUSTERED ([Id] ASC),	
+	CONSTRAINT [FK_EmployeeLeave_Employee] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[Employee] ([Id]),
+	CONSTRAINT [FK_EmployeeLeave_LeaveCategory] FOREIGN KEY ([LeaveCategoryId]) REFERENCES [dbo].[LeaveCategory] ([Id])
+)

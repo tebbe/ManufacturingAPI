@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b87a9e010a8d4e88afd2e749189f13aa" Name="Diagram1">
+        <EntityTypeShape EntityType="PPS.AccountHead" Width="1.5" PointX="5.25" PointY="115.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AccountHeadOpening" Width="1.5" PointX="7.5" PointY="120.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AccountNature" Width="1.5" PointX="3.75" PointY="103.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AccountPrimaryHead" Width="1.5" PointX="8.25" PointY="116.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AccountSubHead" Width="1.5" PointX="17.5" PointY="124.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AccountType" Width="1.5" PointX="6" PointY="103.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Area" Width="1.5" PointX="11.25" PointY="103.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AspNetRoles" Width="1.5" PointX="7.75" PointY="138.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AspNetUserClaims" Width="1.5" PointX="12.25" PointY="146" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AspNetUserLogins" Width="1.5" PointX="12.25" PointY="148.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AspNetUsers" Width="1.5" PointX="10" PointY="137.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.AttachmentType" Width="1.5" PointX="23" PointY="103.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.BankInfo" Width="1.5" PointX="5.25" PointY="124.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.BatchProduct" Width="1.5" PointX="23" PointY="123.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.BatchRequisition" Width="1.5" PointX="16.75" PointY="131.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.BatchRequisitionDetail" Width="1.5" PointX="23" PointY="136.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.BatchRequisitionProductionEstimation" Width="1.5" PointX="23" PointY="120.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ClientInfo" Width="1.5" PointX="13.5" PointY="114.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Company" Width="1.5" PointX="3" PointY="115.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CompanyHolidays" Width="1.5" PointX="5.25" PointY="128.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CompanyLeave" Width="1.5" PointX="20" PointY="162.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CompanySalesTarget" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ControlType" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CrashedGood" Width="1.5" PointX="24.25" PointY="114.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CurrentProductStock" Width="1.5" PointX="18.75" PointY="110.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Customer" Width="1.5" PointX="15" PointY="121.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerAttachment" Width="1.5" PointX="25.25" PointY="124" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerHistory" Width="1.5" PointX="13.5" PointY="107" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerSalesCredit" Width="1.5" PointX="17.25" PointY="152.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerSalesCreditHistory" Width="1.5" PointX="17.25" PointY="155.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerStatus" Width="1.5" PointX="11.25" PointY="100" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerTransaction" Width="1.5" PointX="10.5" PointY="106.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerTransactionDetail" Width="1.5" PointX="24.75" PointY="110.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerTransactionMonthly" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.CustomerType" Width="1.5" PointX="12.75" PointY="89.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DeliveryQuantity" Width="1.5" PointX="32.75" PointY="121.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DeliveryQuantityDetail" Width="1.5" PointX="35" PointY="118" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrder" Width="1.5" PointX="25.25" PointY="128.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrderDetail" Width="1.5" PointX="27.5" PointY="126" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrderDiscountTransaction" Width="1.5" PointX="27.5" PointY="132.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrderDiscountType" Width="1.5" PointX="25.25" PointY="143.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrderStatus" Width="1.5" PointX="23" PointY="143.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrderTransaction" Width="1.5" PointX="27.5" PointY="143.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DemandOrderType" Width="1.5" PointX="23" PointY="145.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Department" Width="1.5" PointX="5.25" PointY="131.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Designation" Width="1.5" PointX="7.5" PointY="131.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DiscountType" Width="1.5" PointX="23" PointY="148.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.District" Width="1.5" PointX="6.75" PointY="96.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DocumentRenewalCategory" Width="1.5" PointX="17.25" PointY="103.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DocumentStatus" Width="1.5" PointX="17.25" PointY="99.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.DocumentType" Width="1.5" PointX="17.25" PointY="96.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Employee" Width="1.5" PointX="9.75" PointY="121.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EmployeeHistory" Width="1.5" PointX="12" PointY="129.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EmployeeLeave" Width="1.5" PointX="20" PointY="132.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EmployeeSalesLocation" Width="1.5" PointX="22" PointY="115.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EmployeeSalesLocationHistory" Width="1.5" PointX="14.25" PointY="134.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EmployeeSalesTargetMonthly" Width="1.5" PointX="12" PointY="142.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EmployeeType" Width="1.5" PointX="7.5" PointY="135.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.EntityType" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.FileType" Width="1.5" PointX="23" PointY="101.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.FinishedGood" Width="1.5" PointX="22.75" PointY="131.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.FinishedGoodOpening" Width="1.5" PointX="18.75" PointY="106.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.FiscalYear" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.FloorStoreRawMaterial" Width="1.5" PointX="26" PointY="119.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Group" Width="1.5" PointX="0.75" PointY="117.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Invoice" Width="1.5" PointX="30.5" PointY="121.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.InvoiceDetail" Width="1.5" PointX="32.75" PointY="117.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.InvoiceReturn" Width="1.5" PointX="32.75" PointY="112.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.InvoiceReturnDetail" Width="1.5" PointX="35" PointY="114.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.InvoiceTransaction" Width="1.5" PointX="32.75" PointY="133.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.LeaveCategory" Width="1.5" PointX="17.75" PointY="162.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.LegalDocument" Width="1.5" PointX="19.5" PointY="113.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.LegalDocumentHistory" Width="1.5" PointX="20.5" PointY="120.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Log" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.MasterSetting" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.MonthlyProcessing" Width="1.5" PointX="19.5" PointY="128.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.NotificationSetting" Width="1.5" PointX="19.5" PointY="102.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.NotificationType" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PaymentStatus" Width="1.5" PointX="23" PointY="150.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PoliceStation" Width="1.5" PointX="9" PointY="96" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Policy" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PostOffice" Width="1.5" PointX="11.25" PointY="95.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProcessingType" Width="1.5" PointX="17.25" PointY="159.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Product" Width="1.5" PointX="16.5" PointY="113" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductDamageStatusType" Width="1.5" PointX="22" PointY="106.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductHistory" Width="1.5" PointX="21.75" PointY="109.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductionForecastMonthly" Width="1.5" PointX="18.75" PointY="149.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductionGroup" Width="1.5" PointX="14.5" PointY="143.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductStandardType" Width="1.5" PointX="14.25" PointY="103.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductType" Width="1.5" PointX="14.25" PointY="92" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ProductTypeGroup" Width="1.5" PointX="12" PointY="92.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PurchaseOrder" Width="1.5" PointX="17.5" PointY="137.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PurchaseOrderDetail" Width="1.5" PointX="19.75" PointY="139.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PurchaseOrderStatus" Width="1.5" PointX="15.25" PointY="140.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.PurchaseOrderTransaction" Width="1.5" PointX="19.75" PointY="143.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.RawMaterialType" Width="1.5" PointX="7.5" PointY="124.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ReferenceColumn" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.ReferenceTable" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.RejectedReasonType" Width="1.5" PointX="6" PointY="110.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Role" Width="1.5" PointX="20.25" PointY="152.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.RolePolicy" Width="1.5" PointX="22.5" PointY="80.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.RolePolicyHistory" Width="1.5" PointX="25.5" PointY="80.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.RouteResource" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SalesArea" Width="1.5" PointX="7.5" PointY="140.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SalesBase" Width="1.5" PointX="7.5" PointY="144.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SalesDivision" Width="1.5" PointX="5.25" PointY="141" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SaleType" Width="1.5" PointX="23" PointY="152.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.StoreRawMaterial" Width="1.5" PointX="22.75" PointY="139.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.StoreRawMaterialOpening" Width="1.5" PointX="9.75" PointY="131.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.Supplier" Width="1.5" PointX="7.5" PointY="172.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SystemWarning" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SystemWarningHistory" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.SystemWarningType" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionDetail" Width="1.5" PointX="16.5" PointY="108.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionDetailHistory" Width="1.5" PointX="17.5" PointY="121" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionEntry" Width="1.5" PointX="8.25" PointY="108.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionEntryHistory" Width="1.5" PointX="11.25" PointY="113.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionRejectReasonType" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionStatus" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.TransactionType" Width="1.5" PointX="6" PointY="106.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.UnitType" Width="1.5" PointX="14.25" PointY="100.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.User" Width="1.5" PointX="12.25" PointY="120.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.UserActivityLog" Width="1.5" PointX="14.5" PointY="146.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.UserLoginLog" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.UserRole" Width="1.5" PointX="14.5" PointY="131.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.UserRoleHistory" Width="1.5" PointX="22.5" PointY="128.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PPS.UserStatus" Width="1.5" PointX="10" PointY="146" IsExpanded="true" />
+        <AssociationConnector Association="PPS.Customer_AccountHead_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_AccountHead_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AccountHead_dbo_AccountSubHead_AccountSubHeadId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AccountHeadOpening_dbo_AccountHead_AccountHeadId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_ClientInfo_dbo_AccountHead_AccountHeadId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransaction_BankInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_PurchaseOrder_AccountHead_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_PurchaseOrder_AccountHead_Cash" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_PurchaseOrderTransaction_AccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionDetail_dbo_AccountHead_AccountHeadId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionDetailHistory_dbo_AccountHead_AccountHeadId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Product_AccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductHistory_AccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_RawMaterialType_AccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Supplier_AccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.HistoryCustomer_AccountHead_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_AccountHeadOpening_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AccountType_dbo_AccountNature_AccountNatureId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_AccountPrimaryHead_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AccountPrimaryHead_dbo_AccountType_AccountTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AccountSubHead_dbo_AccountPrimaryHead_AccountPrimaryHeadId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_AccountSubHead_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Customer_Area_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.HistoryCustomer_Area_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_User_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CustomerAttachment_AttachmentType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_BankInfo_dbo_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.BatchProduct_BatchRequisition_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.BatchProduct_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.BatchRequisitionDetail_BatchRequisition_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_BatchRequisition_ToProductionGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_BatchRequisition_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_BatchRequisitionProductionEstimation_BatchRequisition" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_FloorStoreRawMaterial_BatchRequisition" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.BatchRequisitionDetail_RawMaterialType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_BatchRequisitionProductionEstimation_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_ClientInfo_dbo_Company_Company_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.CompanyHolidays_Company_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Department_Company_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_Company_dbo_Group_GroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionEntry_dbo_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionEntryHistory_dbo_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_User_dbo_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Employee_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeHistory_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocument_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocumentHistory_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CompanyLeave_LeaveCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CrashedGood_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CrashedGood_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CrashedGood_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CrashedGood_ProductDamageStatusType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CurrentProductStock_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Customer_CustomerStatus_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Customer_CustomerType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Customer_PostOffice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Customer_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CustomerAttachment_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CustomerSalesCredit_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CustomerSalesCreditHistory_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransactionDetail_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_DemandOrder_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_CustomerAttachment_FileType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.HistoryCustomer_CustomerStatus_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.HistoryCustomer_PostOffice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransaction_TransactionDetail_BankCharge" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransaction_TransactionDetail_CashBank" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransaction_TransactionEntry" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransactionDetail_CustomerTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_CustomerTransactionDetail_TransactionDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DeliveryQuantity_Invoice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DeliveryQuantityDetail_DeliveryQuantity_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DeliveryQuantityDetail_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrder_DemandOrderType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrder_DiscountType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrder_RejectedReasonType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrder_SaleType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrderDetail_DemandOrder_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrderDiscountTransaction_DemandOrder_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrderTransaction_DemandOrder_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_DemandOrder_DemandOrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_DemandOrder_DemandOrderTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_DemandOrder_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_DemandOrder_PaymentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_DemandOrder_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Invoice_DemandOrder_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrderDetail_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.DemandOrderDiscountTransaction_DemandOrderDiscountType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Employee_Department_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeHistory_Department_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Position_Department_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Employee_Designation_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeHistory_Designation_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PoliceStation_District_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocument_DocumentRenewalCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocumentHistory_DocumentRenewalCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_NotificationSetting_DocumentRenewalCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocument_DocumentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocumentHistory_DocumentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocumentHistory_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Employee_Manager_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Employee_PostOffice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeHistory_Manager_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocation_Employee_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocationHistory_Employee_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Employee_EmployeeType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Employee_SalesArea" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Employee_SalesBase" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Employee_SalesDivision" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeLeave_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeSalesTargetMonthly_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeHistory_PostOffice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocationHistory_EmployeeHistory_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeHistory_SalesArea" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeHistory_SalesBase" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeHistory_SalesDivision" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_EmployeeLeave_LeaveCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocation_SalesArea_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocation_SalesBase_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocation_SalesDivision_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocationHistory_SalesArea_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocationHistory_SalesBase_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.EmployeeSalesLocationHistory_SalesDivision_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_SystemWarningType_EntityType_EntityTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FinishedGood_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_FinishedGood_ToProductionGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_FinishedGood_User_Approved" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_FinishedGood_User_Created" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FinishedGoodOpening_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_FloorStoreRawMaterial_RawMaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_FloorStoreRawMaterial_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Invoice_ToTransactionEntry" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_InvoiceReturn_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.InvoiceDetail_Invoice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.InvoiceTransaction_Invoice_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.InvoiceDetail_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_InvoiceReturn_TransactionEntry" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.InvoiceReturnDetail_InvoiceReturn_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.InvoiceReturnDetail_Product_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocument_User_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocument_User_UpdatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocumentHistory_User_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_LegalDocumentHistory_User_UpdatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_MonthlyProcessing_ProcessingType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_MonthlyProcessing_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_MonthlyProcessing_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PostOffice_PoliceStation_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_RolePolicy_Policy" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_RolePolicyHistory_Policy" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Product_ProductStandardType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_Product_UnitType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductHistory_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductionForecastMonthly_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.Product_ProductType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductHistory_ProductStandardType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductHistory_ProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductHistory_UnitType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductionGroup_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_ProductType_ProductTypeGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_PurchaseOrderTransaction_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_PurchaseOrder_PurchaseOrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_PurchaseOrder_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_StoreRawMaterial_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PurchaseOrder_RejectedReasonType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PurchaseOrder_Supplier_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PurchaseOrderDetail_PurchaseOrder_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PurchaseOrderDetail_RawMaterialType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_PurchaseOrderTransaction_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_StoreRawMaterial_RawMaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_StoreRawMaterialOpening_RawMaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.RawMaterialType_UnitType_Foreign_Key" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_TransactionEntry_RejectedReasonType" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_UserRole_dbo_Role_Role_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_UserRoleHistory_dbo_Role_Role_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_RolePolicy_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_RolePolicyHistory_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_SalesArea_SalesDivision" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_SalesBase_SalesArea" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_StoreRawMaterial_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_SystemWarning_SystemWarningType_SystemWarningTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_SystemWarningHistory_SystemWarning_SystemWarningId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_SystemWarningHistory_SystemWarningType_SystemWarningTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionDetail_dbo_TransactionEntry_TransactionEntryId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionDetailHistory_dbo_TransactionEntryHistory_TransactionEntryHistoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionEntry_dbo_TransactionType_TransactionTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_TransactionEntryHistory_dbo_TransactionType_TransactionTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_UserRole_dbo_User_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_dbo_UserRoleHistory_dbo_User_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_User_UserStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.FK_UserActivityLog_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="PPS.PolicyRouteResource" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

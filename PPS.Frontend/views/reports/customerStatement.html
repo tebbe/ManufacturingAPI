@@ -1,0 +1,88 @@
+﻿<div id="customerStatementPageContent" ng-controller="customerStatementRptController">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 20px;">
+        <form name="customerStatementForm" novalidate>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="daterange3" class="control-label" required>Date range</label>
+                    <input date-range-picker id="daterange3" name="daterange3" class="form-control date-picker" type="text"
+                           ng-model="reportDateRange" options="opts" required />
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <label for="optionCustomer" style="font-weight: bold;" required="true">Customer</label><br />
+                <ui-select ng-model="selectedCustomer.selected" style="min-width: 250px;" theme="select2" required>
+                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.CustomerName}} ({{$select.selected.CustomerCode}})</ui-select-match>
+                    <ui-select-choices repeat="cs in customers | propsFilter: {CustomerName: $select.search, CustomerCode: $select.search}">
+                        <div ng-bind-html="cs.CustomerName | highlight: $select.search"></div>
+                        <small>
+                            Code: <span ng-bind-html="''+cs.CustomerCode | highlight: $select.search"></span>
+                        </small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary"
+                        ng-disabled="customerStatementForm.$invalid"
+                        ng-click="getCustomerStatement()">
+                    <span class="glyphicon glyphicon-list"></span> Generate
+                </button>
+                <button type="button" class="btn btn-primary" ng-show="isReportGenerated===true" id="create_pdf">
+                    <span class="glyphicon glyphicon-print"></span> Print
+                </button>
+            </div>
+        </form>
+        <!--<form class="form" style="width: 8in; background-color: #fff">
+            <div id="customerStatement" class="col-sm-12" style="width: 8in; background-color: #fff" ng-if="isReportGenerated===true">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <h1>
+                            <img src="../../image/logo/PPSLogo.jpg" /> PPS Plastic Pipe Industries Ltd.
+                        </h1>
+                        <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                        <p>Phone: +88 01700 703311</p>
+                        <p>Email: abc@gmail.com</p>
+                        <h3>Customer Statement</h3>
+                    </div>
+                    <div class="">
+                        <div class="col-sm-6 text-left">
+                            <p>Customer: {{customerStatement.CustomerName}} ({{customerStatement.CustomerCode}})<br />Address: {{customerStatement.CustomerAddress}}<br />Mobile: {{customerStatement.CustomerMobile}}</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p>Date: {{customerStatement.StatementStartDate | date:'dd/MM/yyyy'}} - {{customerStatement.StatementEndDate | date:'dd/MM/yyyy'}}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <table class="table table-bordered table-responsive table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Amount</th>
+                                    <th class="text-center">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" style="text-align: right">Balance Before {{customerStatement.StatementStartDate | date:'dd/MM/yyyy' }}: Tk.{{customerStatement.PreviousBalance | currency : ""}}</td>
+                                </tr>
+                                <tr ng-repeat="cs in customerStatement.CustomerStatementDetail">
+                                    <td class="text-center">{{cs.TransactionDate | date:'dd/MM/yyyy' }}</td>
+                                    <td class="text-left">{{cs.TransactionType}}</td>
+                                    <td class="text-right">{{cs.TransactionAmount | currency : ""}}</td>
+                                    <td class="text-right">{{cs.TransactionBalance | currency : ""}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" style="text-align: right">Balance as of {{customerStatement.StatementEndDate | date:'dd/MM/yyyy'}}: Tk.{{customerStatement.AsOfDateBalance | currency : "" }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </form>-->
+    </div>
+</div>

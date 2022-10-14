@@ -1,0 +1,103 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="legalDocumentViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Legal Document</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('453')" ng-click="gotoLegalDocEdit(leDocId)">
+                    <span class=""></span> Edit
+                </button>
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('455')" ng-click="navigateToLegalDocumentSinglePrint()">
+                    <span class=""></span> Print
+                </button>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header {{demandOrderPaymentStatusColorClass}}">
+                                <h4 class="modal-title">
+                                    Legal Document Info
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-12 col-xs-12" style="padding-left: 0px !important">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Company: </label>
+                                        <span>{{legalDocument.CompanyName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Document Type: </label>
+                                        <span>{{legalDocument.DocumentTypeName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Renewal Category: </label>
+                                        <span>{{legalDocument.DocumentRenewalCategoryName }}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Document Status: </label>
+                                        <span>{{legalDocument.DocumentStatusName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Document Nnumber: </label>
+                                        <span>{{legalDocument.DocumentNumber}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Issue Date: </label>
+                                        <span>{{legalDocument.IssueDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Expire Date: </label>
+                                        <span>{{legalDocument.ExpireDate|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Organization Name: </label>
+                                        <span>{{legalDocument.OrganizationName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Organization Contact Person: </label>
+                                        <span>{{legalDocument.OrganizationContactName===null?'N/A':legalDocument.OrganizationContactName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Organization Address: </label>
+                                        <span>{{legalDocument.OrganizationAddress===null?'N/A':legalDocument.OrganizationAddress}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Organization Email: </label>
+                                        <span>{{legalDocument.OrganizationContactEmail===null?'N/A':legalDocument.OrganizationContactEmail}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Organization Contact: </label>
+                                        <span>{{legalDocument.OrganizationPhoneNumber===null?'N/A':legalDocument.OrganizationPhoneNumber}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Created On: </label>
+                                        <span>{{legalDocument.CreatedOn|date:'dd/MM/yyyy'}}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-12">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-click="gotoLegalDocList()">
+                    <span class=""></span> Cancel
+                </button>
+            </h2>
+        </div>
+    </div>
+</div>

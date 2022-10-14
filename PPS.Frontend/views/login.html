@@ -1,0 +1,30 @@
+<div ng-controller="accountController" class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name" style="letter-spacing:0px; font-size:90px;">API</h1>
+            <!--<h1 class="logo-name" style="letter-spacing:0px; font-size:90px;">Roslyn</h1>
+            <h1 class="logo-name" style="letter-spacing:0px; font-size:75px;">Ramate</h1>
+            <h1 class="logo-name" style="letter-spacing:0px; font-size:90px;">ABM</h1>
+            <h1 class="logo-name" style="letter-spacing:0px; font-size:90px;">SS</h1>-->
+        </div>
+       
+        <p>Login in.</p>
+        <!--<form class="m-t" role="form" action="#">-->
+        <div data-ng-hide="message == ''" class="alert alert-danger">
+            {{message}}
+        </div>
+        <div class="form-group">
+            <input type="email" ng-model="loginData.userName" class="form-control" placeholder="Email" required="">
+        </div>
+        <div class="form-group">
+            <input type="password" ng-model="loginData.password" class="form-control" placeholder="Password" required="" ng-keypress="($event.charCode==13)?login():return">
+        </div>
+        <!--<button class="btn btn-warning btn-sm"><i class="fa fa-spinner fa-spin"></i> Logging in</button>-->
+        <button type="submit" ng-click="login()" class="ladda-button btn btn-primary block full-width m-b"
+                ng-class="{ true : '', false: 'disabled'}[processComplated]"
+                data-style="expand-left">
+            <i ng-class="{ true : '', false: 'fa fa-spinner fa-spin'}[processComplated]" class=""></i> <span>{{ processComplated === true ? 'Login' : ' Logging In' }}</span>
+        </button>
+        <!--</form>-->
+    </div>
+</div>

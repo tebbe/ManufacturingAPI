@@ -1,0 +1,14 @@
+﻿Web Config:
+
+<add key="CompanyId" value="1" />
+<add key="SendSMS" value="true" />
+<add key="SendDelarReceiptSMS" value="true" />
+=================================================================================
+authService.js
+
+var serviceBase = 'http://erp.pps.com.bd/';
+=================================================================================
+login.html
+
+h1 tag for PPS
+=================================================================================

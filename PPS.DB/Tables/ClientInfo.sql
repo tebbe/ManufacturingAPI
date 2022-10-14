@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[ClientInfo] (
+    [Id]               INT           IDENTITY (1, 1) NOT NULL,
+    [ClientName]       VARCHAR (100) NOT NULL,
+    [Address]          VARCHAR (200) NOT NULL,
+    [Location]         VARCHAR (50)  NOT NULL,
+    [PhoneNumber]      VARCHAR (50)  NOT NULL,
+    [Fax]              VARCHAR (50)  NOT NULL,
+    [Email]            VARCHAR (50)  NOT NULL,
+    [MajorActivity]    INT           NULL,
+    [CustomerCategory] INT           NULL,
+    [AccountHeadId]    INT           NOT NULL,
+    [CreditLimit]      FLOAT (53)    NOT NULL,
+    [Active]           BIT           NOT NULL,
+    [AlternateName]    VARCHAR (50)  NULL,
+    [ContactPerson]    VARCHAR (50)  NULL,
+    [CreatedBy]        INT           NOT NULL,
+    [CreatedDate]      DATETIME      NOT NULL,
+    [UpdatedBy]        INT           NOT NULL,
+    [UpdatedDate]      DATETIME      NOT NULL,
+    [Company_Id]       INT           NULL,
+    CONSTRAINT [PK_dbo.ClientInfo] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_dbo.ClientInfo_dbo.AccountHead_AccountHeadId] FOREIGN KEY ([AccountHeadId]) REFERENCES [dbo].[AccountHead] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_dbo.ClientInfo_dbo.Company_Company_Id] FOREIGN KEY ([Company_Id]) REFERENCES [dbo].[Company] ([Id])
+);
+

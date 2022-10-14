@@ -1,0 +1,294 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="purchaseOrderViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Purchase Order</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('374') && purchaseOrder.POStatusName ==='Initiated'" ng-click="gotoPOEdit(purchaseOrder.Id)">
+                    <span class=""></span> Edit
+                </button>
+            </h2>
+        </div>
+        <!-- Verify Modal -->
+        <div class="modal fade" pps-modal id="verifyPOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeVerifyPOModal()">&times;</button>
+                        <h4 class="modal-title">Verify Purchase Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>
+                            Do you want to verify <span style="font-weight: bold;">Purchase Order No. {{purchaseOrder.Id}}</span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeVerifyPOModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-if="isAuthenticated('375')" ng-click="verifyPOClick()">Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Approve Modal -->
+        <div class="modal fade" pps-modal id="approvePOModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeApprovePOModal()">&times;</button>
+                        <h4 class="modal-title">Approve Purchase Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>
+                            Do you want to Approve <span style="font-weight: bold;">Purchase Order No. {{purchaseOrder.Id}}</span>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeApprovePOModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-if="isAuthenticated('376')" ng-click="approvePOClick()">Approve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Transaction Modal -->
+        <div class="modal fade" pps-modal id="transactionModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeTransactionModal()">&times;</button>
+                        <h4 class="modal-title">Purchase Order Transaction</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <form name="formTransaction">
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Purchase Order Id</label>
+                                    <span class="form-control">{{purchaseOrder.Id}}</span>
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Balance Amount</label>
+                                    <span class="form-control">{{purchaseOrder.BalanceAmount}}</span>
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Supplier Name</label>
+                                    <span class="form-control">{{supplierVm.SupplierName}}</span>
+                                </div>
+
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label style="font-weight: bold;" required="true">Transaction Date</label><br />
+                                    <md-datepicker ng-model="newPurchaseOrderTransaction.TransactionDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()" required></md-datepicker>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="optionBank">Cash/Bank</label>
+                                    <select class="form-control"
+                                            id="optionBank"
+                                            ng-model="selectedAccount"
+                                            ng-options="cb.AccountName for cb in cashBanks" required></select>
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Account Code</label>
+                                    <span class="form-control">{{selectedAccount.AccountCode}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtTransactionAmount">Transaction Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="newPurchaseOrderTransaction.TransactionAmount" min="1" max="{{purchaseOrder.BalanceAmount}}" class="form-control required" type="number" required />
+                                </div>
+                            </div>
+                            <div class="row modal-footer">
+                                <div style="float: left;">
+                                    <button type="button" class="btn btn-default" ng-click="closeTransactionModal()">Cancel</button>
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-primary" ng-disabled="formTransaction.$invalid" ng-class="{ 'disabled': formTransaction.$invalid }" ng-click="saveTransactionClick()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Purchase Order Info
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div>
+                                        <label>Verified: </label>
+                                        <span>{{purchaseOrder.VerifiedByOn}}</span>
+                                    </div>
+                                    <div>
+                                        <label>Approved: </label>
+                                        <span>{{purchaseOrder.ApprovedByOn}}</span>
+                                    </div>
+                                    <div>
+                                        <label>Status : </label>
+                                        <span>{{purchaseOrder.POStatusName}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-12">
+                                    <div>
+                                        <label>Total Amount : </label>
+                                        <span>{{purchaseOrder.TotalAmount | number : 0 }}</span>
+                                    </div>
+                                    <div>
+                                        <label>Paid Amount : </label>
+                                        <span>{{purchaseOrder.PaidAmount | number : 0 }}</span>
+                                    </div>
+                                    <div>
+                                        <label>Balance Amount : </label>
+                                        <span class="font-bold">{{purchaseOrder.BalanceAmount | number : 0 }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xs-12">
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" ng-if="isAuthenticated('375') && purchaseOrder.POStatusName === 'Initiated'" title="Verify" ng-click="showVerifyPOModal(purchaseOrder)">Verify</button>
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" ng-if="isAuthenticated('376') && purchaseOrder.POStatusName === 'Verified'" title="Approve" ng-click="showApprovePOModal(purchaseOrder)">Approve</button>
+                                </div>
+                                <div class="col-xs-12">
+                                    <hr />
+                                </div>
+                                <div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtPurchaseOrderNo">Purchase Order No: </label>
+                                        <span id="txtPurchaseOrderNo">{{purchaseOrder.PurchaseOrderNo}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtSupplierId">Supplier: </label>
+                                        <span>{{purchaseOrder.SupplierName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtPurchaseOrderDate">Purchase Order Date: </label>
+                                        <span>{{purchaseOrder.PurchaseOrderDate |  date : "dd/MM/yyyy"}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtEstimatedDeliveryDate">Estimated Delivery Date: </label>
+                                        <span>{{purchaseOrder.EstimatedDeliveryDate |  date : "dd/MM/yyyy"}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtPaymentType">Payment Type:</label>
+                                        <span>{{purchaseOrder.PaymentType}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtPriceValidity">Price Validity: </label>
+                                        <span>{{purchaseOrder.PriceValidity}}</span>
+                                    </div>
+
+
+                                    <div class="col-xs-12">
+                                        <label for="txtUserId">Note:</label>
+                                        <span>{{purchaseOrder.Note}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Purchase Details
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1 text-center">SL</th>
+                                                <th class="col-xs-7 text-center">Raw Material Name</th>
+                                                <th class="col-xs-1 text-center">Quantity</th>
+                                                <th class="col-xs-1 text-center">Unit</th>
+                                                <th class="col-xs-1 text-center">Unit Price</th>
+                                                <th class="col-xs-1 text-center">Total Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rm in purchaseOrder.PurchaseOrderDetail">
+                                                <td class="text-center">{{$index + 1}}</td>
+                                                <td class="text-left">{{ rm.RawMaterialTypeName }}</td>
+                                                <td class="text-right">{{ rm.Quantity | number : "2" }}</td>
+                                                <td class="text-left">{{ rm.UnitTypeName }}</td>
+                                                <td class="text-right">{{ rm.Price | number : "2" }}</td>
+                                                <td class="text-right">{{rm.TotalUnitPrice | number : 2}}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td colspan="5">Total</td>
+                                                <td class="text-right">{{ purchaseOrder.TotalAmount | number:0}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Transaction History
+                                        <a class="glyphicon glyphicon-plus btn btn-primary pull-right" ng-if="isAuthenticated('375') && purchaseOrder.BalanceAmount != 0" ng-click="showTransactionModal()">Add</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1">Tran. Date</th>
+                                                <th class="col-xs-5">Account</th>
+                                                <th class="col-xs-2">Created By</th>
+                                                <th class="col-xs-1">Created On</th>
+                                                <th class="col-xs-2">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="tran in supplierVm.PurchaseOrderTransaction">
+                                                <td style="text-align: center;">{{ tran.TransactionDate | date:'dd/MM/yyyy' }}</td>
+                                                <td style="text-align: left;">{{ tran.AccountName}} - {{tran.AccountCode}}</td>
+                                                <td style="text-align: left;">{{ tran.CreatedByName}}</td>
+                                                <td style="text-align: center;">{{ tran.CreatedOn | date:'dd/MM/yyyy'}}</td>
+                                                <td style="text-align: right;"><span><span class="label label-info" style="text-align: left; margin-right: 10px;" ng-if="!tran.IsApproved">Pending</span>{{ tran.TransactionAmount | number : "" }}</span></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td class="col-xs-10" colspan="4">Total Amount</td>
+                                                <td class="col-xs-2">{{ purchaseOrder.PaidAmount | number : 2 }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="productPrintController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <div class="text-center">
+                <h1>
+                    PPS Plastic Pipe Industries Ltd.
+                </h1>
+                <p>House No. 14, Road No. 6, Sector No. 1, Uttara, Dhaka-1230, Bangladesh</p>
+                <p>Phone: +88 01700 703333, +88 01700 703322</p>
+                <p>Email: pps.plastic@gmail.com</p><br />
+                <h3 class="font-bold">Product list</h3>
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <div class="panel-body">
+                                <div class="col-xs-12" style="overflow-x: scroll;">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <table  class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-2 text-center">Name</th>
+                                                        <th class="col-xs-2 text-center">Code</th>
+                                                        <th class="col-xs-1 text-center">Standerd Type Name</th>
+                                                        <th class="col-xs-1 text-center">Color</th>
+                                                        <th class="col-xs-1 text-center">Thickness</th>
+                                                        <th class="col-xs-1 text-center">Unit Type</th>
+                                                        <th class="col-xs-1 text-center">Price</th>
+                                                        <th class="col-xs-1 text-center">Length</th>
+                                                        <th class="col-xs-1 text-center">Product Type Name</th>
+                                                        <th class="col-xs-1 text-center">Account Head</th>
+                                                        <th class="col-xs-1 text-center">Created On</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="do in productList">
+                                                        <td class="text-left">{{ do.Name}}</td>
+                                                        <td class="text-left">{{ do.Code===null?'N/A':do.Code }}</td>
+                                                        <td class="text-left">{{do.ProductStandardTypeName===null?'N/A':do.ProductStandardTypeName}}</td>
+                                                        <td class="text-left">{{do.Color===null?'N/A':do.Color}}</td>
+                                                        <td class="text-left">{{do.Thickness===null?'N/A':do.Thickness}}</td>
+                                                        <td class="text-left">{{do.UnitTypeName}}</td>
+                                                        <td class="text-left">{{do.UnitPrice>0?do.UnitPrice:0}}</td>
+                                                        <td class="text-right">{{do.Length>0?do.Length:0}}</td>
+                                                        <td class="text-left">{{do.ProductTypeName}}</td>
+                                                        <td class="text-right">{{ do.AccountHeadId>0?do.AccountHeadId:0}}</td>
+                                                        <td class="text-left">{{ do.CreatedOn | date:'dd/MM/yyyy'}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

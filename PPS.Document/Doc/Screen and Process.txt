@@ -1,0 +1,65 @@
+Screen:
+1. Demand Order
+Process:
+*. Initiate
+1. DO Validation (Party Ledger Checking + Store Checking)
+2. DO Approval
+3. Distribution (Delivery => Accounts voucher Entry + Party Ledger)
+
+
+Screen:
+2. Product Return
+Process:
+*. Initiate
+1. Product Return (Adjust to Inventory + Party Ledger + Account)
+
+Screen:
+3. Raw Material Requisition
+Process:
+*. Initiate
+1. Requisition Validation
+2. Requisition Approval
+3. Purchase Order
+
+Screen:
+4. Raw Material Receiving
+Process:
+1. Partial or Full (Stock Entry)
+
+Screen:
+5. Batch Requisition (Floor Store)
+Process:
+*Initiate
+1. Accept By Central Store
+2. Create Challan for Raw Material => Floor Store
+3. Received By Floor Stock (Stock Entry for Floor Store)
+4. Send to Production From Floor Stock
+
+Screen:
+7. Estimate Production
+Process:
+1. Estimate
+
+Screen:
+8. Finished Goods Entry
+Process:
+1. Finished Goods Entry
+
+Screen:
+9. DO Update(Like Payment information)
+Process:
+1. DO Update
+
+
+Reports:
+1. Wastage Report
+2. Finished Good Report
+3. Central Store
+4. Floor Store
+5. Pending DOs
+6. Approved DOs
+7. Rejected DOs
+8. Performance Report (Sales & Marketing)
+9. Ledger Report (Party Ledger)
+10. Sales Vs Collection
+

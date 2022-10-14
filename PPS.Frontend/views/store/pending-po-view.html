@@ -1,0 +1,215 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="pendingPOViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Purchase Order</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="purchaseOrder.POStatusName !== 'Accepted'" ng-click="gotoAcceptPO(purchaseOrder.Id)">
+                    <span class=""></span> Accept
+                </button>
+            </h2>
+        </div>
+        <!-- Add Transaction Modal -->
+        <div class="modal fade" pps-modal id="transactionModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content" style="width: 800px; vertical-align: center !important;">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeTransactionModal()">&times;</button>
+                        <h4 class="modal-title">Accept Purchase Order</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <form name="formTransaction">
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>PO No. </label>
+                                    <span class="form-control">{{purchaseOrder.PurchaseOrderNo}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtRawMaterialTypeId" style="font-weight: bold;" required="true">Raw Material Item</label>
+                                    <select class="form-control"
+                                            id="optionSubGroup"
+                                            ng-click="clearReceivingQuantityField()"
+                                            ng-model="selectedRawMaterialType"
+                                            ng-options="rm.RawMaterialTypeName for rm in rawMaterialType" required></select>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label>Ordered Quantity</label>
+                                    <span class="form-control">{{selectedRawMaterialType.Quantity}}</span>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label>Accepted Quantity</label>
+                                    <span class="form-control">{{selectedRawMaterialType.AcceptedQuantity}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label>Balance Quantity</label>
+                                    <span class="form-control">{{selectedRawMaterialType.BalanceQuantity}}</span>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtReceivingQuantity">Receiving Quantity</label>
+                                    <input id="txtReceivingQuantity" ng-model="purchaseOrder.ReceivedQuantity" min="1" max="{{selectedRawMaterialType.BalanceQuantity}}" class="form-control required" type="number" required />
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12" style="padding-top: 23px;">
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="addRawMaterialItem()">
+                                        <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                    </button>
+                                </div>
+
+                                <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Raw Material Details
+                                                <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                                   ng-show="modelDetailMode === 2"
+                                                   ng-click="cancelModelUpdate()">Cancel</a>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body form-group" style="padding-bottom: 0;">
+                                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <!--<th class="col-xs-1 text-center">SL</th>-->
+                                                        <th class="col-xs-5 text-center">Raw Mat. Name</th>
+                                                        <th class="col-xs-1 text-center">Unit</th>
+                                                        <th class="col-xs-1 text-center">Quantity</th>
+                                                        <th class="col-xs-1 text-center">O.Quantity</th>
+                                                        <th class="col-xs-1 text-center">A.Quantity</th>
+                                                        <th class="col-xs-1 text-center">B.Quantity</th>
+                                                        <th class="col-xs-3"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="rm in storeRawMaterial">
+                                                        <!--<td class="text-center">{{$index + 1}}</td>-->
+                                                        <td class="text-left">{{ rm.RawMaterialTypeName }}</td>
+                                                        <td class="text-left">{{ rm.UnitTypeName }}</td>
+                                                        <td class="text-right">{{ rm.Quantity | number: "" }}</td>
+                                                        <td class="text-right">{{ rm.OrderedQuantity | number: "" }}</td>
+                                                        <td class="text-right">{{ rm.AcceptedQuantity | number: "" }}</td>
+                                                        <td class="text-right">{{ rm.BalanceQuantity | number: "" }}</td>
+                                                        <td class="text-left">
+                                                            <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(rm)">
+                                                                <span class="glyphicon glyphicon-edit"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(rm)">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div style="float: left;" class="col-xs-6">
+                                    <button type="button" class="btn btn-default" ng-click="closeTransactionModal()">Cancel</button>
+                                </div>
+                                <div class="form-group col-xs-6 text-right">
+                                    <button type="button"
+                                            class="btn btn-primary"
+                                            ng-disabled="!isPendingPOValidated"
+                                            ng-class="{ 'disabled': !isPendingPOValidated }"
+                                            ng-click="saveAcceptedPurchaseOrder()">
+                                        {{ modelActionText }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Purchase Order Info
+                                </h4>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-sm-12 col-xs-12">
+                                    <!--<div>
+                                        <label>Received: </label>
+                                        <span>{{purchaseOrder.ReceivedByOn}}</span>
+                                        <hr />
+                                    </div>-->
+                                </div>
+                                <div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtPurchaseOrderNo">Purchase Order No: </label>
+                                        <span id="txtPurchaseOrderNo">{{purchaseOrder.PurchaseOrderNo}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtSupplierId">Supplier: </label>
+                                        <span>{{purchaseOrder.SupplierName}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtPurchaseOrderDate">Purchase Order Date: </label>
+                                        <span>{{purchaseOrder.PurchaseOrderDate |  date : "dd/MM/yyyy"}}</span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label for="txtEstimatedDeliveryDate">Estimated Delivery Date: </label>
+                                        <span>{{purchaseOrder.EstimatedDeliveryDate |  date : "dd/MM/yyyy"}}</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <label for="txtUserId">Note:</label>
+                                        <span>{{purchaseOrder.Note}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Purchase Details
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1 text-center">SL</th>
+                                                <th class="col-xs-4 text-center">Raw Material Name</th>
+                                                <th class="col-xs-1 text-center">Unit</th>
+                                                <th class="col-xs-2 text-center">Ordered Quantity</th>
+                                                <th class="col-xs-2 text-center">Accepted Quantity</th>
+                                                <th class="col-xs-2 text-center">Balance Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rm in purchaseOrder.PurchaseOrderDetail">
+                                                <td class="text-center">{{$index + 1}}</td>
+                                                <td class="text-left">{{ rm.RawMaterialTypeName }}</td>
+                                                <td class="text-left">{{ rm.UnitTypeName }}</td>
+                                                <td class="text-right">{{ rm.Quantity | number: "" }}</td>
+                                                <td class="text-right">{{ rm.AcceptedQuantity | number: "" }}</td>
+                                                <td class="text-right">{{ rm.BalanceQuantity | number: "" }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

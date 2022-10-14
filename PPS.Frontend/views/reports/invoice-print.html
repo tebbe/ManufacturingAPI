@@ -1,0 +1,81 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div ng-controller="invoicePrintController">
+    <div class="row wrapper white-bg">
+        <div class="col-sm-12" style="background-color: #fff">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h2>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> <b>{{company.FullName}}</b>
+                    </h2>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}; Email: {{company.Email}}</p>
+                    <h3 class="font-bold"><u>Delivery Challan</u></h3>
+                </div>
+                <div class="">
+                    <div class="col-sm-6 col-xs-6">
+                        <p>Invoice No: <span class="font-bold">{{invoice.InvoiceNo}}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <p>Invoice Date: <span class="font-bold">{{invoice.InvoiceDate | date : "dd/MM/yyyy"}}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <p>Customer Name: <span class="font-bold">{{invoice.CustomerName}} ({{invoice.CustomerCode}})</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <p> Address: <span class="font-bold">{{invoice.CustomerAddress}}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <p> Customer Mobile: <span class="font-bold">{{invoice.CustomerMobile}}</span></p>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <p> Note: <span class="font-bold">{{invoice.DONote}}</span></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="">
+                    <table dt-options="dtOptions" class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-1 text-right">SL</th>
+                                <th class="col-xs-9 text-left">Product Name</th>
+                                <th class="col-xs-2 text-right">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pd in invoice.InvoiceDetail">
+                                <td class="text-right">{{$index + 1}}</td>
+                                <td class="text-left">{{ pd.ProductName }}</td>
+                                <td class="text-right">{{pd.AllocatedQuantity}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                <td class="col-xs-9" colspan="2">Total</td>
+                                <td class="col-xs-1">{{ TotalQuantity | number: ''}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

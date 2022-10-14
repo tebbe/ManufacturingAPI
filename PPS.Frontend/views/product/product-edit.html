@@ -1,0 +1,95 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="productEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Product</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="productForm" novalidate>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtProductStandardTypeId" style="font-weight: bold;" required="true">Product Standerd Type</label><br />
+                                <ui-select ng-model="selectedProductStandardType .selected" ng-change="onChangeProductStandardType(selectedProductStandardType.selected)" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.ProductStandardTypeName}}</ui-select-match>
+                                    <ui-select-choices repeat="pro in ProductStandardTypeList | propsFilter: {ProductStandardTypeName: $select.search}">
+                                        <div ng-bind-html="pro.ProductStandardTypeName | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtUnitTypeId" style="font-weight: bold;" required="true">Unit Type</label><br />
+                                <ui-select ng-model="selectedUnitType.selected" ng-change="onChangeUnitType(selectedUnitType.selected)" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.UnitTypeName}}</ui-select-match>
+                                    <ui-select-choices repeat="unit in UnitTypeList | propsFilter: {UnitTypeName: $select.search}">
+                                        <div ng-bind-html="unit.UnitTypeName| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtProductTypeId" style="font-weight: bold;">Product Type</label>
+                                <ui-select ng-model="selectedProductType.selected" ng-change="onChangeProductType(selectedProductType.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control">{{$select.selected.ProductTypeName}}</ui-select-match>
+                                    <ui-select-choices repeat="proType in ProductTypeList | propsFilter: {ProductTypeName: $select.search}">
+                                        <div ng-bind-html="proType.ProductTypeName | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtProductTypeGroupId" style="font-weight: bold;">Product Group Type</label>
+                                <ui-select ng-model="selectedProductTypeGroup.selected" ng-change="onChangeProductTypeGroup(selectedProductTypeGroup.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control">{{$select.selected.AccountSubHeadName}}</ui-select-match>
+                                    <ui-select-choices repeat="groupType in ProductTypeGroupList | propsFilter: {AccountSubHeadName: $select.search}">
+                                        <div ng-bind-html="groupType.AccountSubHeadName | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="txProductName">Name</label>
+                                <input id="productName" ng-model="productDetails.Name" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-12">
+                                <label for="txtCode">Code</label>
+                                <input id="code" ng-model="productDetails.Code" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtColor">Color</label>
+                                <input id="color" ng-model="productDetails.Color" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtThickness">Thickness</label>
+                                <input id="thickness" ng-model="productDetails.Thickness" class="form-control" type="text"/>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtLength">Length</label>
+                                <input id="address" ng-model="productDetails.Length" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtUnitPrice">UnitPrice</label>
+                                <input id="unitPrice" ng-model="productDetails.UnitPrice" class="form-control" type="text" required />
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button" class="btn btn-primary" ng-click="gotoProductList()">
+                                <span class=""></span> Cancel
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="productForm.$invalid|| !productForm.$dirty"
+                                    ng-click="upateProduct()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

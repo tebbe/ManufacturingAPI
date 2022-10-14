@@ -1,0 +1,188 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="demandOrderEarlyPaymentListController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Demand Order Early Payment List</h2>
+        </div>
+
+        <!-- Pay Early Payment Discount To Customer Modal -->
+        <div class="modal fade" pps-modal id="payDOEarlyPaymentDiscountToCustomerModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closePayDOEarlyPaymentDiscountToCustomerModal()">&times;</button>
+                        <h4 class="modal-title">Early Payment Discount Transaction</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to pay the DO early payment discount to this customer?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closePayDOEarlyPaymentDiscountToCustomerModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="payDOEarlyPaymentDiscountToCustomerClick()">Pay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <!-- Tab Start-->
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <uib-tabset>
+                        <uib-tab heading="All">
+                            <div class="panel-body">
+                                <div class="col-xs-12" style="overflow-x: scroll;">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <table datatable="ng" dt-options="dtOptionsAll" class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-1 text-center">DO No.</th>
+                                                        <th class="col-xs-1 text-center">DO Date</th>
+                                                        <th class="col-xs-1 text-center">Maturity Days</th>
+                                                        <th class="col-xs-2 text-center">Customer Name</th>
+                                                        <th class="col-xs-1 text-right">DO Amount</th>
+                                                        <th class="col-xs-1 text-right">Discount & Percentage</th>
+                                                        <th class="col-xs-1 text-center">Created By</th>
+                                                        <th class="col-xs-1 text-center">DO Status</th>
+                                                        <th class="col-xs-1 text-center">Tx Status</th>
+                                                        <th class="col-xs-2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="do in doEarlyPaymentAllList">
+                                                        <td class="text-right">{{ do.Id }}</td>
+                                                        <td class="text-center">{{ do.DODate | date:'dd/MM/yyyy' }}</td>
+                                                        <td class="text-center"><span class="label" ng-class="{'label-default': do.MaturityLabel===1, 'label-warning': do.MaturityLabel===2, 'label-danger': do.MaturityLabel===3}" style="text-align: left; padding-left: 20px; padding-right: 20px;">{{ do.MaturityDays }}</span></td>
+                                                        <td class="text-left">{{ do.CustomerName }}</td>
+                                                        <td class="text-right">{{ do.TotalGrandAmount | currency : '' }}</td>
+                                                        <td class="text-right">{{ do.EarlyPaymentDiscountAmount | currency : '' }} ({{do.EarlyPaymentDiscountInPercentage}}%)</td>
+                                                        <td class="text-left">{{ do.CreatedByName }}</td>
+                                                        <td class="text-left">{{ do.DOStatusName }}</td>
+                                                        <td class="text-center"><p class="label" ng-class="{'label-info': do.DODiscountTransactionStatusName==='Approved'}" style="text-align: center;">{{ do.DODiscountTransactionStatusName }}</p></td>
+                                                        <td style="text-align: right;">
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('323')" ng-click="navigateToDoView(do)">
+                                                                View
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('323')" ng-click="navigateToDoPrint(do)">
+                                                                print
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Pending" ng-click="getDemandOrderEarlyPaymentPendingList()">
+                            <div class="panel-body">
+                                <div class="col-xs-12" style="overflow-x: scroll;">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-1 text-center">DO No.</th>
+                                                        <th class="col-xs-1 text-center">DO Date</th>
+                                                        <th class="col-xs-1 text-center">Maturity Days</th>
+                                                        <th class="col-xs-2 text-center">Customer Name</th>
+                                                        <th class="col-xs-1 text-right">DO Amount</th>
+                                                        <th class="col-xs-1 text-right">Discount & Percentage</th>
+                                                        <th class="col-xs-1 text-center">Created By</th>
+                                                        <th class="col-xs-1 text-center">DO Status</th>
+                                                        <th class="col-xs-1 text-center">Tx Status</th>
+                                                        <th class="col-xs-2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="do in doEarlyPaymentPendingList">
+                                                        <td class="text-right">{{ do.Id }}</td>
+                                                        <td class="text-center">{{ do.DODate | date:'dd/MM/yyyy' }}</td>
+                                                        <td class="text-center"><span class="label" ng-class="{'label-default': do.MaturityLabel===1, 'label-warning': do.MaturityLabel===2, 'label-danger': do.MaturityLabel===3}" style="text-align: left; padding-left: 20px; padding-right: 20px;">{{ do.MaturityDays }}</span></td>
+                                                        <td class="text-left">{{ do.CustomerName }}</td>
+                                                        <td class="text-right">{{ do.TotalGrandAmount | currency : '' }}</td>
+                                                        <td class="text-right">{{ do.EarlyPaymentDiscountAmount | currency : '' }} ({{do.EarlyPaymentDiscountInPercentage}}%)</td>
+                                                        <td class="text-left">{{ do.CreatedByName }}</td>
+                                                        <td class="text-left">{{ do.DOStatusName }}</td>
+                                                        <td class="text-center"><p class="label" ng-class="{'label-info': do.DODiscountTransactionStatusName==='Approved'}" style="text-align: center;">{{ do.DODiscountTransactionStatusName }}</p></td>
+                                                        <td style="text-align: right;">
+                                                            <button type="button" class="btn btn-default btn-sm" title="Edit" ng-if="isAuthenticated('432')" ng-click="showPayDOEarlyPaymentDiscountModal(do)">
+                                                                Pay
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('323')" ng-click="navigateToDoView(do)">
+                                                                View
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('323')" ng-click="navigateToDoPrint(do)">
+                                                                print
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Paid" ng-click="getDemandOrderEarlyPaymentPaidList()">
+                            <div class="panel-body">
+                                <div class="col-xs-12" style="overflow-x: scroll;">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover sorting_asc_disabled sorting_desc_disabled">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-1 text-center">DO No.</th>
+                                                        <th class="col-xs-1 text-center">DO Date</th>
+                                                        <th class="col-xs-1 text-center">Maturity Days</th>
+                                                        <th class="col-xs-2 text-center">Customer Name</th>
+                                                        <th class="col-xs-1 text-right">DO Amount</th>
+                                                        <th class="col-xs-1 text-right">Discount & Percentage</th>
+                                                        <th class="col-xs-1 text-center">Created By</th>
+                                                        <th class="col-xs-1 text-center">DO Status</th>
+                                                        <th class="col-xs-1 text-center">Tx Status</th>
+                                                        <th class="col-xs-2"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="do in doEarlyPaymentPaidList">
+                                                        <td class="text-right">{{ do.Id }}</td>
+                                                        <td class="text-center">{{ do.DODate | date:'dd/MM/yyyy' }}</td>
+                                                        <td class="text-center"><span class="label" ng-class="{'label-default': do.MaturityLabel===1, 'label-warning': do.MaturityLabel===2, 'label-danger': do.MaturityLabel===3}" style="text-align: left; padding-left: 20px; padding-right: 20px;">{{ do.MaturityDays }}</span></td>
+                                                        <td class="text-left">{{ do.CustomerName }}</td>
+                                                        <td class="text-right">{{ do.TotalGrandAmount | currency : '' }}</td>
+                                                        <td class="text-right">{{ do.EarlyPaymentDiscountAmount | currency : '' }} ({{do.EarlyPaymentDiscountInPercentage}}%)</td>
+                                                        <td class="text-left">{{ do.CreatedByName }}</td>
+                                                        <td class="text-left">{{ do.DOStatusName }}</td>
+                                                        <td class="text-center"><p class="label" ng-class="{'label-info': do.DODiscountTransactionStatusName==='Approved'}" style="text-align: center;">{{ do.DODiscountTransactionStatusName }}</p></td>
+                                                        <td style="text-align: right;">
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('323')" ng-click="navigateToDoView(do)">
+                                                                View
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-if="isAuthenticated('323')" ng-click="navigateToDoPrint(do)">
+                                                                print
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+            <!-- Tab End -->
+        </div>
+    </div>
+</div>

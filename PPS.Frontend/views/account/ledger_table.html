@@ -1,0 +1,145 @@
+<toaster-container></toaster-container>
+<div ng-controller="ledgerController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Accounts Ledger</h2>
+            <!--<ol class="breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a>Tables</a>
+                </li>
+                <li class="active">
+                    <strong>Data Tables</strong>
+                </li>
+            </ol>-->
+        </div>
+        <div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLedgerModal" ng-if="isAuthenticated('201')">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>
+        <!-- Modal -->
+        <form name="modalForm">
+            <div class="modal fade" pps-modal id="addLedgerModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Accounts Head</h4>
+                        </div>
+                        <div class="modal-body form-group">
+                            <label for="optionMainGroup" style="font-weight: bold;" required="true">Select Accounts Primary Head</label>
+                            <p>
+                                <select class="form-control"
+                                        id="optionAccountPrimaryHead"
+                                        ng-model="selectedPrimaryHeadId"
+                                        ng-options="ledger.PrimaryHeadId as ledger.PrimaryHead group by ledger.AccountType for ledger in accountPrimaryHeadList"
+                                        ng-change="getAccountSubHeadList(selectedPrimaryHeadId)" placeholder="Account Primary Head" required>
+                                    <option value=''>Choose Accounts Primary Head</option>
+                                </select>
+                            </p>
+                            <label for="optionSubGroup" style="font-weight: bold;">Select Accounts Sub Head</label>
+                            <p>
+                                <select class="form-control"
+                                        id="optionSubGroup"
+                                        ng-model="selectedSubHead"
+                                        ng-options="subHead.SubHead for subHead in accountSubHeadList" required
+                                        ng-change="updateSubHeadId(selectedSubHead)">
+                                    <option value=''>Choose Accounts Sub Head</option>
+                                </select>
+                                <!--<ui-select ng-model="optionSubGroup" theme="bootstrap">
+                                    <ui-select-match>{{$select.selected.SubGroup}}</ui-select-match>
+                                    <ui-select-choices repeat="subGroup in ledgerSubGroupList | filter: $select.search">
+                                        <div ng-bind-html="subGroup.SubGroupId | highlight: $select.search"></div>
+                                        <small ng-bind-html="subGroup.SubGroup | highlight: $select.search"></small>
+                                    </ui-select-choices>
+                                </ui-select>-->
+                            </p>
+                            <!--<label for="txtLedgerCode" style="font-weight: bold;">Account Head Code</label>
+                            <p><input id="txtLedgerCode" ng-model="accountHead.HeadCode" class="form-control" type="text" placeholder="Head Code" required="required" /></p>-->
+                            <label for="txtLedgerName" style="font-weight: bold;">Account Head Name</label>
+                            <p><input id="txtLedgerName" ng-model="accountHead.HeadName" class="form-control" type="text" placeholder="Head Name" required="required" /></p>
+                            <label style="font-weight: bold;">Opening Balance</label>
+                            <p class="form-inline">
+                                <div class="form-inline form-group col-sm-6 col-xs-12">
+                                    <label for="txtLedgerOpeningBalanceDr">Amount(Dr):</label>
+                                    <input id="txtLedgerOpeningBalanceDr" ng-model="accountHead.DrAmount" class="form-control" type="number" min="0" placeholder="Opening Balance Dr" required="required" />
+                                </div>
+                                <div class="form-inline form-group col-sm-6 col-xs-12">
+                                    <label for="txtLedgerOpeningBalanceCr">Amount(Cr):</label>
+                                    <input id="txtLedgerOpeningBalanceCr" ng-model="accountHead.CrAmount" class="form-control" type="number" min="0" placeholder="Opening Balance Cr" required="required" />
+                                </div>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <div style="float: left;">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            <div style="float: right;">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="modalForm.$invalid"
+                                        ng-class="{ 'disabled': modalForm.$invalid }"
+                                        ng-click="saveAccountHead()">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: scroll;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Accounts Ledger</h5>
+
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2 text-left">Accounts Nature</th>
+                                    <th class="col-xs-2 text-left">Accounts Type</th>
+                                    <th class="col-xs-2 text-left">Primary Head</th>
+                                    <th class="col-xs-2 text-left">Sub Head</th>
+                                    <!--<th class="col-xs-1">Head Code</th>-->
+                                    <th class="col-xs-2 text-left">Head Name</th>
+                                    <th class="col-xs-1 text-right">Op. Balance</th>
+                                    <th class="col-xs-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="ledger in ledgerList">
+                                    <td class="text-left">{{ ledger.AccountNature }}</td>
+                                    <td class="text-left">{{ ledger.AccountType }}</td>
+                                    <td class="text-left">{{ ledger.PrimaryHead }}</td>
+                                    <td class="text-left">{{ ledger.SubHead }}</td>
+                                    <!--<td>{{ ledger.HeadCode }}</td>-->
+                                    <td class="text-left">{{ ledger.HeadName }}</td>
+                                    <td class="text-right">{{ ledger.DrAmount > 0 || ledger.CrAmount === 0 ? (ledger.DrAmount | currency : "") : '(' + (ledger.CrAmount | currency : "") + ')'}}</td>
+                                    <td  class="text-right">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <!--<span class="glyphicon glyphicon-edit"></span>-->
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

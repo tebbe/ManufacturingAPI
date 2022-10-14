@@ -1,0 +1,254 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="customerEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Customer</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content" style="padding-bottom: 50px;">
+                    <div class="row">
+                        <form name="customerForm" novalidate>
+                            <div class="col-xs-12">
+                                <h3 style="border-bottom: 2px solid #e5e5e5; padding-left: 10px; padding-bottom: 10px;">Customer Information</h3>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label style="font-weight: bold;">Customer Name</label>
+                                    <!--<input id="txtCode" class="form-control" type="text" required
+                                    ng-disabled="false"
+                                    ng-model="customer.CustomerName" />-->
+                                    <p class="form-control">{{customer.CustomerName}}</p>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label style="font-weight: bold;" required="true">Customer Code</label>
+                                    <input id="txtCustomerName" class="form-control" type="text"
+                                    ng-disabled="false"
+                                    ng-model="customer.CustomerCode" />
+                                    <!--<p class="form-control">{{customer.CustomerCode}}</p>-->
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtCustomerAddress" style="font-weight: bold;" required="true">Customer Address</label>
+                                    <input id="txtCustomerAddress" class="form-control" type="text" required
+                                           ng-disabled="false"
+                                           ng-model="customer.CustomerAddress" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtMobile" style="font-weight: bold;">Mobile</label>
+                                    <input id="txtMobile" class="form-control" type="text" required
+                                           ng-disabled="false"
+                                           ng-model="customer.CustomerMobile" />
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtPhone" style="font-weight: bold;" required="true">Phone</label>
+                                    <input id="txtPhone" class="form-control" type="text"
+                                           ng-disabled="false"
+                                           ng-model="customer.CustomerPhone" />
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtVillege" style="font-weight: bold;" required="true">Village</label>
+                                    <input id="txtVillege" class="form-control" type="text"
+                                           ng-disabled="false"
+                                           ng-model="customer.Village" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtEmail" style="font-weight: bold;">Email</label>
+                                    <input id="txtEmail" class="form-control" type="text"
+                                           ng-disabled="false"
+                                           ng-model="customer.Email" />
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label style="font-weight: bold;">Customer Account Head</label>
+                                    <label class="form-control">{{customer.CustomerName}}</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtPostOfficeId" style="font-weight: bold;" required="true">Post Office</label>
+                                    <select class="form-control"
+                                            id="optionSubGroup"
+                                            ng-model="selectedPostOffice"
+                                            ng-options="po.PostOfficeName for po in postOffice" required></select>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtAreaId" style="font-weight: bold;" required="true">Area</label>
+                                    <select class="form-control"
+                                            id="optionSubGroup"
+                                            ng-model="selectedArea"
+                                            ng-options="ar.AreaName for ar in area" required></select>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="optionSalesAccount" style="font-weight: bold;" required="true">Sales Officer</label><br />
+                                    <ui-select ng-model="selectedSalesAccount.selected" style="width: 100%;" theme="select2" required>
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.FullName}}</ui-select-match>
+                                        <ui-select-choices repeat="so in salesOfficer | propsFilter: {FullName: $select.search, EmployeeCode: $select.search}">
+                                            <div ng-bind-html="so.FullName | highlight: $select.search"></div>
+                                            <small>
+                                                Employee Code: <span ng-bind-html="''+so.EmployeeCode | highlight: $select.search"></span>
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <!--Owner Information-->
+                            <div class="col-xs-12">
+                                <h3 style="border-bottom: 2px solid #e5e5e5; padding-left: 10px; padding-bottom: 10px;">Owner Information</h3>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtOwnerName" style="font-weight: bold;" required="true">Owner Name</label>
+                                    <input id="txtOwnerName" class="form-control" type="text" required
+                                           ng-disabled="false"
+                                           ng-model="customer.OwnerName" />
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtOwnerMobile" style="font-weight: bold;">Owner Mobile</label>
+                                    <input id="txtOwnerMobile" class="form-control" type="text" required
+                                           ng-disabled="false"
+                                           ng-model="customer.OwnerMobile" />
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="dtOwnerBirthDate" style="font-weight: bold;">Owner Birth Date</label><br />
+                                    <md-datepicker id="dtOwnerBirthDate" ng-model="customer.OwnerBirthDate" md-min-date="" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus="" ng-click="clickDatePicker()"></md-datepicker>
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtOwnerPhone" style="font-weight: bold;" required="true">Owner Phone</label>
+                                    <input id="txtOwnerPhone" class="form-control" type="text"
+                                           ng-disabled="false"
+                                           ng-model="customer.OwnerPhone" />
+                                </div>
+
+                            </div>
+
+                            <!--Contact Person Information-->
+                            <div class="col-xs-12">
+                                <h3 style="border-bottom: 2px solid #e5e5e5; padding-left: 10px; padding-bottom: 10px;">Contact Person Information</h3>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtContactPersonName" style="font-weight: bold;" required="true">Contact Person Name</label>
+                                    <input id="txtContactPersonName" class="form-control" type="text" required
+                                           ng-disabled="false"
+                                           ng-model="customer.ContactPersonName" />
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtContactPersonMobile" style="font-weight: bold;">Contact Person Mobile</label>
+                                    <input id="txtContactPersonMobile" class="form-control" type="text" required
+                                           ng-disabled="false"
+                                           ng-model="customer.ContactPersonMobile" />
+                                </div>
+                            </div>
+                            <!--Customer Sales Credit Line-->
+                            <div class="col-xs-12">
+                                <h3 style="border-bottom: 2px solid #e5e5e5; padding-left: 10px; padding-bottom: 10px;">Customer Sales Credit</h3>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtMonthlyCredit" style="font-weight: bold;" required="true">Monthly Credit</label>
+                                    <input id="txtMonthlyCredit" class="form-control" type="number" required
+                                           ng-disabled="false"
+                                           ng-model="customer.MonthlyCredit" />
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtYearlyCredit" style="font-weight: bold;">Yearly Credit</label>
+                                    <input id="txtYearlyCredit" class="form-control" type="number" required
+                                           ng-disabled="false"
+                                           ng-model="customer.YearlyCredit" />
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="dtEffectiveDate" style="font-weight: bold;">Effective Date</label><br />
+                                    <md-datepicker id="dtEffectiveDate" ng-click="datetimeClicked($event)" ng-model="customer.EffectiveDate" md-min-date="" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus="" ></md-datepicker>
+                                </div>
+                                <div class="form-group col-sm-3 col-xs-12">
+                                    <label for="txtSalesCapacityYearly" style="font-weight: bold;">Yearly Sales Capacity</label>
+                                    <input id="txtSalesCapacityYearly" class="form-control" type="number" required
+                                           ng-disabled="false"
+                                           ng-model="customer.SalesCapacityYearly" />
+                                </div>
+                            </div>
+                            <!--Attachment-->
+                            <!--<div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtAttachmentTypeId" style="font-weight: bold;" >Attachment Type</label>
+                                    <select class="form-control"
+                                            id="optionSubGroup"
+                                            ng-model="selectedAttachementType"
+                                            ng-options="at.AttachmentTypeName for at in attachmentType" ></select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label>Strength</label>
+                                    <label class="form-control">{{selectedAttachementType.Strength}}</label>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <input type="file" id="file" name="file" style="padding-top: 30px"  />
+                                </div>
+
+                                <div class="form-group col-sm-2 col-xs-12" style="padding-top: 23px;">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-disabled="customerForm.$invalid"
+                                            ng-click="addCustomerAttachement()">
+                                        <span class="glyphicon glyphicon-plus">Add</span>
+                                    </button>
+                                </div>
+
+                                <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                Attachment Details
+                                                <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                                   ng-show="modelDetailMode === 2"
+                                                   ng-click="cancelModelUpdate()">Cancel</a>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body form-group" style="padding-bottom: 0;">
+                                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-2 text-center">Attachment Type Name</th>
+                                                        <th class="col-xs-1 text-center">Strength</th>
+                                                        <th class="col-xs-2 text-center">File Name</th>
+                                                        <th class="col-xs-1 text-center">File Type</th>
+                                                        <th class="col-xs-1 text-center">File size</th>
+                                                        <th class="col-xs-4 text-center">File Location</th>
+                                                        <th class="col-xs-1"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="at in attachmentDetail">
+                                                        <td class="text-left">{{ at.AttachmentTypeName }}</td>
+                                                        <td class="text-right">{{ at.Strength}}</td>
+                                                        <td class="text-left">{{ at.FileName }}</td>
+                                                        <td class="text-right">{{ at.File Type}}</td>
+                                                        <td class="text-right">{{at.FileSize}}</td>
+                                                        <td class="text-right">{{at.FileLocation}}</td>
+                                                        <td class="text-right">
+                                                            <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(at)">
+                                                                Download
+                                                            </button>
+                                                            <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(at)">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!--Attachment End-->
+
+                            <div class="form-group col-xs-12 text-right">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="!isCustomerValidated"
+                                        ng-class="{ 'disabled': !isCustomerValidated}"
+                                        ng-click="updateCustomer()">
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

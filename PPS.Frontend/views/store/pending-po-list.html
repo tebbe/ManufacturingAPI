@@ -1,0 +1,120 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="pendingPOListController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h2>Pending Purchase Order</h2>
+        </div>
+        <!--<div class="col-lg-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-backdrop="static"
+                        data-keyboard="false" ng-click="addNewPurchaseOrder()">
+                    <span class="glyphicon glyphicon-plus"></span> Add
+                </button>
+            </h2>
+        </div>-->
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <!-- Tab Start-->
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <uib-tabset>
+                        <uib-tab heading="Pending" ng-click="getPendingPOList()">
+                            <div class="panel-body">
+                                <div class="col-xs-12" style="overflow-x: scroll;">
+                                    <div class="ibox float-e-margins">
+                                        <!--<div class="ibox-title">
+                                            <h5>Pending Purchase Order</h5>
+                                            <div ibox-tools></div>
+                                        </div>-->
+                                        <div class="ibox-content">
+                                            <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-xs-1 text-center">PO No.</th>
+                                                        <th class="col-xs-1 text-center">PO Date</th>
+                                                        <th class="col-xs-3 text-center">Supplier Name</th>
+                                                        <th class="col-xs-3 text-center">Note</th>
+                                                        <th class="col-xs-1 text-center">Estd. Del. Date</th>
+                                                        <th class="col-xs-1 text-center">Created By</th>
+                                                        <th class="col-xs-1 text-center">PO Status</th>
+                                                        <th class="col-xs-1"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="po in pendingPOList">
+                                                        <td class="text-right">{{ po.PurchaseOrderNo }}</td>
+                                                        <td class="text-center">{{ po.PurchaseOrderDate | date:'dd/MM/yyyy' }}</td>
+                                                        <td class="text-left">{{ po.SupplierName }}</td>
+                                                        <td class="text-left">{{ po.Note }}</td>
+                                                        <td class="text-center">{{ po.EstimatedDeliveryDate | date:'dd/MM/yyyy' }}</td>
+                                                        <td class="text-left">{{ po.CreatedByName }}</td>
+                                                        <td class="text-left" title="{{po.POStatusName == 'RFA'? 'Ready For Acceptance': po.POStatusName == 'PA'? 'Partially Accepted' : po.POStatusName}}">{{ po.POStatusName }}</td>
+                                                        <td class="text-right">
+                                                            <button type="button" class="btn btn-default btn-sm" title="View" ng-click="navigateToPendingPoView(po)">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab heading="Accepted" ng-click="getAcceptedPOList()">
+                            <div class="panel-body">
+                                <div class="col-xs-12" style="overflow-x: scroll;">
+                                    <div class="ibox float-e-margins">
+                                        <!--<div class="ibox-title">
+                                            <h5>Accepted Purchase Order</h5>
+                                            <div ibox-tools></div>
+                                        </div>-->
+                                        <div class="ibox-content">
+                                            <table id="acceptedPoTable" datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                                <thead>
+                                                <tr>
+                                                    <th class="col-xs-1 text-center sorting_desc">PO No.</th>
+                                                    <th class="col-xs-1 text-center">PO Date</th>
+                                                    <th class="col-xs-5 text-center">Supplier Name</th>
+                                                    <th class="col-xs-1 text-center">Note</th>
+                                                    <th class="col-xs-1 text-center">Estd. Del. Date</th>
+                                                    <th class="col-xs-1 text-center">Created By</th>
+                                                    <th class="col-xs-1 text-center">PO Status</th>
+                                                    <th class="col-xs-1"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="po in acceptedPOList">
+                                                    <td class="text-right">{{ po.PurchaseOrderNo }}</td>
+                                                    <td class="text-center">{{ po.PurchaseOrderDate | date:'dd/MM/yyyy' }}</td>
+                                                    <td class="text-left">{{ po.SupplierName }}</td>
+                                                    <td class="text-left">{{ po.Note }}</td>
+                                                    <td class="text-center">{{ po.EstimatedDeliveryDate | date:'dd/MM/yyyy' }}</td>
+                                                    <td class="text-left">{{ po.CreatedByName }}</td>
+                                                    <td class="text-left">{{ po.POStatusName }}</td>
+                                                    <td class="text-right">
+                                                        <!--<button type="button" class="btn btn-default btn-sm" ng-if="po.POStatusName === 'Initiated'" title="Edit" ng-click="navigateToPoEdit(po)">
+                                                            Edit
+                                                        </button>-->
+                                                        <button type="button" class="btn btn-default btn-sm" title="View" ng-click="navigateToAcceptedPoView(po)">
+                                                            View
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+            <!-- Tab End -->
+        </div>
+    </div>
+</div>

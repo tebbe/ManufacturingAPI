@@ -1,0 +1,110 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="salesTeamTargetController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Add Sales Team Target</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="salesTeamTargetForm" novalidate>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="optionMonthSelect" style="font-weight: bold;" required="true">Months</label><br />
+                                <ui-select ng-model="selectedMonth.selected" ng-change="onChangedMonth(selectedMonth.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.monthName}}</ui-select-match>
+                                    <ui-select-choices repeat="m in months | propsFilter: {monthName: $select.search}">
+                                        <div ng-bind-html="m.monthName | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="" style="font-weight: bold;" required="true">Year</label><br />
+                                <ui-select ng-model="selectedYear.selected" ng-change="onChangedYear(selectedYear.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected}}</ui-select-match>
+                                    <ui-select-choices repeat="y in years">
+                                        <div ng-bind-html="y | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="optionSalesAccount" style="font-weight: bold;" required="true">Sales Officer</label><br />
+                                <ui-select ng-model="selectedSalesAccount.selected" ng-change="onChangedEmployee(selectedSalesAccount.selected, false)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.FullName}} ({{$select.selected.Designation}})</ui-select-match>
+                                    <ui-select-choices repeat="so in salesOfficer | propsFilter: {FullName: $select.search, EmployeeCode: $select.search, Designation: $select.search}">
+                                        <div ng-bind-html="so.FullName + ' (' + so.Designation + ')' | highlight: $select.search"></div>
+                                        <small>
+                                            Employee Code: <span ng-bind-html="''+so.EmployeeCode | highlight: $select.search"></span>
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtSalesTarget" style="font-weight: bold;" required="true">Sales Target</label><br />
+                                <label>{{SalesTarget | currency : ''}}</label>
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label for="txtSalesTarget" style="font-weight: bold;" required="true">Team Target</label><br />
+                                <label>{{TeamTarget  | currency : ''}}</label>
+                            </div>
+                            <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Sales Team Target Details
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                                        <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-1 text-right">SL</th>
+                                                    <th class="col-xs-6 text-left">Sales Officer</th>
+                                                    <th class="col-xs-1 text-right">Sales Target</th>
+                                                    <th class="col-xs-1 text-right">Team Target</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="st in SalesTeamTargetDetail">
+                                                <td class="text-right">{{$index + 1}}</td>
+                                                <!--<td class="text-left" ng-click="navigateToFillEmployee(st)" ng-class="{'pps-link': st.hasChild == true; }">{{ st.FullName }} ({{ st.Designation }})</td>-->
+                                                <td class="text-left" ng-click="navigateToFillEmployee(st)" ng-class="{true: 'pps-link', false : 'pps-cursor-auto'}[st.hasChild == true]">{{ st.FullName }} ({{ st.Designation }})</td>
+                                                <td class="text-right"><input id="txtSalesTarget" ng-model="st.SalesTarget" class="form-control" min="0" type="number" /></td>
+                                                <td class="text-right"><input id="txtTeamTarget" ng-model="st.TeamTarget" class="form-control" min="0" type="number" /></td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="form-group col-xs-12 text-right">
+                                                        <button type="button"
+                                                                class="btn btn-primary"
+                                                                ng-disabled="salesStack.length < 2"
+                                                                ng-click="backToPreviousData()">
+                                                            Back
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-xs-12 text-right">
+                                <button type="button"
+                                        class="btn btn-primary"
+                                        ng-disabled="salesTeamTargetForm.$invalid"
+                                        ng-click="saveSalesTeamTarget()">
+                                    {{ modelActionText }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

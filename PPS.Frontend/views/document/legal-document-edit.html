@@ -1,0 +1,117 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="legalDocumentEditController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="pull-left"><h2>Legal Document</h2></div>
+      
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="legalDocumentUpdateForm" novalidate>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtCompanyId" style="font-weight: bold;" required="true">Company</label><br />
+                                <ui-select ng-model="selectedCompanyName.selected" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="com in company | propsFilter: {Name: $select.search}">
+                                        <div ng-bind-html="com.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtLegalDocumentType" style="font-weight: bold;" required="true">Document Type Name</label><br />
+                                <ui-select ng-model="selectedLegalDocumentType.selected" ng-change="onChangeDocumentType(selectedLegalDocumentType.selected)" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.DocumentTypeName}}</ui-select-match>
+                                    <ui-select-choices repeat="docType in legalDocumentType | propsFilter: {DocumentTypeName: $select.search}">
+                                        <div ng-bind-html="docType.DocumentTypeName| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtIssueDate" style="font-weight: bold;" required="true">Issue Date</label><br />
+                                <md-datepicker ng-model="legalDocument.IssueDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()" required></md-datepicker>
+                            </div>
+                            <div class="form-group col-sm-4 col-xs-12">
+                                <label for="txtExpireDate" style="font-weight: bold;">Expire Date</label><br />
+                                <md-datepicker ng-model="legalDocument.ExpireDate" ng-disabled="expireDateCheckbox" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                               ng-click="clickDatePicker()"></md-datepicker>
+                                <input ng-model="expireDateCheckbox" ng-click="setExpireDateNotApplicable()" style="margin-left:25px;" type="checkbox" /> Not applicable
+                               
+                            </div>
+                            <div class="form-group col-sm-2 col-xs-12">
+                                <label>Active?</label><br />
+                                <input ng-model="activeOrInactiveCheckBox" class="text-center" type="checkbox" /> Yes
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtLegalDocumentRenewalCategory" style="font-weight: bold;" required="true">Document Renew Category Type</label>
+                                <ui-select ng-model="selectedLegalDocumentRenewalCategory.selected" ng-change="onChangeDocRenewalctegory(selectedLegalDocumentRenewalCategory.selected)" style="width: 100%;" theme="select2">
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="docRCat in legalDocumentRenewalCategory | propsFilter: {Name: $select.search}">
+                                        <div ng-bind-html="docRCat.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtLegalDocumentStatus" style="font-weight: bold;" required="true">Document Status Type</label>
+                                <ui-select ng-model="selectedLegalDocumentStatus.selected" id="listProduct" ng-change="onChangeDocumentStatus(selectedLegalDocumentStatus.selected)" style="width: 100%;" theme="select2" required>
+                                    <ui-select-match placeholder="" class="form-control" required>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="docStatus in legalDocumentStatus | propsFilter: {Name: $select.search, Thickness: $select.search}">
+                                        <div ng-bind-html="docStatus.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtorganizationName">Organization Name</label>
+                                <input id="organizationName" ng-model="legalDocument.OrganizationName" class="form-control" type="text" required />
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtorganizationContactEmail">Organization Contact Email</label>
+                                <input id="organizationContactEmail" ng-model="legalDocument.OrganizationContactEmail" class="form-control" type="text"  />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtdocumentNumber">Document Number</label>
+                                <input id="documentNumber" ng-model="legalDocument.DocumentNumber" class="form-control" type="text" required />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtorganizationPhoneNumber">Organization Phone Number</label>
+                                <input id="organizationPhoneNumber" ng-model="legalDocument.OrganizationPhoneNumber" class="form-control" type="text"  />
+                            </div>
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtorganizationContactName">Organization Contact Person</label>
+                                <input id="organizationContactName" ng-model="legalDocument.OrganizationContactName" class="form-control" type="text"  />
+                            </div>
+
+                            <div class="form-group col-sm-6 col-xs-12">
+                                <label for="txtorganizationAddress">Organztion Address</label>
+                                <textarea id="organizationAddress" ng-model="legalDocument.OrganizationAddress" class="form-control" type="text" rows="2" required></textarea>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button" class="btn btn-primary" ng-click="gotoLegalDocList()">
+                                <span class=""></span> Cancel
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="legalDocumentUpdateForm.$invalid || !legalDocumentUpdateForm.$dirty"
+                                    ng-click="updateLegalDocument()">
+                                {{ modelActionText }}
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

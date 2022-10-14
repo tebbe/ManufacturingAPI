@@ -1,0 +1,82 @@
+﻿<style media="print">
+    /*@page {
+        size: A4;
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    body {
+        margin: 1.6cm;
+    }*/
+
+    @page {
+        margin: 0 -6cm
+    }
+
+    html {
+        margin: 0 6cm
+    }
+</style>
+
+<div id="customerStatementPageContent" ng-controller="reportController">
+    <div class="row wrapper white-bg">
+        <div id="customerStatement" ng-init="loadReport()" class="col-sm-12" style="background-color: #fff" ng-if="isReportGenerated===true">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <h2>
+                        <img ng-if="ReportHeaderSetting.CompanyLogoIncludeInReport" src="../../image/logo/{{company.LogoPath}}" /> <b>{{company.FullName}}</b>
+                    </h2>
+                    <p>{{company.Address}}</p>
+                    <p>Phone: {{company.Phone}}; Email: {{company.Email}}</p>
+                    <h3 class="font-bold"><u>Customer Statement</u></h3>
+                </div>
+                <div class="">
+                    <div class="col-sm-6 text-left">
+                        <p>
+                            Customer: {{customerStatement.CustomerName}} ({{customerStatement.CustomerCode}})<br />Address: {{customerStatement.CustomerAddress}}<br />Mobile: {{customerStatement.CustomerMobile}}
+                        </p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <p>Date: {{customerStatement.StatementStartDate | date:'dd/MM/yyyy'}} - {{customerStatement.StatementEndDate | date:'dd/MM/yyyy'}}</p>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <table class="table table-bordered table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Date</th>
+                                <th class="text-left">Type</th>
+                                <th class="text-right">Amount</th>
+                                <th class="text-right">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" style="text-align: right">Balance Before {{customerStatement.StatementStartDate | date:'dd/MM/yyyy' }}: Tk.{{customerStatement.PreviousBalance | currency : ""}}</td>
+                            </tr>
+                            <tr ng-repeat="cs in customerStatement.CustomerStatementDetail">
+                                <td class="text-center">{{cs.TransactionDate | date:'dd/MM/yyyy' }}</td>
+                                <td class="text-left">{{cs.TransactionType}}</td>
+                                <td class="text-right">{{cs.TransactionAmount | currency : ""}}</td>
+                                <td class="text-right">
+                                    <span ng-if="cs.TransactionBalance < 0">({{-cs.TransactionBalance | currency : ""}})</span>
+                                    <span ng-if="cs.TransactionBalance >= 0">{{cs.TransactionBalance | currency : ""}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: right">
+                                    Balance as of {{customerStatement.StatementEndDate | date:'dd/MM/yyyy'}}: Tk.
+                                    <span ng-if="customerStatement.AsOfDateBalance < 0">({{-customerStatement.AsOfDateBalance | currency : ""}})</span>
+                                    <span ng-if="customerStatement.AsOfDateBalance >= 0">{{customerStatement.AsOfDateBalance | currency : ""}}</span>
+                                    <!--{{customerStatement.AsOfDateBalance | currency : "" }}-->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

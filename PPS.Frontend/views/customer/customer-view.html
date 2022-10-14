@@ -1,0 +1,279 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="customerViewController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <div class="col-xs-10">
+            <h2>Customer Detail</h2>
+        </div>
+        <div class="col-xs-2">
+            <h2 style="float: right;">
+                <button type="button" class="btn btn-primary" ng-if="isAuthenticated('334')" ng-click="gotoCustomerEdit(customerVm.Id)">
+                    <span class=""></span> Edit
+                </button>
+            </h2>
+        </div>
+        <!-- Deactivate Customer Modal -->
+        <div class="modal fade" pps-modal id="deactivateCustomerModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeDeactivateCustomerModal()">&times;</button>
+                        <h4 class="modal-title">Deactivate Customer</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to deactivate this customer?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeDeactivateCustomerModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-danger" ng-click="deactivateCustomerModal()">Deactive</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Activate Customer Modal -->
+        <div class="modal fade" pps-modal id="activateCustomerModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeActivateCustomerModal()">&times;</button>
+                        <h4 class="modal-title">Activate Customer</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <p>Do you want to activate this customer?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div style="float: left;">
+                            <button type="button" class="btn btn-default" ng-click="closeActivateCustomerModal()">Cancel</button>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-primary" ng-click="activateCustomerModal()">Activate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Transaction Modal -->
+        <div class="modal fade" pps-modal id="transactionModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeTransactionModal()">&times;</button>
+                        <h4 class="modal-title">Customer Transaction</h4>
+                    </div>
+                    <div class="modal-body form-group" style="padding-bottom: 0;">
+                        <form name="formTransaction">
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Customer Name</label>
+                                    <span class="form-control">{{customerVm.CustomerName}}</span>
+                                </div>
+                                <div class="form-group col-xs-6 col-xs-12">
+                                    <label style="font-weight: bold;" required="true">Transaction Date</label><br />
+                                    <md-datepicker ng-model="newCustomerTransaction.TransactionDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()" required></md-datepicker>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="optionBank">Cash/Bank</label>
+                                    <select class="form-control"
+                                            id="optionBank"
+                                            ng-model="selectedAccount"
+                                            ng-options="cb.AccountName for cb in cashBanks" required></select>
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label>Account Code</label>
+                                    <span class="form-control">{{selectedAccount.AccountCode}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtTransactionAmount">Transaction Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="newCustomerTransaction.TransactionAmount" min="1" class="form-control required" type="number" required />
+                                </div>
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtTransactionPIN">Transaction PIN</label>
+                                    <input id="txtTransactionPIN" ng-model="newCustomerTransaction.TransactionPIN" class="form-control required" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row modal-footer">
+                                <div style="float: left;">
+                                    <button type="button" class="btn btn-default" ng-click="closeTransactionModal()">Cancel</button>
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button" class="btn btn-primary" ng-disabled="formTransaction.$invalid" ng-class="{ 'disabled': formTransaction.$invalid }" ng-click="saveTransactionClick()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding-bottom: 20px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title col-xs-10">
+                                    Customer Info
+                                </h4>
+                                <div class="col-xs-2 pull-right">
+                                    <button type="button" class="btn btn-primary btn-sm pull-right" ng-if="isAuthenticated('336') && customerVm.Status == 'Pending' || customerVm.Status == 'Deactivated'" title="Activate" ng-click="showActivateCustomerModal()">Activate</button>
+                                    <button type="button" class="btn btn-danger btn-sm pull-right" ng-if="isAuthenticated('336') && customerVm.Status == 'Activated'" title="Deactivate" ng-click="showDeactiveCustomerModal()">Deactivate</button>
+                                </div>
+                            </div>
+                            <div class="row modal-body form-group" style="padding-bottom: 10px;">
+                                <div class="col-xs-12">
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Customer Name: </label>
+                                        <span>{{customerVm.CustomerName}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Customer Code:</label>
+                                        <span>{{customerVm.CustomerCode}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Customer Address: </label>
+                                        <span>{{customerVm.CustomerAddress}}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Customer Mobile: </label>
+                                        <span>{{customerVm.CustomerMobile}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Customer Phone: </label>
+                                        <span>{{customerVm.CustomerPhone}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Owner Name: </label>
+                                        <span>{{customerVm.OwnerName}}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Owner Mobile: </label>
+                                        <span>{{customerVm.CustomerMobile}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Owner Phone: </label>
+                                        <span>{{customerVm.CustomerPhone}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Owner BirthDate: </label>
+                                        <span>{{customerVm.OwnerBirthDate | date : "dd/MM/yyyy"}}</span>
+                                    </div>
+
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Contact Person Name: </label>
+                                        <span>{{customerVm.ContactPersonName}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Contact Person Mobile: </label>
+                                        <span>{{customerVm.ContactPersonMobile}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Primary Contact No: </label>
+                                        <span>{{customerVm.PrimaryContactNo}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Village: </label>
+                                        <span>{{customerVm.Village}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Post Office: </label>
+                                        <span>{{customerVm.PostOffice}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Email: </label>
+                                        <span>{{customerVm.Email}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Area: </label>
+                                        <span>{{customerVm.Area}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Employee Name: </label>
+                                        <span>{{customerVm.EmployeeName}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Customer Type: </label>
+                                        <span>{{customerVm.CustomerType}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Account Head Id: </label>
+                                        <span>{{customerVm.AccountHeadId}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Status: </label>
+                                        <span>{{customerVm.Status}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Monthly Credit: </label>
+                                        <span>{{customerVm.MonthlyCredit}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Yearly Credit: </label>
+                                        <span>{{customerVm.YearlyCredit}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Effective Date: </label>
+                                        <span>{{customerVm.EffectiveDate | date : "dd/MM/yyyy"}}</span>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12">
+                                        <label>Yearly Sales Capacity: </label>
+                                        <span>{{customerVm.SalesCapacityYearly}}</span>
+                                    </div>
+                                </div>                                                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Transaction History
+                                        <a class="glyphicon glyphicon-plus btn btn-primary pull-right" ng-if="isAuthenticated('337') && customerVm.Status != 'Pending'" ng-click="showTransactionModal()">Add</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1">Tran. Date</th>
+                                                <th class="col-xs-4">Account</th>
+                                                <th class="col-xs-2">Tran. PIN</th>
+                                                <th class="col-xs-2">Created By</th>
+                                                <th class="col-xs-1">Created On</th>
+                                                <th class="col-xs-2">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="tran in customerVm.CustomerTransaction">
+                                                <td style="text-align: center;">{{ tran.TransactionDate | date:'dd/MM/yyyy' }}</td>
+                                                <td style="text-align: left;">{{ tran.AccountName}} - {{tran.AccountCode}}</td>
+                                                <td style="text-align: left;">{{ tran.TransactionPIN}}</td>
+                                                <td style="text-align: left;">{{ tran.CreatedByName}}</td>
+                                                <td style="text-align: center;">{{ tran.CreatedOn | date:'dd/MM/yyyy'}}</td>
+                                                <td style="text-align: right;"><span><span class="label label-warning" style="text-align: left; margin-right: 10px;" ng-if="!tran.IsApproved">Pending</span>{{ tran.TransactionAmount | currency : "" }}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

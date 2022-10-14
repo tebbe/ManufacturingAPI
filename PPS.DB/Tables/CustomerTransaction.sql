@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[CustomerTransaction] (
+    [Id]            INT           IDENTITY (1, 1) NOT NULL,
+    [CashBankAccountHeadId]	INT			  NOT NULL,
+	[TransactionReference] VARCHAR(20)  NULL,
+	[TransactionAmount] FLOAT     NOT NULL,
+	[CashBankTransactionDetailId] INT NULL,
+	[BankChargeAccountHeadId] INT NULL, 
+	[BankChargeAmount] FLOAT NULL, 
+	[BankChargeTransactionDetailId] INT NULL,
+    [TransactionDate] DATETIME    NOT NULL,
+    [CreatedBy]     INT           NOT NULL,
+    [CreatedOn]   DATETIME      NOT NULL,
+    [UpdatedBy]     INT           NULL,
+    [UpdatedOn]   DATETIME      NULL,
+    [ApprovedBy] INT NULL, 
+    [ApprovedOn] DATETIME NULL, 
+    [IsApproved] BIT NOT NULL, 
+    [TransactionEntryId] INT NULL, 
+    CONSTRAINT [PK_dbo.CustomerTransaction] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_dbo.CustomerTransaction_BankInfo] FOREIGN KEY ([CashBankAccountHeadId]) REFERENCES [dbo].[AccountHead] ([Id]),
+	CONSTRAINT [FK_dbo.CustomerTransaction_TransactionEntry] FOREIGN KEY ([TransactionEntryId]) REFERENCES [dbo].[TransactionEntry] ([Id]),
+	CONSTRAINT [FK_dbo.CustomerTransaction_TransactionDetail_CashBank] FOREIGN KEY ([CashBankTransactionDetailId]) REFERENCES [dbo].[TransactionDetail] ([Id]),
+	CONSTRAINT [FK_dbo.CustomerTransaction_TransactionDetail_BankCharge] FOREIGN KEY ([BankChargeTransactionDetailId]) REFERENCES [dbo].[TransactionDetail] ([Id])
+);
+

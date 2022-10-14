@@ -1,0 +1,41 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="salesHierarchyController">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>My Sales Hierarchy</h2>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div style="padding: 10px;">
+                        <p>{{salesHierarchy.FullName}} - {{salesHierarchy.DeptName}} - {{salesHierarchy.Designation}}</p>
+                        <div ng-repeat="empLevel1 in salesHierarchy.Employees" style="padding-left: 30px;">
+                            <p>{{empLevel1.FullName}} - {{empLevel1.DeptName}} - {{empLevel1.Designation}}</p>
+                            
+                            <div ng-repeat="empLevel2 in empLevel1.Employees" style="padding-left: 30px;">
+                                <p>{{empLevel2.FullName}} - {{empLevel2.DeptName}} - {{empLevel2.Designation}}</p>
+                                
+
+                                <div ng-repeat="empLevel3 in empLevel2.Employees" style="padding-left: 30px;">
+                                    <p>{{empLevel3.FullName}} - {{empLevel3.DeptName}} - {{empLevel3.Designation}}</p>
+
+                                    <div ng-repeat="empLevel4 in empLevel3.Employees" style="padding-left: 30px;">
+                                        <p>{{empLevel4.FullName}} - {{empLevel4.DeptName}} - {{empLevel4.Designation}}</p>
+
+                                        <div ng-repeat="empLevel5 in empLevel4.Employees" style="padding-left: 30px;">
+                                            <p>{{empLevel5.FullName}} - {{empLevel5.DeptName}} - {{empLevel5.Designation}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

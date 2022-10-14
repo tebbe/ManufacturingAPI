@@ -1,0 +1,246 @@
+﻿<toaster-container></toaster-container>
+<div ng-controller="purchaseOrderController">
+    <div class="row wrapper white-bg" style="padding-bottom: 12px;">
+        <h2>Purchase Order</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content">
+                    <div class="row">
+                        <form name="purchaseOrderForm" novalidate>
+                            <div class="col-xs-12">
+                                <div class="form-group col-sm-4 col-xs-12" style="padding-left: 0;">
+                                    <label for="txtPurchaseOrderNo" style="font-weight: bold;" required="true">Purchase Order No</label>
+                                    <input id="txtPurchaseOrderNo" class="form-control" type="text" placeholder="Automatic"
+                                           ng-disabled="true"
+                                           ng-model="PurchaseOrderNo" />
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtPurchaseOrderDate" style="font-weight: bold;" required="true">Purchase Order Date</label><br />
+                                    <md-datepicker ng-model="selectedPurchaseOrder.PurchaseOrderDate" md-min-date="minDate" md-max-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()"></md-datepicker>
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label style="font-weight: bold;">Purchase Order Type</label>
+                                    <div ng-init="purchaseOrderType=1">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optionPurchaseOrderType" ng-model="purchaseOrderType" value=1 ng-change="onPurchaseOrderTypeChange(purchaseOrderType)">Cash
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optionPurchaseOrderType" ng-model="purchaseOrderType" value=2 ng-change="onPurchaseOrderTypeChange(purchaseOrderType)">Credit
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optionPurchaseOrderType" ng-model="purchaseOrderType" value=3 ng-change="onPurchaseOrderTypeChange(purchaseOrderType)">LC
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="purchaseOrderType == 1">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtAccountHeadId" style="font-weight: bold;">Cash Account</label><br />
+                                    <ui-select ng-model="selectedCashAccount.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" ng-required="isRequiredPOTypeCash">{{$select.selected.AccountName}}</ui-select-match>
+                                        <ui-select-choices repeat="cb in cashAccount | propsFilter: {AccountName: $select.search}">
+                                            <div ng-bind-html="cb.AccountName | highlight: $select.search"></div>
+                                            <small>
+                                                Account Code : <span ng-bind-html="''+cb.AccountCode | highlight: $select.search"></span>
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmount">Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="CashAmount" min="0" class="form-control" type="number" ng-required="isRequiredPOTypeCash" />
+                                </div>
+
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtAccountHeadId" style="font-weight: bold;">Bank Account</label><br />
+                                    <ui-select ng-model="selectedBankAccount.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" ng-required="isRequiredPOTypeCash">{{$select.selected.AccountName}}</ui-select-match>
+                                        <ui-select-choices repeat="cb in bankAccount | propsFilter: {AccountName: $select.search}">
+                                            <div ng-bind-html="cb.AccountName | highlight: $select.search"></div>
+                                            <small>
+                                                Account Code : <span ng-bind-html="''+cb.AccountCode | highlight: $select.search"></span>
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmount">Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="BankAmount" min="0" class="form-control" type="number" ng-required="isRequiredPOTypeCash" />
+                                </div>
+
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtSupplierId" style="font-weight: bold;">Supplier</label>
+                                    <ui-select ng-model="selectedSupplier.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" ng-required="isRequiredPOTypeCash">{{$select.selected.SupplierName}}</ui-select-match>
+                                        <ui-select-choices repeat="sp in supplier | propsFilter: {SupplierName: $select.search}">
+                                            <div ng-bind-html="sp.SupplierName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmount">Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="SupplierAmount" min="0" class="form-control" type="number" ng-required="isRequiredPOTypeCash" />
+                                </div>
+                            </div>
+                            <div ng-show="purchaseOrderType == 2">
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtSupplierId" style="font-weight: bold;" ng-required="isRequiredPOTypeCredit">Supplier</label>
+                                    <ui-select ng-model="selectedSupplier.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" ng-required="isRequiredPOTypeCredit">{{$select.selected.SupplierName}}</ui-select-match>
+                                        <ui-select-choices repeat="sp in supplier | propsFilter: {SupplierName: $select.search}">
+                                            <div ng-bind-html="sp.SupplierName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmount">Transaction Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="SupplierAmount" min="0" class="form-control" type="number" ng-required="isRequiredPOTypeCredit" />
+                                </div>
+                            </div>
+                            <div ng-show="purchaseOrderType == 3">
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtLCNo">LC </label>
+                                    <input id="txtLCNo" ng-model="LCNo" class="form-control" type="text" ng-required="isRequiredPOTypeLC" />
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtAccountHeadId" style="font-weight: bold;">LC Account</label><br />
+                                    <ui-select ng-model="selectedLCAccount.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" ng-required="isRequiredPOTypeLC">{{$select.selected.AccountName}}</ui-select-match>
+                                        <ui-select-choices repeat="lc in lcAccount | propsFilter: {AccountName: $select.search}">
+                                            <div ng-bind-html="lc.AccountName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtTransactionAmount">Transaction Amount</label>
+                                    <input id="txtTransactionAmount" ng-model="LCAmount" min="0" class="form-control" type="number" ng-required="isRequiredPOTypeLC" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtNote">Note</label>
+                                    <input id="txtUNote" ng-model="Note" class="form-control" type="text" />
+                                </div>
+                                <div class="form-group col-sm-4 col-xs-12">
+                                    <label for="txtPaymentType">Payment Type</label>
+                                    <input id="txtPaymentType" ng-model="PaymentType" class="form-control" type="text" />
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtEstimatedDeliveryDate" style="font-weight: bold;" required="true">Estimated Delivery Date</label><br />
+                                    <md-datepicker ng-model="selectedPurchaseOrder.EstimatedDeliveryDate" md-min-date="maxDate" md-placeholder="Enter date" md-open-on-focus=""
+                                                   ng-click="clickDatePicker()"></md-datepicker>
+                                </div>
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtPriceValidity">Price Validity</label>
+                                    <input id="txtPriceValidity" ng-model="PriceValidity" class="form-control" type="number" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12" style="padding-left:0px;">
+                                <div class="form-group col-sm-6 col-xs-12">
+                                    <label for="txtRawMaterialTypeId" style="font-weight: bold;" required="true">Raw Material Item</label>
+                                    <ui-select ng-model="selectedRawMaterialType.selected" style="width: 100%;" theme="select2">
+                                        <ui-select-match placeholder="" class="form-control" required>{{$select.selected.RawMaterialTypeName}}</ui-select-match>
+                                        <ui-select-choices repeat="rm in rawMaterialType | propsFilter: {RawMaterialTypeName: $select.search}">
+                                            <div ng-bind-html="rm.RawMaterialTypeName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtQuantity">Quantity</label>
+                                    <input id="txtQuantity" ng-model="Quantity" min="0" class="form-control" type="number" required />
+                                </div>
+                                <div class="form-group col-sm-1 col-xs-12">
+                                    <p><br /></p>
+                                    <label>{{selectedRawMaterialType.selected.UnitTypeName}}</label>
+                                </div>
+
+                                <div class="form-group col-sm-2 col-xs-12">
+                                    <label for="txtPrice">Price</label>
+                                    <input id="txtPrice" ng-model="Price" min="1" class="form-control" type="number" required />
+                                </div>
+
+                                <div class="form-group col-sm-1 col-xs-12" style="padding-top:23px;">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            ng-disabled="purchaseOrderForm.$invalid"
+                                            ng-click="addRawMaterialItem()">
+                                        <span class="glyphicon glyphicon-plus"></span> {{ modelDetailText }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="inner-table col-xs-12" style="padding-bottom: 20px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Raw Material Details
+                                        <a class="glyphicon glyphicon-remove btn btn-sm btn-danger pull-right"
+                                           ng-show="modelDetailMode === 2"
+                                           ng-click="cancelModelUpdate()">Cancel</a>
+                                    </h4>
+                                </div>
+                                <div class="modal-body form-group" style="padding-bottom: 0;">
+                                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-xs-1 text-center">SL</th>
+                                                <th class="col-xs-6 text-center">Raw Material Name</th>
+                                                <th class="col-xs-1 text-center">Quantity</th>
+                                                <th class="col-xs-1 text-center">Unit</th>
+                                                <th class="col-xs-1 text-center">Unit Price</th>
+                                                <th class="col-xs-1 text-center">Total Price</th>
+                                                <th class="col-xs-1"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rm in rmDetail">
+                                                <td class="text-center">{{$index + 1}}</td>
+                                                <td class="text-left">{{ rm.RawMaterialTypeName }}</td>
+                                                <td class="text-right">{{ rm.Quantity | number: "2" }}</td>
+                                                <td class="text-left">{{ rm.UnitTypeName }}</td>
+                                                <td class="text-right">{{ rm.Price | number : "2"}}</td>
+                                                <td class="text-right">{{rm.totalUnitPrice | number : 2}}</td>
+                                                <td class="text-right">
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="selectItemDetail(rm)">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm" ng-click="removeItemDetail(rm)">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="text-align: right; font-weight: bold; background-color: #f0f0f0;">
+                                                <td class="col-xs-4" colspan="4"></td>
+                                                <td class="col-xs-1">Total</td>
+                                                <td class="col-xs-1">{{ TotalAmount | number : 0 }}</td>
+                                                <td class="col-xs-1"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 text-right">
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    ng-disabled="!isPurchaseOrderValidated"
+                                    ng-class="{ 'disabled': !isPurchaseOrderValidated }"
+                                    ng-click="savePurchaseOrder()">
+                                {{ modelActionText }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
